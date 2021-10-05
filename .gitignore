@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.DS_* ## Macs love to leave these everywhere in git repositories
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
