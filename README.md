@@ -3,20 +3,28 @@ butt
 
 :)
 
-language: most likely Python 3
-database: most likely flat sql
 
-CS 300 - Group #4 Project - Fall 2021
+>**[database.py](https://github.com/DebuggerDan/cs300g4projectfall21/blob/main/database/database.py)**
+>* currently being worked on by jgreever (Justin Greever).
+>* Feel free to make and commit changes. 
+>* Update the README.md with a quick snippet of what you changed/added/deleted from the files you are working on.
 
-Name: ChocAn - Chocoholics Anonymous
+>language: most likely Python 3
+>
+>database: most likely flat sql
 
-Purpose: Healthcare Services Suite
+# CS 300 - Group #4 Project - Fall 2021
 
-Program Design: 
+>## Name: ChocAn - Chocoholics Anonymous
+>
+>## Purpose: Healthcare Services Suite
 
-A. Main Interface(s)
+## Program Design: 
 
-B. Database(s)
+>### *A. Main Interface(s)*
+
+>### *B. Database(s)*
+
 	1. Internal
 	2. Healthcare Records
 		I. Patients
@@ -28,17 +36,20 @@ B. Database(s)
 		II. Security & Authentication
 		III. Ethical Records
 
-C. Billing
+>### *C. Billing*
+
 	1. Monthly Fee Cycle
 	2. Intertwined with Card Verification, Section a.)
 	3. Cron stuff
 
-D. Authentication & Security
+>### *D. Authentication & Security*
+
 	1. Card Verification
 	2. Group Verification
 	3. Synchronity
 
-E. Communications
+>### *E. Communications*
+
 	1. [Pseudo] Emailing System
 		I. Scheduling
 		II. On-Demand from/to Advisors
@@ -47,8 +58,8 @@ E. Communications
 		II. Stuff
 		III. Promotionals
 	
+>### *F. Card Verification*
 
-1. Card Verification
 	a. Check validity
 		I. Member active status
 		II. Fees reminder(s)
