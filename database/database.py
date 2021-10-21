@@ -15,6 +15,8 @@ from collections import namedtuple
 from typing import List, Dict, Tuple, Optional, Union
 
 class Database():
+    def __init__(self):
+        pass
 
     def __init__(self, db_file: str = 'database.json'):
         self.db_file = db_file
