@@ -160,22 +160,22 @@ class Database:
         con.close()
 
     @staticmethod
-    def update_member(member_id, name, address, phone, service_id):
+    def update_member(member_id, name, street, city, state, zip, phone, fax, email, service_id):
         con = sqlite3.connect('chocan.sqlite')
         cur = con.cursor()
         cur.execute("UPDATE member SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
                     "email = ?, service_id = ? WHERE member_id = ?",
-                    (name, address, phone, service_id, member_id))
+                    (name, street, city, state, zip, phone, fax, email, service_id, member_id))
         con.commit()
         con.close()
 
     @staticmethod
-    def update_provider(provider_id, name, address, phone, service_id):
+    def update_provider(provider_id, name, street, city, state, zip, phone, fax, email, service_id):
         con = sqlite3.connect('chocan.sqlite')
         cur = con.cursor()
         cur.execute("UPDATE provider SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
                     "email = ?, service_id = ? WHERE provider_id = ?",
-                    (name, address, phone, service_id, provider_id))
+                    (name, street, city, state, zip, phone, fax, email, service_id, provider_id))
         con.commit()
         con.close()
 
