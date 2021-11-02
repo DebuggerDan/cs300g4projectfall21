@@ -1,231 +1,188 @@
 # CS 300 - Group (#4) Project: ChocAn [Section: Database] - Fall 2021
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
+# Connect to database that is stored in chocan.sqlite. This will be used to read/write our data.
 
-# Create a database for storing information about the company, the customers, and the services provided.
+import sqlite3
 
-import numpy as np
-import os
-import sys
-import json
-import logging
-import functools
-from datetime import date time, timedelta
-from collections import namedtuple
-from typing import List, Dict, Tuple, Optional, Union
 
-class Database():
-    def __init__(self):
-        pass
+class Database:
 
-    def __init__(self, db_file: str = 'database.json'):
-        self.db_file = db_file
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.INFO)
-        self.logger.info('Database initialized')
+    @staticmethod
+    def createdb():
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("DROP TABLE IF EXISTS Provider")
+        cur.execute("DROP TABLE IF EXISTS Member")
+        cur.execute("DROP TABLE IF EXISTS Service")
+        cur.execute("CREATE TABLE Service (Service_ID INTEGER PRIMARY KEY, Name TEXT, Fee INTEGER)")
+        cur.execute("CREATE TABLE Provider (Provider_ID INTEGER PRIMARY KEY, Name TEXT, Street TEXT, City TEXT, "
+                    "State TEXT, Zip INTEGER, Phone INTEGER, Fax INTEGER, Email TEXT, "
+                    "Service_ID INTEGER, FOREIGN KEY(Service_ID) REFERENCES Service(Service_ID))")
+        cur.execute(
+            "CREATE TABLE Member (Member_ID INTEGER PRIMARY KEY, Name TEXT, Street TEXT, City TEXT, State TEXT, "
+            "Zip INTEGER, Phone INTEGER, Fax INTEGER, Email TEXT, Service_ID INTEGER, "
+            "FOREIGN KEY(Service_ID) REFERENCES Service(Service_ID))")
+        con.commit()
+        con.close()
 
-    def __enter__(self):
-        self.logger.info('Database entered')
-        return self
+    @staticmethod
+    def add_provider(name, street, city, state, zip, phone, fax, email, service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("INSERT INTO provider (name, street, city, state, zip, phone, fax, email, service_id) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (name, street, city, state, zip, phone, fax, email, service_id))
+        con.commit()
+        con.close()
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.logger.info('Database exited')
+    @staticmethod
+    def add_member(name, street, city, state, zip, phone, fax, email, service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("INSERT INTO member (name, street, city, state, zip, phone, fax, email, service_id) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (name, street, city, state, zip, phone, fax, email, service_id))
+        con.commit()
+        con.close()
 
-    def load_database(self) -> None:
-        """
-        Loads the database from the file.
-        """
-        self.logger.info('Loading database')
-        with open(self.db_file, 'r') as f:
-            self.database = json.load(f)
-        self.logger.info('Database loaded')
+    @staticmethod
+    def add_service(name, fee):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("INSERT INTO service (name, fee) VALUES (?, ?)", (name, fee))
+        con.commit()
+        con.close()
 
-    def save_database(self) -> None:
-        """
-        Saves the database to the file.
-        """
-        self.logger.info('Saving database')
-        with open(self.db_file, 'w') as f:
-            json.dump(self.database, f)
-        self.logger.info('Database saved')
+    @staticmethod
+    def get_provider(provider_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM provider WHERE provider_id = ?", (provider_id,))
+        provider = cur.fetchone()
+        con.close()
+        return provider
 
-    def get_database(self) -> Dict:
-        """
-        Returns the database.
-        """
-        return self.database
+    @staticmethod
+    def get_member(member_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM member WHERE member_id = ?", (member_id,))
+        member = cur.fetchone()
+        con.close()
+        return member
 
-    def get_member_id(self) -> int:
-        """
-        Returns the next available member id.
-        """
-        self.logger.info('Getting next member id')
-        if 'member_id' in self.database:
-            return self.database['member_id']
-        else:
-            return 0
+    @staticmethod
+    def get_provider_by_name(name):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM provider WHERE name = ?", (name,))
+        provider = cur.fetchone()
+        con.close()
+        return provider
 
-    def get_provider_id(self) -> int:
-        """
-        Returns the next available provider id.
-        """
-        self.logger.info('Getting next provider id')
-        if 'provider_id' in self.database:
-            return self.database['provider_id']
-        else:
-            return 0
+    @staticmethod
+    def get_member_by_name(name):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM member WHERE name = ?", (name,))
+        member = cur.fetchone()
+        con.close()
+        return member
 
-    def get_service_id(self) -> int:
-        """
-        Returns the next available service id.
-        """
-        self.logger.info('Getting next service id')
-        if 'service_id' in self.database:
-            return self.database['service_id']
-        else:
-            return 0
+    @staticmethod
+    def get_service(service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM service WHERE service_id = ?", (service_id,))
+        service = cur.fetchone()
+        con.close()
+        return service
 
-    def get_member_info(self, member_id: int) -> Dict:
-        """
-        Returns the member information for the given member id.
-        """
-        self.logger.info('Getting member info for member id: %d', member_id)
-        return self.database['members'][member_id]
+    @staticmethod
+    def get_providers():
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM provider")
+        providers = cur.fetchall()
+        con.close()
+        return providers
 
-    def get_provider_info(self, provider_id: int) -> Dict:
-        """
-        Returns the provider information for the given provider id.
-        """
-        self.logger.info('Getting provider info for provider id: %d', provider_id)
-        return self.database['providers'][provider_id]
-    
-    def get_service_info(self, service_id: int) -> Dict:
-        """
-        Returns the service information for the given service id.
-        """
-        self.logger.info('Getting service info for service id: %d', service_id)
-        return self.database['services'][service_id]
+    @staticmethod
+    def get_members():
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM member")
+        members = cur.fetchall()
+        con.close()
+        return members
 
-    def add_member(self, member_info: Dict) -> None:
-        """
-        Adds a member to the database.
-        """
-        self.logger.info('Adding member: %s', member_info)
-        member_id = self.get_member_id()
-        self.database['members'][member_id] = member_info
-        self.database['member_id'] = member_id + 1
-        self.save_database()
+    @staticmethod
+    def get_services():
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM service")
+        services = cur.fetchall()
+        con.close()
+        return services
 
-    def add_provider(self, provider_info: Dict) -> None:
-        """
-        Adds a provider to the database.
-        """
-        self.logger.info('Adding provider: %s', provider_info)
-        provider_id = self.get_provider_id()
-        self.database['providers'][provider_id] = provider_info
-        self.database['provider_id'] = provider_id + 1
-        self.save_database()
-    
-    def add_service(self, service_info: Dict) -> None:
-        """
-        Adds a service to the database.
-        """
-        self.logger.info('Adding service: %s', service_info)
-        service_id = self.get_service_id()
-        self.database['services'][service_id] = service_info
-        self.database['service_id'] = service_id + 1
-        self.save_database()
+    @staticmethod
+    def get_service_by_name(name):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("SELECT * FROM service WHERE name = ?", (name,))
+        service = cur.fetchone()
+        con.close()
+        return service
 
-    def update_member(self, member_id: int, member_info: Dict) -> None:
-        """
-        Updates the member information for the given member id.
-        """
-        self.logger.info('Updating member: %d', member_id)
-        self.database['members'][member_id] = member_info
-        self.save_database()
+    @staticmethod
+    def delete_member(member_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("DELETE FROM member WHERE member_id = ?", (member_id,))
+        con.commit()
+        con.close()
 
-    def update_provider(self, provider_id: int, provider_info: Dict) -> None:
-        """
-        Updates the provider information for the given provider id.
-        """
-        self.logger.info('Updating provider: %d', provider_id)
-        self.database['providers'][provider_id] = provider_info
-        self.save_database()
+    @staticmethod
+    def delete_provider(provider_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("DELETE FROM provider WHERE provider_id = ?", (provider_id,))
+        con.commit()
+        con.close()
 
-    def update_service(self, service_id: int, service_info: Dict) -> None:
-        """
-        Updates the service information for the given service id.
-        """
-        self.logger.info('Updating service: %d', service_id)
-        self.database['services'][service_id] = service_info
-        self.save_database()
+    @staticmethod
+    def delete_service(service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("DELETE FROM service WHERE service_id = ?", (service_id,))
+        con.commit()
+        con.close()
 
-    def delete_member(self, member_id: int) -> None:
-        """
-        Deletes the member information for the given member id.
-        """
-        self.logger.info('Deleting member: %d', member_id)
-        del self.database['members'][member_id]
-        self.save_database()
+    @staticmethod
+    def update_member(member_id, name, address, phone, service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("UPDATE member SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
+                    "email = ?, service_id = ? WHERE member_id = ?",
+                    (name, address, phone, service_id, member_id))
+        con.commit()
+        con.close()
 
-    def delete_provider(self, provider_id: int) -> None:
-        """
-        Deletes the provider information for the given provider id.
-        """
-        self.logger.info('Deleting provider: %d', provider_id)
-        del self.database['providers'][provider_id]
-        self.save_database()
+    @staticmethod
+    def update_provider(provider_id, name, address, phone, service_id):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("UPDATE provider SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
+                    "email = ?, service_id = ? WHERE provider_id = ?",
+                    (name, address, phone, service_id, provider_id))
+        con.commit()
+        con.close()
 
-    def delete_service(self, service_id: int) -> None:
-        """
-        Deletes the service information for the given service id.
-        """
-        self.logger.info('Deleting service: %d', service_id)
-        del self.database['services'][service_id]
-        self.save_database()
-
-    def get_member_services(self, member_id: int) -> List[int]:
-        """
-        Returns a list of service ids for the given member id.
-        """
-        self.logger.info('Getting member services for member id: %d', member_id)
-        return self.database['members'][member_id]['services']
-
-    def get_provider_services(self, provider_id: int) -> List[int]:
-        """
-        Returns a list of service ids for the given provider id.
-        """
-        self.logger.info('Getting provider services for provider id: %d', provider_id)
-        return self.database['providers'][provider_id]['services']
-
-    def add_member_service(self, member_id: int, service_id: int) -> None:
-        """
-        Adds a service to the member's services.
-        """
-        self.logger.info('Adding member service: %d, %d', member_id, service_id)
-        self.database['members'][member_id]['services'].append(service_id)
-        self.save_database()
-
-    def add_provider_service(self, provider_id: int, service_id: int) -> None:
-        """
-        Adds a service to the provider's services.
-        """
-        self.logger.info('Adding provider service: %d, %d', provider_id, service_id)
-        self.database['providers'][provider_id]['services'].append(service_id)
-        self.save_database()
-
-    def remove_member_service(self, member_id: int, service_id: int) -> None:
-        """
-        Removes a service from the member's services.
-        """
-        self.logger.info('Removing member service: %d, %d', member_id, service_id)
-        self.database['members'][member_id]['services'].remove(service_id)
-        self.save_database()
-    
-    def remove_provider_service(self, provider_id: int, service_id: int) -> None:
-        """
-        Removes a service from the provider's services.
-        """
-        self.logger.info('Removing provider service: %d, %d', provider_id, service_id)
-        self.database['providers'][provider_id]['services'].remove(service_id)
-        self.save_database()
+    @staticmethod
+    def update_service(service_id, name, fee):
+        con = sqlite3.connect('chocan.sqlite')
+        cur = con.cursor()
+        cur.execute("UPDATE service SET name = ?, fee = ? WHERE service_id = ?", (name, fee, service_id))
+        con.commit()
+        con.close()
