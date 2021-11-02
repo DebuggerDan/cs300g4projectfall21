@@ -28,5 +28,5 @@ jobs:
       working-directory: database
     - name: Test with pytest
       run: |
-        pytest database/test_database.py
+        pytest test_database.py
       working-directory: database
