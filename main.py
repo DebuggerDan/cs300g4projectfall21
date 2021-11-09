@@ -10,9 +10,14 @@ import functools
 from datetime import datetime, timedelta
 from playsound import playsound
 
-class main():
+#class main():
 
-    def __init__(self):
+#    def __init__(self):
+
+
+if __name__ == "__main__":
+
+    print("testing")
 
 
        
