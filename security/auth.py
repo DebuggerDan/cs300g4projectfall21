@@ -2,3 +2,13 @@
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
 
+'''
+planning for functions n stuff here.
+
+int loginGrabber()
+{
+    some kind of function which takes login info, passes it to some sanitizing function in sec, then if that's ok check
+    the database for correct credentials. Maybe have the passing to database be done in another function?
+}
+
+'''
