@@ -11,7 +11,6 @@ int loginGrabber()
     the database for correct credentials. Maybe have the passing to database be done in another function?
 }
 
-
 int loginDatabaseControl()
 {
     takes the login info from loginGrabber() and does some database stuff to check if it's ok

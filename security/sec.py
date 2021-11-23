@@ -7,5 +7,4 @@ int loginChecker(int loginData)
     takes login info from loginGrabber() in auth.py and makes sure that it's a kosher input.
     stops a classic bobby tables moment from happening
 }
-
 '''
