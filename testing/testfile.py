@@ -3,7 +3,7 @@
 import unittest
 from database.database import Database as DB
 
-class TestSum(unittest.TestCase):
+class TestChocAn(unittest.TestCase):
 
     # User Interface Test
     # 	The goal of the User Interface Test is to test the interface as a provider. The functionality that the provider is
@@ -24,6 +24,19 @@ class TestSum(unittest.TestCase):
     #           interface displays the correct success message stating that the user has been added to the user directory.
     #
     def test_add_member_valid(self):
+        DB.add_member("Unit Test", "000 Unit St", "Unit City", "OR", 97210, 0, 0, "unit@te.st", 123456)
+        member = DB.get_member_by_name("Unit Test")
+        print("\ntest\n")
+        print(member)
+        DB.delete_member(member.Member_ID)
+        self.assertFalse(str(member) == "None", "Valid member not found")
+
+    #this one will of course fail until somebody writes a validation function I can use
+    #instead of using the database functions directly
+    def test_add_member_invalid(self):
+        #DB.add_member(100, "string", 100, "string", 100, "string", 100, "string", 100)
+        self.assertFalse(1 == 1, "Valid member not found")
+
 
 
 
