@@ -3,8 +3,9 @@ from database import Database
 
 
 class TestDatabase(TestCase):
-    def test_createdb(self):
-        Database.createdb()
+    # Removing the database creation test so we can populate with data
+    #def test_createdb(self):
+    #    Database.createdb()
 
     def test_add_provider(self):
         Database.add_provider("A", "B", "C", "D", "E", "F", "G", "H", "I")
