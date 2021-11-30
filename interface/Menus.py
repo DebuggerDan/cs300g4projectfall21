@@ -1,4 +1,4 @@
-\*
+"""
 This is a basic outline of the menu and functions that will be called for each menu item.
 There is more to elborate of course, including error cases and exception handling.
 I tried to include the normal flow of information, and I can elaborate more on each case and such,
@@ -77,4 +77,4 @@ Main Menu Screen:
                                                       and the total fee amount to be paid, this report has all the info
                                                       for an EFT file)
         4 - Exit (returns to main menu)
-*\
+"""
