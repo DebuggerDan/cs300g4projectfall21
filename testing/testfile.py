@@ -3,6 +3,7 @@
 import unittest
 from database.database import Database as DB
 
+
 class TestChocAn(unittest.TestCase):
 
     # User Interface Test
@@ -24,20 +25,23 @@ class TestChocAn(unittest.TestCase):
     #           interface displays the correct success message stating that the user has been added to the user directory.
     #
     def test_add_member_valid(self):
+        #make a member
         DB.add_member("Unit Test", "000 Unit St", "Unit City", "OR", 97210, 0, 0, "unit@te.st", 123456)
+        #look for the member
         member = DB.get_member_by_name("Unit Test")
-        print("\ntest\n")
-        print(member)
-        DB.delete_member(member.Member_ID)
-        self.assertFalse(str(member) == "None", "Valid member not found")
+        #clean up the member (this could fail, deletion test occurs later)
+        if (str(member) != "None"):
+            DB.delete_member(member[0])
+        self.assertFalse(str(member) == "None", "Unable to add valid member")
 
     #this one will of course fail until somebody writes a validation function I can use
     #instead of using the database functions directly
     def test_add_member_invalid(self):
-        #DB.add_member(100, "string", 100, "string", 100, "string", 100, "string", 100)
-        self.assertFalse(1 == 1, "Valid member not found")
-
-
+        DB.add_member(100, "string", 100, "string", 100, "string", 100, "string", 100)
+        member = DB.get_member_by_name("Unit Test")
+        if (str(member) != "None"):
+            DB.delete_member(member[0])
+        self.assertTrue(str(member) == "None", "Able to add invalid member")
 
 
     # 5.1.2 Member Lookup Subtest
@@ -80,6 +84,7 @@ class TestChocAn(unittest.TestCase):
         provider = DB.get_provider(invalid_id);
         self.assertEqual(str(provider), "None", "Invalid provider found")
 
+
     # 5.1.4 Service Lookup Subtest
     # 	The Service Lookup subtest will test the service lookup function of the service directory by using the user
     # 	interface to lookup service codes. The Service Lookup subtest tries to look up two types of service:
@@ -101,6 +106,7 @@ class TestChocAn(unittest.TestCase):
         service = DB.get_service(invalid_id);
         self.assertEqual(str(service), "None", "Invalid provider found")
 
+
     # Report Generation Test
     # 	The purpose of the Report Generation test suite is to test the report generation for third-party software. The
     # 	report generation is requested weekly and contains specific information. This will be testing the integration of the
@@ -115,6 +121,19 @@ class TestChocAn(unittest.TestCase):
     #       The report file is formatted appropriately.
     #
     #
+    def test_member_report(self):
+        fn_exists = 1;
+        try:
+            run_member_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_member_report()
+
+        self.assertEqual(fn_exists, 1, "Member Report Not Implemented")
+        #will update test after somebody works on report generation
+
+
     # 5.2.2 Provider Report Subtest
     # 	The Provider Report subtest will test the report generation abilities of the software by generating a provider
     # 	report. After issuing a request for the report to be generated, the subtest will then inspect the report to
@@ -123,6 +142,19 @@ class TestChocAn(unittest.TestCase):
     #       The report file is not empty.
     #       The report file is formatted appropriately.
     #
+    def test_provider_report(self):
+        fn_exists = 1;
+        try:
+            run_provider_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_provider_report()
+
+        self.assertEqual(fn_exists, 1, "Provider Report Not Implemented")
+        #will update test after somebody works on report generation
+
+
     # 5.2.3 Electronic Funds Transfer (EFT) Report Subtest
     # 	The Electronic Funds Transfer Report subtest will test the report generation abilities of the software by generating
     # 	an EFT report. After issuing a request for the report to be generated, the subtest will then inspect the report to
@@ -131,6 +163,19 @@ class TestChocAn(unittest.TestCase):
     #       The report file is not empty.
     #       The report file is formatted appropriately.
     #
+    def test_eft_report(self):
+        fn_exists = 1;
+        try:
+            run_eft_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_eft_report()
+
+        self.assertEqual(fn_exists, 1, "EFT Report Not Implemented")
+        #will update test after somebody works on report generation
+
+
     # 5.2.4 Summary Report Subtest
     # 	The Summary Report subtest will test the report generation abilities of the software by generating a summary report.
     # 	After issuing a request for the report to be generated, the subtest will then inspect the report to determine its
@@ -140,6 +185,19 @@ class TestChocAn(unittest.TestCase):
     #       The report file is formatted appropriately.
     #
     #
+    def test_summary_report(self):
+        fn_exists = 1;
+        try:
+            run_summary_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_summary_report()
+
+        self.assertEqual(fn_exists, 1, "Summary Report Not Implemented")
+        #will update test after somebody works on report generation
+
+
     # Manager Interface Test
     # 	The goal of the Manager Interface Test is to test the interface as a manager trying to access specific information
     # 	from the database that may be protected. This specific data may be sensitive, thus should be safely stored and not
@@ -156,6 +214,35 @@ class TestChocAn(unittest.TestCase):
     #       manager-level permissions. The program will then attempt to run manager-level functions. This test passes if the
     #       attempted operations are available to the program and if the operations succeed.
     #
+    def test_manager_interface_valid(self):
+        valid_id = 100000001
+
+        fn_exists = 1;
+        try:
+            run_member_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_member_report(valid_id)
+
+        self.assertEqual(fn_exists, 1, "Reports Not Implemented")
+        #requires report generation to test
+
+    def test_manager_interface_invalid(self):
+        invalid_id = 1
+
+        fn_exists = 1;
+        try:
+            run_member_report
+        except NameError:
+            fn_exists = 0
+        else:
+            run_member_report(invalid_id)
+
+        self.assertEqual(fn_exists, 1, "Reports Not Implemented")
+        #requries report generation to test
+
+
     # Menu Integration Test
     #   The purpose of the Menu Integration Test is to test the menu interface with the integration of the database and
     #   weekly report generation. This will make sure that every choice in the main menu does what it should and allows the
@@ -170,52 +257,27 @@ class TestChocAn(unittest.TestCase):
     #   and if each invalid menu selection results in an appropriate error message confirming that the invalid input has
     #   been handled correctly.
     #
+    def test_menu_selection_valid(self):
+        self.assertEqual(1, 0, "Need Info on Menu Selection Implementation")
+
+    def test_menu_selection_invalid(self):
+        self.assertEqual(1, 0, "Need Info on Menu Selection Implementation")
+
+
     # 5.4.2 Form Manager Subtest
     #   The Form Manager subtest will test each form that is managed by the software. These forms will connect with the
     #   database. This subtest will fill each form out with both valid and invalid data. The subtest passes only if each
     #   form correctly accepts the valid data and displays an appropriate response. Furthermore, the subtest passes only if
     #   each form correctly recognizes the invalid data and displays an error message appropriately.
     #
-    # 5.5	Database Functionality Tests
-    # 	The purpose of the Database Functionality Tests is to ensure that the proper database structure has been created,
-    # 	that the helper functions are able to read/retrieve/edit/delete data within the database, and that any extra values
-    # 	passed to the functions are either truncated or return an error message.
-    #
-    # 5.5.1 Database Creation Subtest
-    # 	The Database Creation Subtest will test if the database currently exists if the database has data stored already,
-    # 	and if no database exists, the creation of a new database with required tables added. The tests will only pass if a
-    # 	database exists with the proper tables (with or without existing data in the tables), or if no database exists and
-    # 	the software can create/connect to a new database and ensure proper tables and structures are created.
-    #
-    # 5.5.2 Database Read/Write Subtest
-    # 	The Database Read/Write Subtest will test the ability to read data that is stored in the database and pass only if
-    # 	valid data is found. The written test will create a new test entry, and verify that the data exists in the database
-    # 	during the reading subtest. It will fail if the data cannot be found, and will pass if the data is present in the
-    # 	database that matches the query. This test relies on the Database Creation Subtest to return a pass, otherwise, it
-    # 	will fail if no database is found, or the tables are not present in the database.
-    #
-    # 5.5.3 Database Update/Delete Subtest
-    # 	The Database Update/Delete Subtest will test the ability to retrieve a value from the database, alter the data,
-    # 	write it back to the database, then attempt to locate and read the newly edited data. It will pass if the new data
-    # 	is found, and fail if it cannot find the data within the database. The delete subtest will then search for the data
-    # 	that was just edited and verified to be in the database, and remove/drop the information from the database, then
-    # 	perform a search for the data within the database. It will pass if the data is not found, and will fail if the data
-    # 	is found.
-    #
-    # 5.5.4 Database Helper Function Subtest
-    # 	The Database Helper Function Subtest will test the database helper functions’ ability to take arguments passed from
-    # 	the frontend/menu interface and match the values to valid entries in the database. The test will pass if all passed
-    # 	values match a valid entry in the database. If the arguments are incorrect, or if there are too many arguments, the
-    # 	test will fail. These tests will cover all tables in the database and their corresponding functions. If no database
-    #   is found, or no matching tables found, the test will fail.
+    def test_form_validation_valid(self):
+        self.assertEqual(1, 0, "Need Info on Form Validation")
+
+    def test_form_validation_invalid(self):
+        self.assertEqual(1, 0, "Need Info on Form Validation")
 
 
 
-    #def test_stuff(self):
-    #    self.assertEqual(sum([1, 2, 3]), 6, "Should be 6")
-
-    #def test_new_member_invalid(self):
-    #    self.assertRegex("stuff_string1_stuff", "string1", "Should be 'string1'")
 
 if __name__ == '__main__':
     unittest.main()
