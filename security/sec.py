@@ -8,6 +8,6 @@ def loginChecker(username):
         if sizeof(str(username)) != 9:
             return 4
         else:
-            return 2
+            return 3
     else:
-        return 3
+        return 2
