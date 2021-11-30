@@ -13,7 +13,7 @@ def loginGrabber():
     username = input('Enter a username: ')
     #check to make sure it's ok
     charCheck = loginChecker(username)
-    if charCheck == 3:
+    if charCheck != 3:
         print("Error: Improper login input!")
         return -1
     #passes sanitized entries to database control function
@@ -31,6 +31,10 @@ def loginDatabaseControl(username, charCheck):
     ##if charCheck == 1:
     ##    userData = get_provider_by_name(username)
     ##    return userData
-    if charCheck == 2:
+    if charCheck == 3:
         userData = get_provider(username)
+        if userData.managerFlag == 1:
+            print("Manager detected!")
+        else:
+            print("Provider detected!")
         return userData

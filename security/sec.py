@@ -3,6 +3,8 @@
 
 def loginChecker(username):
     if username.isalpha() == True:
+        if sizeof(str(username)) != 9:
+            return 4
         return 1
     elif username.isnum() == True:
         return 2
