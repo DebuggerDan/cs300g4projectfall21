@@ -33,7 +33,8 @@ def loginDatabaseControl(username, charCheck):
     ##    return userData
     if charCheck == 3:
         userData = get_provider(username)
-        if userData.managerFlag == 1:
+        tempID = str(userData.Provider_ID)
+        if tempID[0] == 1:
             print("Manager detected!")
         else:
             print("Provider detected!")
