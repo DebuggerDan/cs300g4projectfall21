@@ -11,6 +11,9 @@
 *.sln.docstates
 .DS_* ## Macs love to leave these everywhere in git repositories
 .DS_Store
+.vscode/
+.history/
+.idea/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
