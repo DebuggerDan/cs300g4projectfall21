@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# CS 300 Group Project Testing Folder
+testing-stuff/
+
 # User-specific files
 *.rsuser
 *.suo
