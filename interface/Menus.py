@@ -9,7 +9,6 @@ These also give some testing capabilities for some of the "background" processes
 Feel free to break it down even more or add further case handling scenarios or specific function calls.
 
 
-
 Process of interactions:
 
 Login screen:
