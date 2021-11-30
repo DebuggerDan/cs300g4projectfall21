@@ -1,16 +1,18 @@
 # CS 300 - Group (#4) Project: ChocAn [Section: Database] - Fall 2021
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
-# Connect to database that is stored in chocan.sqlite. This will be used to read/write our data.
+# Connect to database that is stored in path. This will be used to read/write our data.
 
 import sqlite3
+import os
 
+path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite";
 
 class Database:
 
     @staticmethod
     def createdb():
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("DROP TABLE IF EXISTS Provider")
         cur.execute("DROP TABLE IF EXISTS Member")
@@ -28,7 +30,7 @@ class Database:
 
     @staticmethod
     def add_provider(name, street, city, state, zip, phone, fax, email, service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("INSERT INTO provider (name, street, city, state, zip, phone, fax, email, service_id) "
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -38,7 +40,7 @@ class Database:
 
     @staticmethod
     def add_member(name, street, city, state, zip, phone, fax, email, service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("INSERT INTO member (name, street, city, state, zip, phone, fax, email, service_id) "
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -48,7 +50,7 @@ class Database:
 
     @staticmethod
     def add_service(name, fee):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("INSERT INTO service (name, fee) VALUES (?, ?)", (name, fee))
         con.commit()
@@ -56,7 +58,7 @@ class Database:
 
     @staticmethod
     def get_provider(provider_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM provider WHERE provider_id = ?", (provider_id,))
         provider = cur.fetchone()
@@ -65,7 +67,7 @@ class Database:
 
     @staticmethod
     def get_member(member_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM member WHERE member_id = ?", (member_id,))
         member = cur.fetchone()
@@ -74,7 +76,7 @@ class Database:
 
     @staticmethod
     def get_provider_by_name(name):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM provider WHERE name = ?", (name,))
         provider = cur.fetchone()
@@ -83,7 +85,7 @@ class Database:
 
     @staticmethod
     def get_member_by_name(name):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM member WHERE name = ?", (name,))
         member = cur.fetchone()
@@ -92,7 +94,7 @@ class Database:
 
     @staticmethod
     def get_service(service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM service WHERE service_id = ?", (service_id,))
         service = cur.fetchone()
@@ -101,7 +103,7 @@ class Database:
 
     @staticmethod
     def get_providers():
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM provider")
         providers = cur.fetchall()
@@ -110,7 +112,7 @@ class Database:
 
     @staticmethod
     def get_members():
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM member")
         members = cur.fetchall()
@@ -119,7 +121,7 @@ class Database:
 
     @staticmethod
     def get_services():
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM service")
         services = cur.fetchall()
@@ -128,7 +130,7 @@ class Database:
 
     @staticmethod
     def get_service_by_name(name):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("SELECT * FROM service WHERE name = ?", (name,))
         service = cur.fetchone()
@@ -137,7 +139,7 @@ class Database:
 
     @staticmethod
     def delete_member(member_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("DELETE FROM member WHERE member_id = ?", (member_id,))
         con.commit()
@@ -145,7 +147,7 @@ class Database:
 
     @staticmethod
     def delete_provider(provider_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("DELETE FROM provider WHERE provider_id = ?", (provider_id,))
         con.commit()
@@ -153,7 +155,7 @@ class Database:
 
     @staticmethod
     def delete_service(service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("DELETE FROM service WHERE service_id = ?", (service_id,))
         con.commit()
@@ -161,7 +163,7 @@ class Database:
 
     @staticmethod
     def update_member(member_id, name, street, city, state, zip, phone, fax, email, service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("UPDATE member SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
                     "email = ?, service_id = ? WHERE member_id = ?",
@@ -171,7 +173,7 @@ class Database:
 
     @staticmethod
     def update_provider(provider_id, name, street, city, state, zip, phone, fax, email, service_id):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("UPDATE provider SET name = ?, street = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ?, "
                     "email = ?, service_id = ? WHERE provider_id = ?",
@@ -181,7 +183,7 @@ class Database:
 
     @staticmethod
     def update_service(service_id, name, fee):
-        con = sqlite3.connect('chocan.sqlite')
+        con = sqlite3.connect(path)
         cur = con.cursor()
         cur.execute("UPDATE service SET name = ?, fee = ? WHERE service_id = ?", (name, fee, service_id))
         con.commit()

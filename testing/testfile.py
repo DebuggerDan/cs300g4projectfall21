@@ -1,6 +1,7 @@
 #testfile seems like a great file for tests
 
 import unittest
+from database.database import Database as DB
 
 class TestSum(unittest.TestCase):
 
@@ -10,6 +11,8 @@ class TestSum(unittest.TestCase):
     # 	testing the integration of the interface and the database. The data entered by the provider should be correct and
     # 	stored in the correct database. The data requested by the provider should be the correct data pulled by the database
     #
+
+
     # 5.1.1 New Member Subtest
     # 	The New Member subtest will test the user creation process by using the user interface to create a new member. The
     # 	New Member test tries to create two new members:
@@ -20,11 +23,8 @@ class TestSum(unittest.TestCase):
     #           An attempt is made to create a user by providing valid user information. This test passes if the user
     #           interface displays the correct success message stating that the user has been added to the user directory.
     #
-    def test_new_member_valid(self):
-        self.assertEqual(sum([1, 2, 3]), 6, "Should be 6")
+    def test_add_member_valid(self):
 
-    def test_new_member_invalid(self):
-        self.assertEqual(sum([1, 2, 3]), 6, "Should be 6")
 
 
     # 5.1.2 Member Lookup Subtest
@@ -36,6 +36,18 @@ class TestSum(unittest.TestCase):
     #       Existing Patient: An attempt is made to look up a patient who is known to exist in the member directory. This
     #           test passes if the user interface displays the correct patient information for the user.
     #
+    def test_member_lookup_valid(self):
+        valid_id = 93
+        member = DB.get_member(valid_id)
+        self.assertFalse(str(member) == "None", "Valid member not found")
+
+    def test_member_lookup_invalid(self):
+        invalid_id = 1111111111
+        member = DB.get_member(invalid_id)
+        print(member)
+        self.assertTrue(str(member) == "None", "Invalid member found")
+
+
     # 5.1.3 Provider Lookup Subtest
     # 	The Provider Lookup subtest will test the provider lookup function of the provider directory by using the user
     # 	interface to search for providers. The Provider Lookup subtest tries to look up two types of providers:
@@ -45,6 +57,16 @@ class TestSum(unittest.TestCase):
     #       Existing Provider: An attempt is made to look up a user who is known to exist in the provider directory. This
     #           test passes if the user interface displays the correct provider information for the user.
     #
+    def test_provider_lookup_valid(self):
+        valid_id = 300000012
+        provider = DB.get_provider(valid_id)
+        self.assertNotEqual(str(provider), "None", "Valid provider not found")
+
+    def test_provider_lookup_invalid(self):
+        invalid_id = 123456789;
+        provider = DB.get_provider(invalid_id);
+        self.assertEqual(str(provider), "None", "Invalid provider found")
+
     # 5.1.4 Service Lookup Subtest
     # 	The Service Lookup subtest will test the service lookup function of the service directory by using the user
     # 	interface to lookup service codes. The Service Lookup subtest tries to look up two types of service:
@@ -56,6 +78,16 @@ class TestSum(unittest.TestCase):
     #           passes if the user interface displays the correct service information for the service code which was
     #           provided.
     #
+    def test_service_lookup_exist(self):
+        valid_id = 148
+        service = DB.get_service(valid_id);
+        self.assertNotEqual(str(service), "None", "Valid provider not found")
+
+    def test_service_lookup_notexist(self):
+        invalid_id = 666666;
+        service = DB.get_service(invalid_id);
+        self.assertEqual(str(service), "None", "Invalid provider found")
+
     # Report Generation Test
     # 	The purpose of the Report Generation test suite is to test the report generation for third-party software. The
     # 	report generation is requested weekly and contains specific information. This will be testing the integration of the
@@ -169,8 +201,8 @@ class TestSum(unittest.TestCase):
     #def test_stuff(self):
     #    self.assertEqual(sum([1, 2, 3]), 6, "Should be 6")
 
-    #def test_sum_tuple(self):
-    #    self.assertEqual(sum((1, 2, 2)), 5, "Should be 5")
+    #def test_new_member_invalid(self):
+    #    self.assertRegex("stuff_string1_stuff", "string1", "Should be 'string1'")
 
 if __name__ == '__main__':
     unittest.main()
