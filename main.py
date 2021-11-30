@@ -8,7 +8,7 @@ import json
 import logging
 import functools
 from datetime import datetime, timedelta
-from playsound import playsound
+from playsound import playsound #playsound not found
 
 #class main():
 
