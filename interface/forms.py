@@ -40,11 +40,18 @@ class Forms:
         # print(Forms.commentForm())
 
         print("\nFull Service Form\n")
-        print(Forms.fullServiceForm())
+        print(Forms.provideServiceForm())
 
 
-    #add
+    ################################################################################################
+    #
+    # Basic input elements which include validation
+    # These functions are fine to call on their own
+    # Full forms (below) can also be built using these pieces
+    #
+    ################################################################################################
 
+    #add forms
     @staticmethod
     def addMemberForm():
         name = input("Enter name: ")
@@ -112,30 +119,6 @@ class Forms:
 
     #member service form
 
-    #Bill ChocAn after health care service has been provided to the Member.
-    # (Provider enters member number)
-    # Provider enters the current date: MM-DD-YYYY
-    # (Provider looks up service code)
-    # Provider enters the 6-digit code for the chosen service. Display it back to the Provider and ask them
-    #       to verify if it is the correct service.
-    # Provider enter additional comments as needed.
-    # The following information is now stored about the member:
-    # Current date and time (MM-DD-YYYY HH:MM:SS).
-    # Date service was provided (MM-DD-YYYY).
-    # Provider number (9 digits).
-    # Member number (9 digits).
-    # Service code (6 digits).
-    # Comments (100 characters) (optional)
-    # Software will look up the fee for the service and display it to the Provider.
-    # The Provider will need to verify all the information by filling out a verification form with:
-    # Current date and time.
-    # Date of the service that was provided
-    # Member name and number
-    # Service code
-    # Fee to be paid
-    # At the end of the week, Provider till total the fees to verify the amount to be paid to them by ChocAn.
-
-
     @staticmethod
     def dateForm():
         mm = input("Please enter the month (MM): ")
@@ -144,7 +127,7 @@ class Forms:
         date = mm + "-" + dd + "-" + yyyy
         return date
 
-    #(not an appropriate place for this but somebody will need it)
+    #(not "input" like the rest, but I had to put it somewhere)
     @staticmethod
     def date():
         #from datetime import datetime
@@ -163,31 +146,17 @@ class Forms:
         return agree
 
 
-    #Bill ChocAn after health care service has been provided to the Member.
-    # (Provider enters member number)
-    # Provider enters the current date: MM-DD-YYYY
-    # (Provider looks up service)
-    # Provider enters the 6-digit code for the chosen service. Display it back to the Provider and ask them
-    #       to verify if it is the correct service.
-    # Provider enter additional comments as needed.
-    # The following information is now stored about the member:
-    # Current date and time (MM-DD-YYYY HH:MM:SS).
-    # Date service was provided (MM-DD-YYYY).
-    # Provider number (9 digits).
-    # Member number (9 digits).
-    # Service code (6 digits).
-    # Comments (100 characters) (optional)
-    # Software will look up the fee for the service and display it to the Provider.
-    # The Provider will need to verify all the information by filling out a verification form with:
-    # Current date and time.
-    # Date of the service that was provided
-    # Member name and number
-    # Service code
-    # Fee to be paid
-    # At the end of the week, Provider till total the fees to verify the amount to be paid to them by ChocAn.
+
+    ################################################################################################
+    #
+    # FULL PROVIDER FORM FOR ENTERING A SERVICE PERFORMED
+    # comments are copy/pasted from naya's doc
+    #
+    ################################################################################################
+
 
     @staticmethod
-    def fullServiceForm():
+    def provideServiceForm():
 
         # (Provider enters member number)
         member_id = Forms.memberIDForm()
@@ -240,7 +209,6 @@ class Forms:
         # Comments (100 characters) (optional)
 
         # Software will look up the fee for the service and display it to the Provider.
-        print("Need function to look up service fee by service id")
         service = DB.get_service(service_id)
         fee = service[2]
 
@@ -251,11 +219,12 @@ class Forms:
         # Service code
         # Fee to be paid
 
-        print("\nCurrent date and time: " + current_date)
-        print("Service Date: " + service_date)
-        print("Member Number: " + member_id)
-        print("Service code: " + service_id)
-        print("Fee to be paid: " + str(fee))
+        print("\nInformation Verification:")
+        print("\n\tCurrent date and time: " + current_date)
+        print("\tService Date: " + service_date)
+        print("\tMember Number: " + member_id)
+        print("\tService code: " + service_id)
+        print("\tFee to be paid: " + str(fee))
         verify = Forms.verificationForm()
 
         if (verify == "n"):
