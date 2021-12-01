@@ -9,7 +9,7 @@ import logging
 import functools
 from datetime import datetime, timedelta
 from playsound import playsound
-from comm.comm import testMember
+from comm.comm import testManager, testMember, testProvider
 
 #class main():
 
@@ -20,7 +20,14 @@ if __name__ == "__main__":
 
     print("testing")
 
+    #Test member report function from comm.py to print member weekly report.
     testMember()
+
+    #Test provider report function from comm.py
+    testProvider()
+
+    #Test summary report for manager function from comm.py
+    testManager()
 
 #NAYA TESTING
 #Sam testing
