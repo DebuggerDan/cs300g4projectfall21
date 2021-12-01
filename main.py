@@ -9,6 +9,7 @@ import logging
 import functools
 from datetime import datetime, timedelta
 from playsound import playsound
+from comm.comm import testMember
 
 #class main():
 
@@ -18,6 +19,8 @@ from playsound import playsound
 if __name__ == "__main__":
 
     print("testing")
+
+    testMember()
 
 #NAYA TESTING
 #Sam testing
