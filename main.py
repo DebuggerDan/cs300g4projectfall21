@@ -28,8 +28,8 @@ if __name__ == "__main__":
     # login successful, provider info saved in logged_in
 
 
-    print("\nTesting service form below...\n")
-    Forms.testForms()
+    #print("\nTesting service form below...\n")
+    #Forms.testForms()
 
 #NAYA TESTING
 #Sam testing
