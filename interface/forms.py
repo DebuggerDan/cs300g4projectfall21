@@ -3,6 +3,8 @@
 
 from datetime import datetime
 from database.database import Database as DB
+from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker,  isPhonenum, isValidSelection
+
 
 class Forms:
 
@@ -63,6 +65,26 @@ class Forms:
         fax = input("Enter Fax: ")
         email = input("Enter Email: ")
         service_id = input("Enter Service ID: ")
+
+        good = 1
+        if not nameChecker(name) == 3:
+            print("Invalid name")
+            good = 0
+        if not rangeChecker(zip, 10000, 99999) == 3:
+            print("Invalid zip")
+            good = 0
+        if not isPhonenum(phone) == 3:
+            print("Invalid Phone")
+            good = 0
+        if not isPhonenum(fax) == 3:
+            print("Invalid Fax")
+            good = 0
+        if not serviceChecker(service_id) == 3:
+            print("Invalid service ID")
+            good = 0
+
+        if good == 0:
+            return 0
         return name, street, city, state, zip, phone, fax, email, service_id
 
     @staticmethod
@@ -73,6 +95,17 @@ class Forms:
     def addServiceForm():
         name = input("Enter name: ")
         fee = input("Enter fee: ")
+
+        good = 1
+        if not nameChecker(name) == 3:
+            print("Invalid name")
+            good = 0
+        if not rangeChecker(fee, 0, 999):
+            print("Invalid fee")
+            good = 0
+
+        if good == 0:
+            return 0
         return name, fee
 
     #id forms
@@ -80,16 +113,28 @@ class Forms:
     @staticmethod
     def providerIDForm():
         id = input("Enter Provider ID: ")
+
+        if not loginChecker(id) == 3:
+            print("Invalid ID")
+            return 0
         return id
 
     @staticmethod
     def memberIDForm():
         id = input("Enter Member ID: ")
+
+        if not loginChecker(id) == 3:
+            print("Invalid ID")
+            return 0
         return id
 
     @staticmethod
     def serviceIDForm():
         id = input("Enter Service ID: ")
+
+        if not serviceChecker(id) == 3:
+            print("Invalid ID")
+            return 0
         return id
 
     #name forms
@@ -97,16 +142,27 @@ class Forms:
     @staticmethod
     def providerNameForm():
         name = input("Enter Provider Name: ")
+
+        if not nameChecker(name) == 3:
+            print("Invalid Name")
+            return 0
         return name
 
     @staticmethod
     def memberNameForm():
         name = input("Enter Member Name: ")
+
+        if not nameChecker(name) == 3:
+            print("Invalid Name")
+            return 0
         return name
 
     @staticmethod
     def serviceNameForm():
         id = input("Enter Service Name: ")
+
+        #nameChecker requires that there be a space
+        #can't use here
         return id
 
     #menu form
@@ -114,6 +170,10 @@ class Forms:
     @staticmethod
     def menuSelectForm():
         num = input("Menu Selection: ")
+
+        if not isValidSelection(num):
+            print("Invalid Selection")
+            return 0
         return num
 
 
@@ -123,7 +183,21 @@ class Forms:
     def dateForm():
         mm = input("Please enter the month (MM): ")
         dd = input("Please enter the day (DD): ")
-        yyyy = input("Please enter the month (YYYY): ")
+        yyyy = input("Please enter the year (YYYY): ")
+
+        good = 1
+        if not rangeChecker(mm, 1, 12) == 3:
+            print("Invalid Month")
+            good = 0
+        if not rangeChecker(dd, 1, 31) == 3:
+            print("Invalid Day")
+            good = 0
+        if not rangeChecker(yyyy, 1900, 2100) == 3:
+            print("Invalid Year")
+            good = 0
+
+        if good == 0:
+            return 0
         date = mm + "-" + dd + "-" + yyyy
         return date
 
@@ -138,11 +212,13 @@ class Forms:
     @staticmethod
     def commentForm():
         comments = input("Please enter your comments: ")
+        #technically should be a max of 100 characters if anyone cares
         return comments
 
     @staticmethod
     def verificationForm():
         agree = input("Is this information valid? y/n: ")
+        #no validation needed, just check for 'y' and consider anything else no
         return agree
 
 
@@ -159,10 +235,14 @@ class Forms:
     def provideServiceForm():
 
         # (Provider enters member number)
-        member_id = Forms.memberIDForm()
+        member_id = 0
+        while member_id == 0:
+            member_id = Forms.memberIDForm()
 
         # Provider enters the current date: MM-DD-YYYY (actually service date)
-        service_date = Forms.dateForm()
+        service_date = 0
+        while service_date == 0:
+            service_date = Forms.dateForm()
 
         verify = "n"
         while verify == "n":
@@ -193,7 +273,9 @@ class Forms:
             verify = Forms.verificationForm()
 
         # Provider enter additional comments as needed.
-        comments = Forms.commentForm()
+        comments = 0
+        while (comments == 0):
+            comments = Forms.commentForm()
 
         #extra pieces
         current_date = Forms.date()
