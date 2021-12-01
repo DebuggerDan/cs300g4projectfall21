@@ -10,6 +10,7 @@ import functools
 from datetime import datetime, timedelta
 from playsound import playsound
 from interface.forms import Forms
+from security.auth import loginGrabber
 
 #class main():
 
@@ -18,8 +19,16 @@ from interface.forms import Forms
 
 if __name__ == "__main__":
 
-    print("testing")
+    print("\tWelcome to ChocAn!\n")
 
+    # initiate login sequence
+    logged_in = -2
+    while logged_in == -2:
+        logged_in = loginGrabber()
+    # login successful, provider info saved in logged_in
+
+
+    print("\nTesting service form below...\n")
     Forms.testForms()
 
 #NAYA TESTING
