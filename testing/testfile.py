@@ -38,7 +38,7 @@ class TestChocAn(unittest.TestCase):
     #instead of using the database functions directly
     def test_add_member_invalid(self):
         DB.add_member(100, "string", 100, "string", 100, "string", 100, "string", 100)
-        member = DB.get_member_by_name("Unit Test")
+        member = DB.get_member_by_name(100)
         if (str(member) != "None"):
             DB.delete_member(member[0])
         self.assertTrue(str(member) == "None", "Able to add invalid member")
