@@ -9,6 +9,7 @@ import logging
 import functools
 from datetime import datetime, timedelta
 from playsound import playsound
+from interface.forms import Forms
 
 #class main():
 
@@ -18,6 +19,8 @@ from playsound import playsound
 if __name__ == "__main__":
 
     print("testing")
+
+    Forms.testForms()
 
 #NAYA TESTING
 #Sam testing
