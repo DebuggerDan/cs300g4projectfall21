@@ -42,7 +42,7 @@ class Forms:
         # print(Forms.commentForm())
 
         print("\nFull Service Form\n")
-        print(Forms.provideServiceForm())
+        print(Forms.billingForm())
 
 
     ################################################################################################
@@ -61,10 +61,11 @@ class Forms:
         city = input("Enter City: ")
         state = input("Enter State: ")
         zip = input("Enter Zip: ")
-        phone = input("Enter Phone: ")
-        fax = input("Enter Fax: ")
-        email = input("Enter Email: ")
-        service_id = input("Enter Service ID: ")
+        #phone = input("Enter Phone: ")
+        #fax = input("Enter Fax: ")
+        #email = input("Enter Email: ")
+        #service_id = input("Enter Service ID: ")
+        active = 1
 
         good = 1
         if not nameChecker(name) == 3:
@@ -73,23 +74,40 @@ class Forms:
         if not rangeChecker(zip, 10000, 99999) == 3:
             print("Invalid zip")
             good = 0
-        if not isPhonenum(phone) == 3:
-            print("Invalid Phone")
+        #if not isPhonenum(phone) == 3:
+        #    print("Invalid Phone")
+        #    good = 0
+        #if not isPhonenum(fax) == 3:
+        #    print("Invalid Fax")
+         #   good = 0
+        #if not serviceChecker(service_id) == 3:
+        #    print("Invalid service ID")
+        #    good = 0
+
+        if good == 0:
+            return 0
+        #return name, street, city, state, zip, phone, fax, email, service_id
+        return name, street, city, state, zip, active
+
+    @staticmethod
+    def addProviderForm():
+        name = input("Enter name: ")
+        street = input("Enter street: ")
+        city = input("Enter City: ")
+        state = input("Enter State: ")
+        zip = input("Enter Zip: ")
+
+        good = 1
+        if not nameChecker(name) == 3:
+            print("Invalid name")
             good = 0
-        if not isPhonenum(fax) == 3:
-            print("Invalid Fax")
-            good = 0
-        if not serviceChecker(service_id) == 3:
-            print("Invalid service ID")
+        if not rangeChecker(zip, 10000, 99999) == 3:
+            print("Invalid zip")
             good = 0
 
         if good == 0:
             return 0
-        return name, street, city, state, zip, phone, fax, email, service_id
-
-    @staticmethod
-    def addProviderForm():
-        return Forms.addMemberForm()
+        return name, street, city, state, zip
 
     @staticmethod
     def addServiceForm():
@@ -198,7 +216,8 @@ class Forms:
 
         if good == 0:
             return 0
-        date = mm + "-" + dd + "-" + yyyy
+        #date = mm + "-" + dd + "-" + yyyy
+        date = yyyy + "-" + mm + "-" + dd
         return date
 
     #(not "input" like the rest, but I had to put it somewhere)
@@ -206,13 +225,14 @@ class Forms:
     def date():
         #from datetime import datetime
         now = datetime.now()
-        date = now.strftime("%d-%m-%Y %H:%M:%S")
+        date = now.strftime("%Y-%m-%d %H:%M:%S")
         return date
 
     @staticmethod
     def commentForm():
         comments = input("Please enter your comments: ")
-        #technically should be a max of 100 characters if anyone cares
+        #technically should be a max of 100 characters
+        #would need a validation function for that
         return comments
 
     @staticmethod
@@ -231,8 +251,9 @@ class Forms:
     ################################################################################################
 
 
+    #pass in the user object to access the ID of the logged in provider
     @staticmethod
-    def provideServiceForm():
+    def billingForm(user):
 
         # (Provider enters member number)
         member_id = 0
@@ -280,7 +301,7 @@ class Forms:
         #extra pieces
         current_date = Forms.date()
         #the provider is logged in so their id should be available somewhere
-        provider_id = 0
+        provider_id = user[0]
 
         # The following information is now stored about the member:
         # Current date and time (MM-DD-YYYY HH:MM:SS).
@@ -312,7 +333,8 @@ class Forms:
         if (verify == "n"):
             return 0
 
-        return current_date, service_date, provider_id, member_id, service_id, comments, fee
+        DB.add_billing(member_id, provider_id, service_date, current_date, service_id, comments)
+        return member_id, provider_id, service_date, current_date, service_id, comments
 
 
 

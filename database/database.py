@@ -5,8 +5,10 @@
 
 import sqlite3
 import os
+import random
+from datetime import datetime
 
-path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite"
+path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite.NEW"
 
 
 class Database:
@@ -38,15 +40,41 @@ class Database:
         con.close()
 
     @staticmethod
-    def add_billing(provider_id, service_date, billing_date, service_id, comments):
+    def fixBilling():
         con = sqlite3.connect(path)
         cur = con.cursor()
 
-        cur.execute("INSERT INTO billing (provider, service_date, billing_date, service, comments) "
-                    "VALUES (?, ?, ?, ?, ?)",
-                    (provider_id, service_date, billing_date, service_id, comments))
+        cur.execute("DROP TABLE IF EXISTS Billing")
+        cur.execute("CREATE TABLE Billing (Key INTEGER PRIMARY KEY, Member_ID INTEGER, Provider INTEGER, "
+                    "Service_Date DATE, Billing_Date DATETIME, Service INTEGER, Comments VARCHAR(100))")
+
         con.commit()
         con.close()
+
+    @staticmethod
+    def add_billing(member_id, provider_id, service_date, billing_date, service_id, comments):
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+
+        cur.execute("INSERT INTO billing (Member_ID, Provider, Service_date, Billing_Date, Service, comments) "
+                    "VALUES (?, ?, ?, ?, ?, ?)",
+                    (member_id, provider_id, service_date, billing_date, service_id, comments))
+        con.commit()
+        con.close()
+
+    # shove some bills in the database
+    @staticmethod
+    def generate_billing():
+        now = datetime.now()
+        service_date = now.strftime("%Y-%m-%d")
+        billing_date = now.strftime("%Y-%m-%d %H:%M:%S")
+
+        for x in range(12):  # currently there are 12 members
+            member_id = 400000001 + x
+            for y in range(4):  # give each member four bills
+                provider_id = 200000001 + random.randrange(17)  # currently there are 17 providers
+                service_id = 100001 + random.randrange(10)  # currently there are 10 named services
+                Database.add_billing(member_id, provider_id, service_date, billing_date, service_id, "comments")
 
     @staticmethod
     def get_provider_billing(provider_id):
@@ -54,6 +82,18 @@ class Database:
         cur = con.cursor()
 
         cur.execute("SELECT * FROM billing WHERE provider = ?", (provider_id,))
+
+        billing = cur.fetchall()
+        con.close()
+
+        return billing
+
+    @staticmethod
+    def get_member_billing(member_id):
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+
+        cur.execute("SELECT * FROM billing WHERE Member_ID = ?", (member_id,))
 
         billing = cur.fetchall()
         con.close()
@@ -71,6 +111,7 @@ class Database:
 
         con.commit()
         con.close()
+
 
     @staticmethod
     def add_member(name, street, city, state, zip, is_active):

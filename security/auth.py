@@ -32,12 +32,12 @@ def loginGrabber():
 
         #moved: can't do this until after we know a provider was found
         #tempID = str(userData.Provider_ID)
-        tempID = str(loginSuccess[0])
+        #tempID = str(loginSuccess[0])
         #if tempID[0] == 1:
-        if tempID[0] == "1":
-            print("Manager detected!")
-        else:
-            print("Provider detected!")
+        #if tempID[0] == "1":
+        #    print("Manager detected!")
+        #else:
+        #    print("Provider detected!")
 
         return loginSuccess
     else:
@@ -55,3 +55,19 @@ def loginDatabaseControl(username, charCheck):
         userData = Database.get_provider(username)
 
         return userData
+
+
+def is_logged_in(user):
+    if (user == -2):
+        return False
+    return True
+
+def is_manager(user):
+    if not is_logged_in(user):
+        return False
+    tempID = str(user[0])
+    if tempID[0] == "1":
+        return True
+    else:
+        return False
+

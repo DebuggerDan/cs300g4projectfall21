@@ -22,7 +22,8 @@ def loginChecker(username):
 def serviceChecker(service):
     if not service.isnumeric():
         return 1  # isnt a number
-    elif sys.getsizeof(str(service)) != 6:
+    #elif sys.getsizeof(str(service)) != 6:
+    elif len(service) != 6:
         return 2  # number is wrong size
     else:
         return 3  # correct
