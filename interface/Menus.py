@@ -4,6 +4,7 @@
 from database.database import Database
 from security.auth import is_manager
 from comm.comm import testManager, testMember, testProvider
+from interface.forms import Forms
 
 
 
@@ -24,6 +25,7 @@ def mainMenu(user): #main menu loop function
     while menu_code !=7: #while user does not want to log out
         displayMenu(user) #displays menu items
         menu_code = input("Please enter the menu item number: ") #asks for user input
+        print()
         if menu_code.isdigit():
             menu_code = int(menu_code)
         else:
@@ -37,7 +39,8 @@ def mainMenu(user): #main menu loop function
                 menu_code = 0
             elif (menu_code == 1):
                 #Enter Service Entry function
-                print("Enter Service Entry function goes here")
+                Forms.billingForm(user)
+
             elif (menu_code == 2):
                 #Query Member Info
                 print("Query Member Info function goes here")
@@ -82,6 +85,7 @@ def iamMenu(user):
     while (menu_code != 8):
         displayIAM()
         menu_code = input("\nPlease enter the menu item number: ")
+        print()
         if menu_code.isdigit():
             menu_code = int(menu_code)
         else:
@@ -132,6 +136,7 @@ def reportMenu(user):
     while menu_code != 4:
         displayReport()
         menu_code = input("Please enter the menu item number: ")
+        print()
         if menu_code.isdigit():
             menu_code = int(menu_code)
         else:
