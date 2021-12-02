@@ -8,7 +8,7 @@ class TestDatabase(TestCase):
     #    Database.createdb()
 
     def test_add_billing(self):
-        Database.add_billing("A", "B", "C", "D", "E")
+        Database.add_billing("A", "B", "C", "D", "E", "F")
 
     def test_get_billing(self):
         Database.get_provider_billing("200000001")
