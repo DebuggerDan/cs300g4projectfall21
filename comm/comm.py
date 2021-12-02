@@ -53,7 +53,9 @@ def memberReport(memberID):
     else:
         #The service ID of a member is stored in column 9. 
         #Will change for when it is a list of members and will access that different database.
-        serviceID = memberInfo[9]
+        #serviceID = memberInfo[9]
+        billing = db.get_member_billing(memberInfo[0])
+        total = 0.00
 
         #provider can only take in provider number, not service ID number. must fix database.
         #Maybe in the database with list of services will also keep track of each provider who provided the service.
@@ -61,7 +63,7 @@ def memberReport(memberID):
 
         #Get service info from the service database using the service ID.
         #Will change once we incorporate multiple services per member.
-        serviceInfo = db.get_service(serviceID)
+        #serviceInfo = db.get_service(serviceID)
 
         #Display the entire report using member info from specific column(element).
         print("\nMember Name: ", memberInfo[1],
@@ -70,17 +72,30 @@ def memberReport(memberID):
         "\nMember City: ", memberInfo[3],
         "\nMember State: ", memberInfo[4],
         "\nMember Zip Code: ", memberInfo[5],
-        "\n\nList of weekly services utilized by this member: \n\tService ID:", memberInfo[9])
+        #"\n\nList of weekly services utilized by this member: \n\tService ID:", memberInfo[9])
+        "\n\nList of weekly services utilized by this member: \n")
     
+        for bill in billing:
+            #Put a loop here that will loop through the list of services and print out individually
+            #print("\tDate of Service: 00/00/0000",
+            #"\n\tProvider Name: null",
+            #providerInfo[2],
+            #"\n\tService Name: ", serviceInfo[1])
+            print("\tMember ID: " + str(bill[1]))
+            print("\tProvider ID: " + str(bill[2]))
+            print("\tService Date: " + bill[3])
+            print("\tBilling Date: " + bill[4])
+            print("\tService ID: " + str(bill[5]))
 
-        #Put a loop here that will loop through the list of services and print out individually
-        print("\tDate of Service: 00/00/0000",
-        "\n\tProvider Name: null", 
-        #providerInfo[2],
-        "\n\tService Name: ", serviceInfo[1])
+            serviceInfo = db.get_service(bill[5])
+            fee = serviceInfo[2]
+            print("\tService Fee: $" + "{:.2f}".format(fee))
+            total += fee
+            print()
 
         #Will need a database that will have a list of services used by specific members
         #with: date of service, name of provider who gave service, and service name.
+        print("Total Fees: $" + "{:.2f}".format(total))
 
 
 
