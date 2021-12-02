@@ -4,22 +4,41 @@
 
 
 # planning for functions n stuff here.
-from pkg_resources import get_provider
+from database.database import Database
 from security.sec import loginChecker
+from interface.forms import Forms
 
 
 def loginGrabber():
     #take user input for login.
-    username = input('Enter a username: ')
+    #username = input('Enter a username: ')
     #check to make sure it's ok
-    charCheck = loginChecker(username)
-    if charCheck != 3:
-        print("Error: Improper login input!")
-        return -1
+    #charCheck = loginChecker(username)
+    #if charCheck != 3:
+    #    print("Error: Improper login input!")
+    #    return -1
     #passes sanitized entries to database control function
-    loginSuccess = loginDatabaseControl(username, charCheck)
-    if loginSuccess != None:
+
+    #switching over to the provider ID input form
+    #which uses auth.py to validate the provider ID
+    username = 0
+    while username == 0:
+        username = Forms.providerIDForm()
+
+    loginSuccess = loginDatabaseControl(username, 3)
+    #if loginSuccess != None:
+    if str(loginSuccess) != "None":
         print("Login success... Sending data...\n")
+
+        #moved: can't do this until after we know a provider was found
+        #tempID = str(userData.Provider_ID)
+        tempID = str(loginSuccess[0])
+        #if tempID[0] == 1:
+        if tempID[0] == "1":
+            print("Manager detected!")
+        else:
+            print("Provider detected!")
+
         return loginSuccess
     else:
         print("ID not found. Please try again!")
@@ -32,10 +51,7 @@ def loginDatabaseControl(username, charCheck):
     ##    userData = get_provider_by_name(username)
     ##    return userData
     if charCheck == 3:
-        userData = get_provider(username)
-        tempID = str(userData.Provider_ID)
-        if tempID[0] == 1:
-            print("Manager detected!")
-        else:
-            print("Provider detected!")
+        #userData = get_provider(username)
+        userData = Database.get_provider(username)
+
         return userData

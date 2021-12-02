@@ -203,6 +203,15 @@ class Database:
         return service
 
     @staticmethod
+    def get_services_by_name(name):
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM service WHERE name = ?", (name,))
+        service = cur.fetchall()
+        con.close()
+        return service
+
+    @staticmethod
     def delete_member(member_id):
         con = sqlite3.connect(path)
         cur = con.cursor()
