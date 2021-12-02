@@ -73,6 +73,18 @@ class Database:
         return billing
 
     @staticmethod
+    def get_member_billing(member_id):
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+
+        cur.execute("SELECT * FROM billing WHERE Member_ID = ?", (member_id,))
+
+        billing = cur.fetchall()
+        con.close()
+
+        return billing
+
+    @staticmethod
     def add_provider(name, street, city, state, zip):
         con = sqlite3.connect(path)
         cur = con.cursor()
