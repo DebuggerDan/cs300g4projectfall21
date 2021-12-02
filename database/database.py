@@ -70,7 +70,7 @@ class Database:
         billing_date = now.strftime("%Y-%m-%d %H:%M:%S")
 
         for x in range(12):  # currently there are 12 members
-            member_id = 400000001 + random.randrange(12)
+            member_id = 400000001 + x
             for y in range(4):  # give each member four bills
                 provider_id = 200000001 + random.randrange(17)  # currently there are 17 providers
                 service_id = 100001 + random.randrange(10)  # currently there are 10 named services

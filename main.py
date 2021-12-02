@@ -44,6 +44,7 @@ if __name__ == "__main__":
 
     print("\nTesting service form below...\n")
     #Forms.billingForm(user)
+    DB.generate_billing()
 
 
 #NAYA TESTING
