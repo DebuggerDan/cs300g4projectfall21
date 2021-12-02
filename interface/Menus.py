@@ -3,7 +3,7 @@
 
 from database.database import Database
 from security.auth import is_manager
-from comm.comm import testManager, testMember, testProvider
+from comm.comm import testManager, testMember, testProvider, querProvInfo, querMemInfo, querServInfo
 
 
 
@@ -40,13 +40,16 @@ def mainMenu(user): #main menu loop function
                 print("Enter Service Entry function goes here")
             elif (menu_code == 2):
                 #Query Member Info
-                print("Query Member Info function goes here")
+                #print("Query Member Info function goes here")
+                querMemInfo()
             elif (menu_code == 3):
                 #Query Provider Info
-                print("Query Provider Info function goes here")
+                #print("Query Provider Info function goes here")
+                querProvInfo()
             elif (menu_code == 4):
                 #Query Service Code Info
-                print("Query Service Code Info function goes here")
+                #print("Query Service Code Info function goes here")
+                querServInfo()
             elif (menu_code == 5):
                 #IAM menu loop
                 iamMenu(user)

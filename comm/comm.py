@@ -33,6 +33,7 @@ weekly summary function - prints report - manager and provider access
 
 
 from database.database import Database as db
+from security.sec import loginChecker, serviceChecker
 
 #Helper function to get the user input and sends it to the memberReport function. 
 #Did it seperately just incase this input functionality will be implemented in the menu or leave it here.
@@ -199,5 +200,53 @@ def managerReport(managerID):
           "\nTotal Number of Consultations: 000",
           "\nOverall fees: $99,999.99")
 
+#Takes a member ID and sees if they are valid or suspended. Uses some verification because of user input.
+def querMemInfo():
+    memID = input("Please enter the desired member ID: ")
+    valID = loginChecker(memID)
+    if valID != 3:
+        print("Invalid ID entry! Returning to menu.")
+        return -1
+    member = db.get_member(memID)
+    if str(member) == "None":
+        print("Member does not exist! Returning to menu.")
+        return -1
+    if member.Is_Active == 1:
+        print("Member is active!")
+        print("Member name: ", member.name)
+        print("ZIP: ", member.zip)
+        return 1
+    else:
+        print("Member is not active!")
+        print("Further details withheld due to inactivity.")
+        return 2
 
-    
+#Same as above, but for providers. Doesn't check for activity, just prints.
+def querProvInfo():
+    provID = input("Please enter the desired provider ID: ")
+    valID = loginChecker(provID)
+    if valID != 3:
+        print("Invalid ID entry! Returning to menu.")
+        return -1
+    provid = db.get_provider(provID)
+    if str(provid) == "None":
+        print("Provider does not exist! Returning to menu.")
+        return -1
+    print("Provider name: ", provid.name)
+    print("Provider ZIP: ", provid.zip)
+    return 1
+
+#Same as above again except for a service.
+def querServInfo():
+    servID = input("Please enter the desired service ID: ")
+    valID = serviceChecker(servID)
+    if valID != 3:
+        print("Invalid ID entry! Returning to menu.")
+        return -1
+    servid = db.get_service(servID)
+    if str(servid) == "None":
+        print("Service does not exist! Returning to menu.")
+        return -1
+    print("Service name: ", servid.name)
+    print("Service cost: ", servid.Fee)
+    return 1
