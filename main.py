@@ -13,6 +13,7 @@ from interface.forms import Forms
 from security.auth import loginGrabber, is_logged_in, is_manager
 from database.database import Database as DB
 from comm.comm import testManager, testMember, testProvider
+from interface.Menus import mainMenu
 
 
 #class main():
@@ -44,13 +45,16 @@ if __name__ == "__main__":
         print("User is not a manager.")
 
 
+    mainMenu(user)
+
+
     #DB.fixService()
     #print("\nTesting service form below...\n")
     #Forms.billingForm(user)
 
     #Test member report function from comm.py to print member weekly report.
-    while True:
-        testMember()
+    #while True:
+    #    testMember()
 
 
     #Test provider report function from comm.py
