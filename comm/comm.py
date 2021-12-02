@@ -211,10 +211,11 @@ def querMemInfo():
     if str(member) == "None":
         print("Member does not exist! Returning to menu.")
         return -1
-    if member[5] == 1:
+    #print(member[6])
+    if int(member[6]) == 1:
         print("Member is active!")
-        print("Member name: ", member.name)
-        print("ZIP: ", member.zip)
+        print("Member name: ", member[1])
+        print("ZIP: ", member[5])
         return 1
     else:
         print("Member is not active!")
@@ -232,8 +233,8 @@ def querProvInfo():
     if str(provid) == "None":
         print("Provider does not exist! Returning to menu.")
         return -1
-    print("Provider name: ", provid.name)
-    print("Provider ZIP: ", provid.zip)
+    print("Provider name: ", provid[1])
+    print("Provider ZIP: ", provid[5])
     return 1
 
 #Same as above again except for a service.
@@ -247,6 +248,6 @@ def querServInfo():
     if str(servid) == "None":
         print("Service does not exist! Returning to menu.")
         return -1
-    print("Service name: ", servid.name)
-    print("Service cost: ", servid.Fee)
+    print("Service name: ", servid[1])
+    print("Service cost: ", servid[2])
     return 1
