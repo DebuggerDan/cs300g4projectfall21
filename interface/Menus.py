@@ -1,18 +1,123 @@
+# CS 300 - Group (#4) Project: ChocAn [Section: Menu Displays and Functions] - Fall 2021
+# Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
+
+from database.database import Database
+from security.sec import loginChecker
+
+
+def displayMenu(): #displays main menu items
+    print("\n\nMain Menu:\n")
+    print("\n1 - Enter Member Service Entry")
+    print("\n2 - Request Member Info")
+    print("\n3 - Request Provider Info")
+    print("\n4 - Request Service Code Info")
+    print("\n5 - Interactive Mode Menu (IAM)")
+    #waiting for how manager is flagged from login function
+    #if (manager): #checks if manager
+        #print("\n6 - Generate Reports Menu")
+    print("\n7 - Log Out")
+
+def mainMenu(): #main menu loop function
+    menu_code = 0 #menu input
+    while menu_code !=7: #while user does not want to log out
+        displayMenu() #displays menu items
+        menu_code = input("\nPlease enter the menu item number: ") #asks for user input
+        if (menu_code > 7 or menu_code < 1):
+            print("\n\nInvalid Menu Item: Please select a number from the provided menu.\n")
+            menu_code = 0
+       else:
+            if (menu_code = 0):
+                print("\nPlease enter a menu item.\n")
+                menu_code = 0
+            elif (menu_code = 1):
+                #Enter Service Entry function
+            elif (menu_code = 2):
+                #Query Member Info
+            elif (menu_code = 3):
+                #Query Provider Info
+            elif (menu_code = 4):
+                #Query Service Code Info
+            elif (menu_code = 5):
+                #IAM menu loop
+            elif (menu_code = 6):
+                #check if manager logged in
+                    #if manager logged in, then execute report menu loop
+                    #else display error message and set menu_code = 0
+           elif (menu_code = 7):
+                #print log out message and exit to authentication login screen
+           else:
+                print("\nPlease enter a valid menu item.\n")
+
+def displayIAM():
+    print("\n\nInteractive Mode Menu:\n")
+    print("\n1 - Add Member")
+    print("\n2 - Delete Member")
+    print("\n3 - Modify Member")
+    print("\n4 - Add Provider")
+    print("\n5 - Delete Provder")
+    print("\n6 - Modify Provider")
+    print("\n7 - Update Member Status")
+    print("\n8 - Exit IAM Menu")
+                
+def iamMenu():
+    menu_code = 0
+    displayIAM()
+    menu_code = input("\nPlease enter the menu item number: ")
+    while menu_code !=8:
+        if (menu_code > 8 or menu_code < 1):
+            print("\n\nInvalid Menu Item: Please select a number from the provided menu.\n")
+            menu_code = 0
+       else:
+            if (menu_code = 1):
+                #Add member input and function
+            elif (menu_code = 2):
+                #Delete member input and function
+            elif (menu_code = 3):
+                #Modify member input and function
+            elif (menu_code = 4):
+                #Add provider input and function
+            elif (menu_code = 5):
+                #Delete provider input and function
+            elif (menu_code = 6):
+                #Modify provider input and function
+            elif (menu_code = 7):
+                #Update member status (active/inactive)
+            elif (menu_code = 8):
+                #print log out message from IAM menu and exits to main menu
+            else:
+                print("\nPlease enter a valid menu item.\n")
+                
+
+def displayReport():
+    print("\n\nGenerate Reports Menu:\n")
+    print("\n1 - Member Summary Report")
+    print("\n2 - Provider Summary Report")
+    print("\n3 - Manager/Accounts Payable Report")
+    print("\n4 - Exit Report Menu")
+
+def reportMenu():
+    menu_code = 0
+    displayReport()
+    menu_code = input("\nPlease enter the menu item number: ")
+    while menu_code !=4:
+        if (menu_code > 4 or menu_code < 1):
+            print("\n\nInvalid Menu Item: Please select a number from the provided menu.\n")
+            menu_code = 0
+       else:
+             if (menu_code = 0):
+                print("\nPlease enter a menu item.\n")
+                menu_code = 0
+            elif (menu_code = 1):
+                #Print member summary report by member id
+            elif (menu_code = 2):
+                #Print provider summary report by provider id
+            elif (menu_code = 3):
+                #Print manager accounts payable report
+            else:
+                print("\nPlease enter a valid menu item.\n")
+
+
 """
-This is a basic outline of the menu and functions that will be called for each menu item.
-There is more to elborate of course, including error cases and exception handling.
-I tried to include the normal flow of information, and I can elaborate more on each case and such,
-this is just a rough outline of how I am currently envisioning the menu functionality and database/menu
-interactions.
-These also give some testing capabilities for some of the "background" processes and allow us to manually trigger them.
-
-Feel free to break it down even more or add further case handling scenarios or specific function calls.
-
-Some prototypes I will make:
-displayMenu(int menu_code); //displays the associated menu (1 - main menu, 2 - IAM menu, 3 - report menu)
-displayError(int error_code); //displays asociated error message
-displayWelcome(int display_code); //displays message based on given code number
-
 Process of interactions:
 
 Login screen:
