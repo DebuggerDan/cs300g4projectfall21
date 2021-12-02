@@ -38,6 +38,18 @@ class Database:
         con.close()
 
     @staticmethod
+    def fixBilling():
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+
+        cur.execute("DROP TABLE IF EXISTS Billing")
+        cur.execute("CREATE TABLE Billing (Key INTEGER PRIMARY KEY, Member_ID INTEGER, Provider INTEGER, "
+                    "Service_Date DATE, Billing_Date DATETIME, Service INTEGER, Comments VARCHAR(100))")
+
+        con.commit()
+        con.close()
+
+    @staticmethod
     def add_billing(member_id, provider_id, service_date, billing_date, service_id, comments):
         con = sqlite3.connect(path)
         cur = con.cursor()

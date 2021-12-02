@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 from playsound import playsound
 from interface.forms import Forms
 from security.auth import loginGrabber, is_logged_in, is_manager
+from database.database import Database as DB
 
 #class main():
 
@@ -43,6 +44,5 @@ if __name__ == "__main__":
 
     print("\nTesting service form below...\n")
     Forms.billingForm(user)
-
 #NAYA TESTING
 #Sam testing
