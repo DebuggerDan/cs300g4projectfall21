@@ -10,7 +10,7 @@ import functools
 from datetime import datetime, timedelta
 from playsound import playsound
 from interface.forms import Forms
-from security.auth import loginGrabber
+from security.auth import loginGrabber, is_logged_in, is_manager
 
 #class main():
 
@@ -21,11 +21,24 @@ if __name__ == "__main__":
 
     print("\tWelcome to ChocAn!\n")
 
+    # for assistance logging in try the following ids
+    # 100000001 (manager)
+    # 200000001 (provider)
+
     # initiate login sequence
-    logged_in = -2
-    while logged_in == -2:
-        logged_in = loginGrabber()
+    user = -2
+    while user == -2:
+        user = loginGrabber()
     # login successful, provider info saved in logged_in
+
+    if is_logged_in(user):
+        print("User " + user[0] + " is logged in.") #user ID
+        print("Welcome to ChocAn, " + user[1]) #user name
+
+    if is_manager(user):
+        print("User is a manager.")
+    else:
+        print("User is not a manager.")
 
 
     #print("\nTesting service form below...\n")
