@@ -4,6 +4,7 @@
 from database.database import Database
 from security.auth import is_manager
 from comm.comm import testManager, testMember, testProvider, querProvInfo, querMemInfo, querServInfo
+from interface.forms import Forms
 
 
 
@@ -37,7 +38,8 @@ def mainMenu(user): #main menu loop function
                 menu_code = 0
             elif (menu_code == 1):
                 #Enter Service Entry function
-                print("Enter Service Entry function goes here")
+                Forms.billingForm(user)
+
             elif (menu_code == 2):
                 #Query Member Info
                 #print("Query Member Info function goes here")
