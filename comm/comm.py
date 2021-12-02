@@ -211,7 +211,7 @@ def querMemInfo():
     if str(member) == "None":
         print("Member does not exist! Returning to menu.")
         return -1
-    if member.Is_Active == 1:
+    if member[5] == 1:
         print("Member is active!")
         print("Member name: ", member.name)
         print("ZIP: ", member.zip)
