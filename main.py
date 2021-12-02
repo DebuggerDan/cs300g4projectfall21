@@ -43,6 +43,8 @@ if __name__ == "__main__":
 
 
     print("\nTesting service form below...\n")
-    Forms.billingForm(user)
+    #Forms.billingForm(user)
+
+
 #NAYA TESTING
 #Sam testing
