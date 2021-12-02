@@ -36,9 +36,11 @@ def loginGrabber():
         #if tempID[0] == 1:
         if tempID[0] == "1":
             print("Manager detected!")
+            #NOTE:create flag to signify manager 
             #NOTE: return manager, given report access
         else:
             print("Provider detected!")
+            #NOTE: flag can be left false since use is not a manager
             #NOTE: return provider, not given report access
 
         return loginSuccess

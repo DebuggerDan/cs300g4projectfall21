@@ -19,7 +19,7 @@ from security.auth import loginGrabber
 
 if __name__ == "__main__":
 
-    print("\tWelcome to ChocAn!\n")
+    print("\n\tWelcome to ChocAn!\n")
 
     # initiate login sequence
     logged_in = -2
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         logged_in = loginGrabber()
     # login successful, provider info saved in logged_in
 
-    
+
 
     #print("\nTesting service form below...\n")
     #Forms.testForms()
