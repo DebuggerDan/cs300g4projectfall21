@@ -1,6 +1,10 @@
 # CS 300 - Group (#4) Project: ChocAn [Section: Menu Displays and Functions] - Fall 2021
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
+from database.database import Database
+from security.sec import loginChecker
+
+
 def displayMenu(): #displays main menu items
     print("\n\nMain Menu:\n")
     print("\n1 - Enter Member Service Entry")
