@@ -36,8 +36,10 @@ def loginGrabber():
         #if tempID[0] == 1:
         if tempID[0] == "1":
             print("Manager detected!")
+            #NOTE: return manager, given report access
         else:
             print("Provider detected!")
+            #NOTE: return provider, not given report access
 
         return loginSuccess
     else:
@@ -50,6 +52,7 @@ def loginDatabaseControl(username, charCheck):
     ##if charCheck == 1:
     ##    userData = get_provider_by_name(username)
     ##    return userData
+    
     if charCheck == 3:
         #userData = get_provider(username)
         userData = Database.get_provider(username)
