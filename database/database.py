@@ -52,6 +52,17 @@ class Database:
         con.close()
 
     @staticmethod
+    def fixService():
+        con = sqlite3.connect(path)
+        cur = con.cursor()
+
+        cur.execute("DROP TABLE IF EXISTS Service")
+        cur.execute("CREATE TABLE Service (Service_ID INTEGER PRIMARY KEY, Name VARCHAR(25), Fee DECIMAL(3,2))")
+
+        con.commit()
+        con.close()
+
+    @staticmethod
     def add_billing(member_id, provider_id, service_date, billing_date, service_id, comments):
         con = sqlite3.connect(path)
         cur = con.cursor()
