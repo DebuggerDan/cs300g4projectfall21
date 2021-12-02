@@ -6,7 +6,7 @@
 import sqlite3
 import os
 
-path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite"
+path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite.NEW"
 
 
 class Database:
@@ -38,13 +38,13 @@ class Database:
         con.close()
 
     @staticmethod
-    def add_billing(provider_id, service_date, billing_date, service_id, comments):
+    def add_billing(member_id, provider_id, service_date, billing_date, service_id, comments):
         con = sqlite3.connect(path)
         cur = con.cursor()
 
-        cur.execute("INSERT INTO billing (provider, service_date, billing_date, service, comments) "
-                    "VALUES (?, ?, ?, ?, ?)",
-                    (provider_id, service_date, billing_date, service_id, comments))
+        cur.execute("INSERT INTO billing (Member_ID, Provider, Service_date, Billing_Date, Service, comments) "
+                    "VALUES (?, ?, ?, ?, ?, ?)",
+                    (member_id, provider_id, service_date, billing_date, service_id, comments))
         con.commit()
         con.close()
 

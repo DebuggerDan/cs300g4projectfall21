@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # login successful, provider info saved in logged_in
 
     if is_logged_in(user):
-        print("User " + user[0] + " is logged in.") #user ID
+        print("User " + str(user[0]) + " is logged in.") #user ID
         print("Welcome to ChocAn, " + user[1]) #user name
 
     if is_manager(user):
@@ -41,8 +41,8 @@ if __name__ == "__main__":
         print("User is not a manager.")
 
 
-    #print("\nTesting service form below...\n")
-    #Forms.testForms()
+    print("\nTesting service form below...\n")
+    Forms.billingForm(user)
 
 #NAYA TESTING
 #Sam testing
