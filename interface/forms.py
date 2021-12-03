@@ -75,8 +75,8 @@ class Forms:
             print("Invalid zip")
             good = 0
         #if not isPhonenum(phone) == 3:
-        #    print("Invalid Phone")
-        #    good = 0
+            #print("Invalid Phone")
+            #good = 0
         #if not isPhonenum(fax) == 3:
         #    print("Invalid Fax")
          #   good = 0
@@ -87,7 +87,9 @@ class Forms:
         if good == 0:
             return 0
         #return name, street, city, state, zip, phone, fax, email, service_id
-        return name, street, city, state, zip, active
+        #return name, street, city, state, zip, active
+        DB.add_member(name, street, city, state, zip, active)
+        return 1
 
     @staticmethod
     def addProviderForm():
@@ -107,7 +109,9 @@ class Forms:
 
         if good == 0:
             return 0
-        return name, street, city, state, zip
+        #return name, street, city, state, zip
+        DB.add_provider(name, street, city, state, zip)
+        return 1
 
     @staticmethod
     def addServiceForm():
@@ -124,7 +128,9 @@ class Forms:
 
         if good == 0:
             return 0
-        return name, fee
+        #return name, fee
+        DB.add_service(name, fee)
+        return 1
 
     #id forms
 
@@ -336,8 +342,64 @@ class Forms:
         DB.add_billing(member_id, provider_id, service_date, current_date, service_id, comments)
         return member_id, provider_id, service_date, current_date, service_id, comments
 
+    @staticmethod
+    def killMember():
+        memID = print("ID of member being deleted: ")
+        valID = loginChecker(memID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(memID)
+        if userData == "None":
+            print("Member already does not exist. Returning.")
+            return -1
+        print(userData)
+        choice = input("Remove member? y/n: ")
+        if choice == "y":
+            DB.delete_member(memID)
+            print("Member deleted!")
+            return 1
+        else:
+            return -1
 
+    @staticmethod
+    def killProvider():
+        provID = print("ID of provider being deleted: ")
+        valID = loginChecker(provID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(provID)
+        if userData == "None":
+            print("Provider already does not exist. Returning.")
+            return -1
+        print(userData)
+        choice = input("Remove provider? y/n: ")
+        if choice == "y":
+            DB.delete_provider(provID)
+            print("Member deleted!")
+            return 1
+        else:
+            return -1
 
-
+    @staticmethod
+    def killService():
+        servID = print("ID of service being deleted: ")
+        valID = serviceChecker(servID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        serviceData = DB.get_service(servID)
+        if serviceData == "None":
+            print("Service already does not exist. Returning.")
+            return -1
+        print(serviceData)
+        choice = input("Remove service? y/n: ")
+        if choice == "y":
+            DB.delete_service(servID)
+            print("Service deleted!")
+            return 1
+        else:
+            return -1
 
 
