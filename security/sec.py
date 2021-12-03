@@ -3,12 +3,14 @@
 import sys
 
 
+
+
 def loginChecker(username):
     if username.isalpha():
         return 1  # deprecated. was supposed give option to use name instead of ID, but was tossed
     elif username.isnumeric():
-        # this is the memory size of the object not the number of characters
-        # if sys.getsizeof(str(username)) != 9:
+        #this is the memory size of the object not the number of characters
+        #if sys.getsizeof(str(username)) != 9:
         if len(username) != 9:
             return 4  # number, but isnt right size
         else:
@@ -18,9 +20,9 @@ def loginChecker(username):
 
 
 def serviceChecker(service):
-    if not service.isnumeric():
-        return 1  # isn't a number
-    # elif sys.getsizeof(str(service)) != 6:
+    if service.isalpha():
+        return 1  # isnt a number
+    #elif sys.getsizeof(str(service)) != 6:
     elif len(service) != 6:
         return 2  # number is wrong size
     else:
@@ -38,17 +40,16 @@ def nameChecker(name):
     else:
         return 4  # not a number, alphanumeric, or a string with one letter and one space
 
-
-# extra function to validate number in range
-def rangeChecker(num, minimum, maximum):  # changed min/max to minimum/maximum as min/max shadow built-in functions
+#extra function to validate number in range
+def rangeChecker(num, min, max):
     if not num.isnumeric():
-        return 1  # isn't a number
-    elif int(num) < minimum:
-        return 2  # too small
-    elif int(num) <= maximum:
-        return 3  # correct
+        return 1 # isnt a number
+    elif int(num) < min:
+        return 2 # too small
+    elif int(num) <= max:
+        return 3 # correct
     else:
-        return 4  # too big
+        return 4 # too big
 
 
 def isPhonenum(numb):
@@ -67,8 +68,7 @@ def isValidSelection(choice):
     choiceAmt = 7  # change to be the proper number of choices
     if not choice.isnumeric():
         return 1
-    #elif sys.getsizeof(choice) > choiceAmt:
-    if int(choice) > choiceAmt:
+    elif sys.getsizeof(choice) > choiceAmt:
         return 2
     else:
         return 3
