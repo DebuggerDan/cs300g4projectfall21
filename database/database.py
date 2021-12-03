@@ -234,7 +234,7 @@ class Database:
         con = sqlite3.connect(path)
         cur = con.cursor()
 
-        cur.execute("SELECT * FROM service")
+        cur.execute("SELECT * FROM service ORDER BY name ASC") #required to be alphabetical
 
         services = cur.fetchall()
         con.close()

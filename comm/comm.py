@@ -434,6 +434,33 @@ def newMAPReport():
     newSummaryReport()
 
 
+def providerDirectory():
+    # At any time, a provider can request the software product for a Provider Directory, an alphabetically
+    # ordered list of service names and corresponding service codes and fees. The Provider Directory is sent
+    # to the provider as an e-mail attachment.
+    print("\nGenerating Provider Directory...")
+
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    # create new subdirectories for the current report
+    provider_directory_file = path + "/provider_directory_" + Forms.date().replace(":", "_") + ".txt"
+
+    serviceInfo = db.get_services()
+
+    x = 0
+    while x < len(serviceInfo):
+        info = "\nService Name: " + serviceInfo[x][1] + \
+               "\n\tService ID: " + str(serviceInfo[x][0]) + \
+               "\n\tService Fee: " + str(serviceInfo[x][2]) + "\n"
+        with open(provider_directory_file, "a") as f:
+            f.write(info)
+        x += 1
+
+    print("Provider Directory Email Sent! (File created in reports folder)")
+
+
 
 ########################################################
 # old reports below
