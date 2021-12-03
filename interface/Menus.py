@@ -77,14 +77,17 @@ def displayIAM():
     print("\t2 - Delete Member")
     print("\t3 - Modify Member")
     print("\t4 - Add Provider")
-    print("\t5 - Delete Provder")
+    print("\t5 - Delete Provider")
     print("\t6 - Modify Provider")
     print("\t7 - Update Member Status")
-    print("\t8 - Exit IAM Menu")
+    print("\t8 - Add Service")
+    print("\t9 - Delete Service")
+    print("\t10 - Modify Service")
+    print("\t 11- Exit IAM Menu")
                 
 def iamMenu(user):
     menu_code = 0
-    while (menu_code != 8):
+    while (menu_code != 11):
         displayIAM()
         menu_code = input("\nPlease enter the menu item number: ")
         if menu_code.isdigit():
@@ -92,32 +95,44 @@ def iamMenu(user):
         else:
             menu_code = 0
     #while menu_code != 8: #after input = impossible to change menu selection
-        if (menu_code > 8 or menu_code < 1):
+        if (menu_code > 11 or menu_code < 1):
             print("\n\nInvalid Menu Item: Please select a number from the provided menu.\n")
             menu_code = 0
         else:
             if (menu_code == 1):
                 #Add member input and function
-                print("Add member function goes here")
+                #print("Add member function goes here")
+                Forms.addMemberForm()
             elif (menu_code == 2):
                 #Delete member input and function
-                print("Delete member function goes here")
+                #print("Delete member function goes here")
+                Forms.killMember()
             elif (menu_code == 3):
                 #Modify member input and function
-                print("Modify member function goes here")
+                #print("Modify member function goes here")
+                Forms.editMember()
             elif (menu_code == 4):
                 #Add provider input and function
-                print("Add provider function goes here")
+                #print("Add provider function goes here")
+                Forms.addProviderForm()
             elif (menu_code == 5):
                 #Delete provider input and function
-                print("Delete provider function goes here")
+                #print("Delete provider function goes here")
+                Forms.killProvider()
             elif (menu_code == 6):
                 #Modify provider input and function
-                print("Modify provider function goes here")
+                #print("Modify provider function goes here")
+                Forms.editProvider()
             elif (menu_code == 7):
                 #Update member status (active/inactive)
-                print("Updating member status is actually out of scope")
+                print("Updating member status is actually out of scope.")
             elif (menu_code == 8):
+                Forms.addServiceForm()
+            elif (menu_code == 9):
+                Forms.killService()
+            elif (menu_code == 10):
+                Forms.editService()
+            elif (menu_code == 11):
                 #print log out message from IAM menu and exits to main menu
                 print("Returning to main menu...")
                 mainMenu(user)

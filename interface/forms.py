@@ -431,3 +431,52 @@ class Forms:
             active = userData[6]
         DB.update_member(memID, name, street, city, state, zip, active)
         return 1
+
+    @staticmethod
+    def editProvider():
+        provID = print("ID of provider being edited: ")
+        valID = loginChecker(provID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(provID)
+        if userData == "None":
+            print("Provider does not exist. Returning.")
+            return -1
+        print(userData)
+        name = input("Enter name: ")
+        street = input("Enter street: ")
+        city = input("Enter City: ")
+        state = input("Enter State: ")
+        zip = input("Enter Zip: ")
+        if not nameChecker(name) == 3:
+            print("Invalid name. Keeping old name.")
+            name = userData[1]
+        if not rangeChecker(zip, 10000, 99999) == 3:
+            print("Invalid zip. Keeping old zip.")
+            zip = userData[5]
+        DB.update_provider(provID, name, street, city, state, zip)
+        return 1
+
+    @staticmethod
+    def editService():
+        servID = print("ID of service being edited: ")
+        valID = serviceChecker(servID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        serviceData = DB.get_service(servID)
+        if serviceData == "None":
+            print("Service does not exist. Returning.")
+            return -1
+        print(serviceData)
+        name = input("Enter name: ")
+        fee = input("Enter fee: ")
+        if not nameChecker(name) == 3:
+            print("Invalid name. Keeping old name.")
+            name = serviceData[1]
+        if not rangeChecker(fee, 0, 999):
+            print("Invalid fee. Keeping old fee.")
+            fee = serviceData[2]
+        DB.update_service(servID, name, fee)
+        return 1
