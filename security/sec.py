@@ -65,10 +65,13 @@ def isPhonenum(numb):
 
 
 def isValidSelection(choice):
-    choiceAmt = 7  # change to be the proper number of choices
+    choiceAmt = 8  # change to be the proper number of choices
     if not choice.isnumeric():
         return 1
-    elif sys.getsizeof(choice) > choiceAmt:
+
+    #elif sys.getsizeof(choice) > choiceAmt:
+    elif int(choice) > 8:
+
         return 2
     else:
         return 3

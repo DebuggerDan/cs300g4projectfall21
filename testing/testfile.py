@@ -5,7 +5,7 @@ import contextlib
 import io
 
 from database.database import Database as DB
-from comm.comm import testManager, testMember, testProvider
+from comm.comm import newMemberReport, newProviderReport, newEFTReport, newSummaryReport
 from interface.Menus import displayMenu
 from interface.forms import Forms
 from security.sec import isValidSelection
@@ -38,23 +38,28 @@ class TestChocAn(unittest.TestCase):
     #           directory.
     #
     def test_add_member_valid(self):
-        # make a member
-        DB.add_member("Unit Test", "000 Unit St", "Unit City", "OR", 97210, 0)
-        # look for the member
-        member = DB.get_member_by_name("Unit Test")
-        # clean up the member (this could fail, deletion test occurs later)
-        if str(member) != "None":
-            DB.delete_member(member[0])
-        self.assertFalse(str(member) == "None", "Unable to add valid member")
+        member_info = "Unit Test\n000 Unit St\nUnit City\nOR\n90217\n0"
+
+        with redirect_stdin(io.StringIO(member_info)):
+            result = Forms.addMemberForm()
+
+        if result != 0:
+            member = DB.get_member_by_name("Unit Test")
+            # clean up the member (this could fail, deletion test occurs later)
+            if str(member) != "None":
+                DB.delete_member(member[0])
+
+        self.assertNotEqual(0, result, "Unable to add valid member")
 
     # this one will of course fail until somebody writes a validation function I can use
     # instead of using the database functions directly
     def test_add_member_invalid(self):
-        DB.add_member(100, "string", 100, "string", 100, "string")
-        member = DB.get_member_by_name(100)
-        if str(member) != "None":
-            DB.delete_member(member[0])
-        self.assertTrue(str(member) == "None", "Able to add invalid member")
+        member_info = "100\nstring\n100\nstring\n100\nstring"
+
+        with redirect_stdin(io.StringIO(member_info)):
+            result = Forms.addMemberForm()
+
+        self.assertEqual(0, result, "Able to add Invalid Member")
 
     # 5.1.2 Member Lookup Subtest
     # 	The Member Lookup subtest will test the member lookup function of the member directory by using the user
@@ -137,7 +142,7 @@ class TestChocAn(unittest.TestCase):
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(member_id)):
-            testMember()
+            newMemberReport()
         output = f.getvalue()
         #print(output)
 
@@ -158,7 +163,7 @@ class TestChocAn(unittest.TestCase):
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(provider_id)):
-            testProvider()
+            newProviderReport()
         output = f.getvalue()
         #print(output)
 
@@ -172,12 +177,12 @@ class TestChocAn(unittest.TestCase):
     #
     def test_eft_report(self):
         manager_id = "100000001"
-        expected_output = "Total number of Providers who provided services this week"
+        expected_output = "Provider Name: Dr. Sam"
 
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(manager_id)):
-            testManager()
+            newEFTReport()
         output = f.getvalue()
         #print(output)
 
@@ -192,12 +197,12 @@ class TestChocAn(unittest.TestCase):
     #
     def test_summary_report(self):
         manager_id = "100000001"
-        expected_output = "Total number of Providers who provided services this week"
+        expected_output = "Provider Name: Dr. Sam"
 
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(manager_id)):
-            testManager()
+            newSummaryReport()
         output = f.getvalue()
         #print(output)
 
@@ -221,7 +226,7 @@ class TestChocAn(unittest.TestCase):
     #
     def test_manager_interface_valid(self):
         valid_id = ("100000001")
-        expected_output = "6 - Generate Reports Menu"
+        expected_output = "7 - Generate Reports Menu"
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f):
@@ -233,7 +238,7 @@ class TestChocAn(unittest.TestCase):
 
     def test_manager_interface_invalid(self):
         invalid_id = ("200000001")
-        expected_output = "5 - Interactive Mode Menu \(IAM\)7 - Log Out"
+        expected_output = "6 - Interactive Mode Menu \(IAM\)8 - Log Out"
 
         f = io.StringIO()
         with contextlib.redirect_stdout(f):
@@ -265,7 +270,7 @@ class TestChocAn(unittest.TestCase):
 
     def test_menu_selection_invalid(self):
         select = isValidSelection("100")
-        self.assertNotEqual(3, select, "Inalid menu selection allowed.")
+        self.assertNotEqual(3, select, "Invalid menu selection allowed.")
 
 
     # 5.4.2 Form Manager Subtest The Form Manager subtest will test each form that is managed by the software. These
