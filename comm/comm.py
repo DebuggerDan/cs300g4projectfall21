@@ -72,8 +72,8 @@ def memberReport(memberID):
         #loop through all the services this specific member utilized for the week in billing table.
         for bill in billing:
 
-            serviceInfo = db.get_service(bill[5]);  #Needed for displaying service name.
-            providerInfo = db.get_provider(bill[2]);    #Needed for displaying Provider name.
+            serviceInfo = db.get_service(bill[5])  #Needed for displaying service name.
+            providerInfo = db.get_provider(bill[2])    #Needed for displaying Provider name.
 
             print("\n\tDate of Service: ", bill[3],
             "\n\tProvider Name: ", providerInfo[1], 
@@ -135,8 +135,12 @@ def providerReport(providerID):
         "\n\nList of services provided by this Provider: \n")
     
         for bill in billing:
-            serviceInfo = db.get_service(bill[5]);  #Used for displaying service name and fee.
-            memberInfo = db.get_member(bill[1]);    #Used for displaying member name.
+            serviceInfo = db.get_service(bill[5])  #Used for displaying service name and fee.
+            memberInfo = db.get_member(bill[1])    #Used for displaying member name.
+
+            # skip if it is a bad entry (bad serviceid, bad memberid)
+            if serviceInfo is None or memberInfo is None:
+                continue
             
             print("\n\tDate of Service: ", bill[3],
             "\n\tDate & Time Data Recieved: ", bill[4],
@@ -144,15 +148,16 @@ def providerReport(providerID):
             "\n\tMember ID: ", bill[1],
             "\n\tService Name: ", serviceInfo[1],
             "\n\tService ID:", bill[5],
-            "\n\tFee to be paid: $", serviceInfo[2])
+            "\n\tFee to be paid: $", "{:.2f}".format(serviceInfo[2]))
 
             fee = serviceInfo[2]
-            total_fee += fee;
+            total_fee += fee
             total_con += 1  #keep track of consultations provided.
 
         print("\nTotal number of consultations: ", total_con)
-        print("\nTotal service fees for the week: $", total_fee)
+        print("\nTotal service fees for the week: $", "{:.2f}".format(total_fee))
         print()
+
 
 
 
@@ -177,19 +182,65 @@ def managerReport(managerID):
     providerInfo = db.get_providers()
     x = 0
     print("\nList of all Providers to get paid this week:\n")
+    total_fee = 0.00
+    total_con = 0
+    total_prov = 0
     while x < len(providerInfo):
         #Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
-        print("\n\t",providerInfo[x][1])
-        print("\n\tTotal consults this Provider had: 0")
-        print("\n\tTotal fees: $99,999.99")
+        # solution: I will go through all the providers but skip them if they don't appear in the billing database
+        #print("\t" + providerInfo[x][1])
+
+        billing = db.get_provider_billing(providerInfo[x][0])
+        if billing is None:
+            x += 1
+            continue
+        provider_total_fee = 0.00  # Total fee of services provided.
+        provider_total_con = 0  # Total consultations provided by the Provider.
+        total_prov += 1
+
+        print("\nProvider Name: ", providerInfo[x][1],
+        "\nProvider ID Number: ", providerInfo[x][0],
+        "\nProvider Street Address: ", providerInfo[x][2],
+        "\nProvider City: ", providerInfo[x][3],
+        "\nProvider State: ", providerInfo[x][4],
+        "\nProvider Zip Code: ", providerInfo[x][5],
+        "\n\nList of services provided by this Provider: \n")
+
+        for bill in billing:
+            serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
+            memberInfo = db.get_member(bill[1])  # Used for displaying member name.
+
+            # skip if it is a bad entry (bad serviceid, bad memberid)
+            if serviceInfo is None or memberInfo is None:
+                continue
+
+            print("\n\tDate of Service: ", bill[3],
+            "\n\tDate & Time Data Recieved: ", bill[4],
+            "\n\tMember Name:", memberInfo[1],
+            "\n\tMember ID: ", bill[1],
+            "\n\tService Name: ", serviceInfo[1],
+            "\n\tService ID:", bill[5],
+            "\n\tFee to be paid: $", "{:.2f}".format(serviceInfo[2]))
+            fee = serviceInfo[2]
+            provider_total_fee += fee
+            provider_total_con += 1  # keep track of consultations provided.
+
+        #case: provider had bills but all bills were invalid
+        if provider_total_con == 0:
+            x += 1
+            continue
+        print("\nTotal consults this Provider had: ", provider_total_con)
+        print("Total fees: $", "{:.2f}".format(provider_total_fee))
+        total_fee += provider_total_fee
+        total_con += provider_total_con
         x += 1
     
     #Total number of providers, should we just add all providers in the database?
     #Total number of consultations we can add all the services provided from member services database.
     #Overall fees will be ALL services across all members added up
-    print("\n\nTotal number of Providers who provided services this week: 000",
-          "\nTotal Number of Consultations: 000",
-          "\nOverall fees: $99,999.99")
+    print("\nTotal number of Providers who provided services this week: ", total_prov,
+          "\nTotal Number of Consultations: ", total_con,
+          "\nOverall fees: $", "{:.2f}".format(total_fee))
 
 
 
