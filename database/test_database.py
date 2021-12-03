@@ -1,11 +1,12 @@
 from unittest import TestCase
+
 from database import Database
 
 
 class TestDatabase(TestCase):
-    # Removing the database creation test so we can populate with data
-    #def test_createdb(self):
-    #    Database.createdb()
+    # Removing the database creation test so that we can populate with data
+    # def test_createdb(self):
+    #     Database.createdb()
 
     def test_add_billing(self):
         Database.add_billing("A", "B", "C", "D", "E", "F")

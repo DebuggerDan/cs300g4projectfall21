@@ -4,6 +4,8 @@
 from database.database import Database
 from security.auth import is_manager
 from comm.comm import testManager, testMember, testProvider, querProvInfo, querMemInfo, querServInfo
+from comm.comm import newProviderReport, newMemberReport, newEFTReport, \
+    newSummaryReport, newMAPReport, providerDirectory
 from interface.forms import Forms
 
 
@@ -14,22 +16,23 @@ def displayMenu(user): #displays main menu items
     print("\t2 - Request Member Info")
     print("\t3 - Request Provider Info")
     print("\t4 - Request Service Code Info")
-    print("\t5 - Interactive Mode Menu (IAM)")
+    print("\t5 - Request Provider Directory")
+    print("\t6 - Interactive Mode Menu (IAM)")
     #waiting for how manager is flagged from login function
     if (is_manager(user)): #checks if manager
-        print("\t6 - Generate Reports Menu")
-    print("\t7 - Log Out")
+        print("\t7 - Generate Reports Menu")
+    print("\t8 - Log Out")
 
 def mainMenu(user): #main menu loop function
     menu_code = 0 #menu input
-    while menu_code !=7: #while user does not want to log out
+    while menu_code !=8: #while user does not want to log out
         displayMenu(user) #displays menu items
         menu_code = input("Please enter the menu item number: ") #asks for user input
         if menu_code.isdigit():
             menu_code = int(menu_code)
         else:
             menu_code = 0
-        if (menu_code > 7 or menu_code < 1):
+        if (menu_code > 8 or menu_code < 1):
             print("\nInvalid Menu Item: Please select a number from the provided menu.")
             menu_code = 0
         else:
@@ -53,9 +56,12 @@ def mainMenu(user): #main menu loop function
                 #print("Query Service Code Info function goes here")
                 querServInfo()
             elif (menu_code == 5):
+                #provider directory (written to file)
+                providerDirectory()
+            elif (menu_code == 6):
                 #IAM menu loop
                 iamMenu(user)
-            elif (menu_code == 6):
+            elif (menu_code == 7):
                 #check if manager logged in
                 if (is_manager(user)):
                     # if manager logged in, then execute report menu loop
@@ -64,10 +70,10 @@ def mainMenu(user): #main menu loop function
                 else:
                     print("Permission denied.")
                     menu_code = 0
-            elif (menu_code == 7):
+            elif (menu_code == 8):
                 #print log out message and exit to authentication login screen
                 #logout(user)
-                print("Log out not implemented.")
+                print("Logging out.")
             else:
                 print("\nPlease enter a valid menu item.\n")
 
@@ -142,14 +148,16 @@ def iamMenu(user):
 
 def displayReport():
     print("\nGenerate Reports Menu:")
-    print("\t1 - Member Summary Report")
-    print("\t2 - Provider Summary Report")
-    print("\t3 - Manager/Accounts Payable Report")
-    print("\t4 - Exit Report Menu")
+    print("\t1 - Member Report")
+    print("\t2 - Provider Report")
+    print("\t3 - EFT Report")
+    print("\t4 - Summary Report")
+    print("\t5 - Main Accounting Procedure (Runs All Reports)")
+    print("\t6 - Exit Report Menu")
 
 def reportMenu(user):
     menu_code = 0
-    while menu_code != 4:
+    while menu_code != 6:
         displayReport()
         menu_code = input("Please enter the menu item number: ")
         if menu_code.isdigit():
@@ -157,7 +165,7 @@ def reportMenu(user):
         else:
             menu_code = 0
     #while menu_code != 4: #this is after the input again, oops
-        if (menu_code > 4 or menu_code < 1):
+        if (menu_code > 6 or menu_code < 1):
             print("\nInvalid Menu Item: Please select a number from the provided menu.")
             menu_code = 0
         else:
@@ -166,14 +174,20 @@ def reportMenu(user):
                 menu_code = 0
             elif (menu_code == 1):
                 #Print member summary report by member id
-                testMember()
+                newMemberReport()
             elif (menu_code == 2):
                 #Print provider summary report by provider id
-                testProvider()
+                newProviderReport()
             elif (menu_code == 3):
-                #Print manager accounts payable report
-                testManager()
-            elif (menu_code != 4):
+                # Print EFT Report
+                newEFTReport()
+            elif (menu_code == 4):
+                # Print manager accounts payable report
+                newSummaryReport()
+            elif (menu_code == 5):
+                # initializes main accounting procedure (runs all 4 reports above)
+                newMAPReport()
+            elif (menu_code != 6):
                 print("\nPlease enter a valid menu item.\n")
 
 

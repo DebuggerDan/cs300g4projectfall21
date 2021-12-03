@@ -3,12 +3,12 @@
 
 # Connect to database that is stored in path. This will be used to read/write our data.
 
-import sqlite3
 import os
 import random
+import sqlite3
 from datetime import datetime
 
-path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite.NEW"
+path = os.path.dirname(os.path.realpath(__file__)) + "/chocan.sqlite"
 
 
 class Database:
@@ -123,7 +123,6 @@ class Database:
         con.commit()
         con.close()
 
-
     @staticmethod
     def add_member(name, street, city, state, zip, is_active):
         con = sqlite3.connect(path)
@@ -235,7 +234,7 @@ class Database:
         con = sqlite3.connect(path)
         cur = con.cursor()
 
-        cur.execute("SELECT * FROM service")
+        cur.execute("SELECT * FROM service ORDER BY name ASC") #required to be alphabetical
 
         services = cur.fetchall()
         con.close()
