@@ -1,9 +1,10 @@
-#basic forms for user input
-#once validation is added, input will return 0 if invalid
+# basic forms for user input
+# once validation is added, input will return 0 if invalid
 
 from datetime import datetime
+
 from database.database import Database as DB
-from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker,  isPhonenum, isValidSelection
+from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker, isValidSelection
 
 
 class Forms:
@@ -44,7 +45,6 @@ class Forms:
         print("\nFull Service Form\n")
         print(Forms.billingForm())
 
-
     ################################################################################################
     #
     # Basic input elements which include validation
@@ -53,7 +53,7 @@ class Forms:
     #
     ################################################################################################
 
-    #add forms
+    # add forms
     @staticmethod
     def addMemberForm():
         name = input("Enter name: ")
@@ -61,10 +61,10 @@ class Forms:
         city = input("Enter City: ")
         state = input("Enter State: ")
         zip = input("Enter Zip: ")
-        #phone = input("Enter Phone: ")
-        #fax = input("Enter Fax: ")
-        #email = input("Enter Email: ")
-        #service_id = input("Enter Service ID: ")
+        # phone = input("Enter Phone: ")
+        # fax = input("Enter Fax: ")
+        # email = input("Enter Email: ")
+        # service_id = input("Enter Service ID: ")
         active = 1
 
         good = 1
@@ -74,19 +74,19 @@ class Forms:
         if not rangeChecker(zip, 10000, 99999) == 3:
             print("Invalid zip")
             good = 0
-        #if not isPhonenum(phone) == 3:
+        # if not isPhonenum(phone) == 3:
         #    print("Invalid Phone")
         #    good = 0
-        #if not isPhonenum(fax) == 3:
+        # if not isPhonenum(fax) == 3:
         #    print("Invalid Fax")
-         #   good = 0
-        #if not serviceChecker(service_id) == 3:
+        #    good = 0
+        # if not serviceChecker(service_id) == 3:
         #    print("Invalid service ID")
         #    good = 0
 
         if good == 0:
             return 0
-        #return name, street, city, state, zip, phone, fax, email, service_id
+        # return name, street, city, state, zip, phone, fax, email, service_id
         return name, street, city, state, zip, active
 
     @staticmethod
@@ -126,36 +126,36 @@ class Forms:
             return 0
         return name, fee
 
-    #id forms
+    # id forms
 
     @staticmethod
     def providerIDForm():
-        id = input("Enter Provider ID: ")
+        provider_id = input("Enter Provider ID: ")  # changed id to provider_id as id shadows a built-in function
 
-        if not loginChecker(id) == 3:
+        if not loginChecker(provider_id) == 3:
             print("Invalid ID")
             return 0
-        return id
+        return provider_id
 
     @staticmethod
     def memberIDForm():
-        id = input("Enter Member ID: ")
+        member_id = input("Enter Member ID: ")  # changed id to member_id as it shadows a built-in function
 
-        if not loginChecker(id) == 3:
+        if not loginChecker(member_id) == 3:
             print("Invalid ID")
             return 0
         return id
 
     @staticmethod
     def serviceIDForm():
-        id = input("Enter Service ID: ")
+        service_id = input("Enter Service ID: ")  # changed id to service_id as it shadows a built-in function
 
-        if not serviceChecker(id) == 3:
+        if not serviceChecker(service_id) == 3:
             print("Invalid ID")
             return 0
         return id
 
-    #name forms
+    # name forms
 
     @staticmethod
     def providerNameForm():
@@ -177,13 +177,13 @@ class Forms:
 
     @staticmethod
     def serviceNameForm():
-        id = input("Enter Service Name: ")
+        service_id = input("Enter Service Name: ")  # replaced id with service_id as it shadows a built-in function
 
-        #nameChecker requires that there be a space
-        #can't use here
-        return id
+        # nameChecker requires that there be a space
+        # can't use here
+        return service_id
 
-    #menu form
+    # menu form
 
     @staticmethod
     def menuSelectForm():
@@ -194,8 +194,7 @@ class Forms:
             return 0
         return num
 
-
-    #member service form
+    # member service form
 
     @staticmethod
     def dateForm():
@@ -216,14 +215,14 @@ class Forms:
 
         if good == 0:
             return 0
-        #date = mm + "-" + dd + "-" + yyyy
+        # date = mm + "-" + dd + "-" + yyyy
         date = yyyy + "-" + mm + "-" + dd
         return date
 
-    #(not "input" like the rest, but I had to put it somewhere)
+    # (not "input" like the rest, but I had to put it somewhere)
     @staticmethod
     def date():
-        #from datetime import datetime
+        # from datetime import datetime
         now = datetime.now()
         date = now.strftime("%Y-%m-%d %H:%M:%S")
         return date
@@ -231,17 +230,15 @@ class Forms:
     @staticmethod
     def commentForm():
         comments = input("Please enter your comments: ")
-        #technically should be a max of 100 characters
-        #would need a validation function for that
+        # technically should be a max of 100 characters
+        # would need a validation function for that
         return comments
 
     @staticmethod
     def verificationForm():
         agree = input("Is this information valid? y/n: ")
-        #no validation needed, just check for 'y' and consider anything else no
+        # no validation needed, just check for 'y' and consider anything else no
         return agree
-
-
 
     ################################################################################################
     #
@@ -250,8 +247,7 @@ class Forms:
     #
     ################################################################################################
 
-
-    #pass in the user object to access the ID of the logged in provider
+    # pass in the user object to access the ID of the logged in provider
     @staticmethod
     def billingForm(user):
 
@@ -283,7 +279,7 @@ class Forms:
             # Provider enters the 6-digit code for the chosen service.
             service_id = Forms.serviceIDForm()
 
-            #(make sure the id entered was actually valid)
+            # (make sure the id entered was actually valid)
             service = DB.get_service(service_id)
             if not service:
                 print("Error: Invalid service code. Please search again.")
@@ -295,12 +291,12 @@ class Forms:
 
         # Provider enter additional comments as needed.
         comments = 0
-        while (comments == 0):
+        while comments == 0:
             comments = Forms.commentForm()
 
-        #extra pieces
+        # extra pieces
         current_date = Forms.date()
-        #the provider is logged in so their id should be available somewhere
+        # the provider is logged in so their id should be available somewhere
         provider_id = user[0]
 
         # The following information is now stored about the member:
@@ -330,14 +326,8 @@ class Forms:
         print("\tFee to be paid: " + str(fee))
         verify = Forms.verificationForm()
 
-        if (verify == "n"):
+        if verify == "n":
             return 0
 
         DB.add_billing(member_id, provider_id, service_date, current_date, service_id, comments)
         return member_id, provider_id, service_date, current_date, service_id, comments
-
-
-
-
-
-

@@ -1,5 +1,5 @@
-#CS300 Report Dispaying 
-#Weekly Member Services Reports
+# CS300 Report Dispaying 
+# Weekly Member Services Reports
 
 """
 comm comments - all functions assume user is "logged in" already
@@ -30,58 +30,60 @@ weekly summary function - prints report - manager and provider access
     note: if in middle of week, do not update
 """
 
-
-
 from database.database import Database as db
 from security.sec import loginChecker, serviceChecker
 
-#Helper function to get the user input and sends it to the memberReport function. 
-#Did it seperately just incase this input functionality will be implemented in the menu or leave it here.
+
+# Helper function to get the user input and sends it to the memberReport function. 
+# Did it seperately just incase this input functionality will be implemented in the menu or leave it here.
 def testMember():
-    print("\nThis report will display the information of a specific Member and a list of the services they utilized for the entire week.\n")
+    print(
+        "\nThis report will display the information of a specific Member and a list of the services they utilized for "
+        "the entire week.\n")
     IDnum = input("To search for a Member, please enter the Member's 9-digit ID: ")
     memberReport(IDnum)
 
-#Function to pull the data of a specific member with their ID number.
+
+# Function to pull the data of a specific member with their ID number.
 def memberReport(memberID):
-    #Pull the member info from the chocan.sqlite database utilizing functions from database.py
+    # Pull the member info from the chocan.sqlite database utilizing functions from database.py
     memberInfo = db.get_member(memberID)
 
-    #Check if the member exists, give error if not. 
-    #(Should we allow them to keep trying?)
-    if(memberInfo == None):
+    # Check if the member exists, give error if not. 
+    # (Should we allow them to keep trying?)
+    if memberInfo is None:
         print("\nMember does not exist.")
     else:
-        #The service ID of a member is stored in column 9. 
-        #Will change for when it is a list of members and will access that different database.
-        #serviceID = memberInfo[9]
+        # The service ID of a member is stored in column 9. 
+        # Will change for when it is a list of members and will access that different database.
+        # serviceID = memberInfo[9]
         billing = db.get_member_billing(memberInfo[0])
         total = 0.00
 
-        #provider can only take in provider number, not service ID number. must fix database.
-        #Maybe in the database with list of services will also keep track of each provider who provided the service.
-        #providerInfo = db.get_provider(serviceID)
+        # provider can only take in provider number, not service ID number. must fix database.
+        # Maybe in the database with list of services will also keep track of each provider who provided the service.
+        # providerInfo = db.get_provider(serviceID)
 
-        #Get service info from the service database using the service ID.
-        #Will change once we incorporate multiple services per member.
-        #serviceInfo = db.get_service(serviceID)
+        # Get service info from the service database using the service ID.
+        # Will change once we incorporate multiple services per member.
+        # serviceInfo = db.get_service(serviceID)
 
-        #Display the entire report using member info from specific column(element).
+        # Display the entire report using member info from specific column(element).
         print("\nMember Name: ", memberInfo[1],
-        "\nMember ID Number: ", memberInfo[0],
-        "\nMember Street Address: ", memberInfo[2],
-        "\nMember City: ", memberInfo[3],
-        "\nMember State: ", memberInfo[4],
-        "\nMember Zip Code: ", memberInfo[5],
-        #"\n\nList of weekly services utilized by this member: \n\tService ID:", memberInfo[9])
-        "\n\nList of weekly services utilized by this member: \n")
-    
+              "\nMember ID Number: ", memberInfo[0],
+              "\nMember Street Address: ", memberInfo[2],
+              "\nMember City: ", memberInfo[3],
+              "\nMember State: ", memberInfo[4],
+              "\nMember Zip Code: ", memberInfo[5],
+              # "\n\nList of weekly services utilized by this member: \n\tService ID:", memberInfo[9])
+              "\n\nList of weekly services utilized by this member: \n")
+
         for bill in billing:
-            #Put a loop here that will loop through the list of services and print out individually
-            #print("\tDate of Service: 00/00/0000",
-            #"\n\tProvider Name: null",
-            #providerInfo[2],
-            #"\n\tService Name: ", serviceInfo[1])
+            # Put a loop here that will loop through the list of services and print out individually
+            # print("\tDate of Service: 00/00/0000",
+            # "\n\tProvider Name: null",
+            # providerInfo[2],
+            # "\n\tService Name: ", serviceInfo[1])
             print("\tMember ID: " + str(bill[1]))
             print("\tProvider ID: " + str(bill[2]))
             print("\tService Date: " + bill[3])
@@ -94,62 +96,62 @@ def memberReport(memberID):
             total += fee
             print()
 
-        #Will need a database that will have a list of services used by specific members
-        #with: date of service, name of provider who gave service, and service name.
+        # Will need a database that will have a list of services used by specific members
+        # with: date of service, name of provider who gave service, and service name.
         print("Total Fees: $" + "{:.2f}".format(total))
 
 
-
-
-
-#The Provider weekly report with their info and weekly services given to each Member.
+# The Provider weekly report with their info and weekly services given to each Member.
 
 def testProvider():
-    print("\nThis report will display the information of a specific Provider and a list of the services they provided for Members for the entire week.\n")
+    print(
+        "\nThis report will display the information of a specific Provider and a list of the services they provided "
+        "for Members for the entire week.\n")
     IDnum = input("To search for a Provider, please enter the Provider's 9-digit ID: ")
     providerReport(IDnum)
+
 
 def providerReport(providerID):
     providerInfo = db.get_provider(providerID)
 
-    if(providerInfo == None):
+    if providerInfo is None:
         print("\nProvider does not exist.")
     else:
-        #The service ID of a member is stored in column 9. 
-        #Will change for when it is a list of members and will access that different database.
+        # The service ID of a member is stored in column 9. 
+        # Will change for when it is a list of members and will access that different database.
         serviceID = providerInfo[9]
 
-        #provider can only take in provider number, not service ID number. must fix database.
-        #Maybe in the database with list of services will also keep track of each provider who provided the service.
-        #providerInfo = db.get_provider(serviceID)
+        # provider can only take in provider number, not service ID number. must fix database.
+        # Maybe in the database with list of services will also keep track of each provider who provided the service.
+        # providerInfo = db.get_provider(serviceID)
 
-        #Get service info from the service database using the service ID.
-        #Will change once we incorporate multiple services per member.
+        # Get service info from the service database using the service ID.
+        # Will change once we incorporate multiple services per member.
         serviceInfo = db.get_service(serviceID)
 
-        #Display the entire report using provider info from specific column(element).
+        # Display the entire report using provider info from specific column(element).
         print("\nProvider Name: ", providerInfo[1],
-        "\nProvider ID Number: ", providerInfo[0],
-        "\nProvider Street Address: ", providerInfo[2],
-        "\nProvider City: ", providerInfo[3],
-        "\nProvider State: ", providerInfo[4],
-        "\nProvider Zip Code: ", providerInfo[5],
-        "\n\nList of services provided by this Provider: \n")
-    
-        #Need to also add to the database of list of services member name + ID per service.
-        #How will we go about doing the time and data accessed from computer? ..leave it out?
-        print("\tDate of Service: 00/00/0000",
-        "\n\tDate & Time Data Recieved: 00/00/0000 HH:MM:SS",
-        "\n\tMember Name: null",
-        "\n\tMember ID: null",
-        "\n\tService Name: ", serviceInfo[1],
-        "\n\tService ID:", serviceID,
-        "\n\tFee to be paid: $", serviceInfo[2])
-        #using the service ID currently in provider database but will change
+              "\nProvider ID Number: ", providerInfo[0],
+              "\nProvider Street Address: ", providerInfo[2],
+              "\nProvider City: ", providerInfo[3],
+              "\nProvider State: ", providerInfo[4],
+              "\nProvider Zip Code: ", providerInfo[5],
+              "\n\nList of services provided by this Provider: \n")
 
-        #Trying to add total of all current services.
-        #Won't work because the dollar sign in database makes it a string.
-        #Don't know how to, will wait for actual database of weekly services.
+        # Need to also add to the database of list of services member name + ID per service.
+        # How will we go about doing the time and data accessed from computer? leave it out?
+        print("\tDate of Service: 00/00/0000",
+              "\n\tDate & Time Data Recieved: 00/00/0000 HH:MM:SS",
+              "\n\tMember Name: null",
+              "\n\tMember ID: null",
+              "\n\tService Name: ", serviceInfo[1],
+              "\n\tService ID:", serviceID,
+              "\n\tFee to be paid: $", serviceInfo[2])
+        # using the service ID currently in provider database but will change
+
+        # Trying to add total of all current services.
+        # Won't work because the dollar sign in database makes it a string.
+        # Don't know how to, will wait for actual database of weekly services.
         '''
         allFee = db.get_services()
         x = 0
@@ -160,47 +162,51 @@ def providerReport(providerID):
             x = x+1
         
         print("TEST: ", currFee)
-        '''    
+        '''
 
-        #Print out the total consults that the Provider gave for the week.
-        #Print out the total fees from added up services given by Provider.
+        # Print out the total consults that the Provider gave for the week.
+        # Print out the total fees from added up services given by Provider.
         print("\nTotal number of consultations: 000")
         print("\nTotal service fees for the week: $99,999.99")
 
-        #Should we just do the total calculation in the database?
-        #Or use a loop to add the total in this funcion?
-
+        # Should we just do the total calculation in the database?
+        # Or use a loop to add the total in this funcion?
 
 
 def testManager():
     print("\nThis report will display a summary of specific information for Managers.")
     print("The manager will utilize this report for accounts payable for Providers.")
-    print("The report will also display a total number of providers who provided services, total consultations, and overall fee total from services.\n\n")
+    print(
+        "The report will also display a total number of providers who provided services, total consultations, "
+        "and overall fee total from services.\n\n")
 
-    #We can use this to only allow Managers access this report.
+    # We can use this to only allow Managers access this report.
     IDnum = input("To access this weeks Summary Report, please enter your 9-digit Manager ID: ")
-    #Put a conditional statement here to check is it is a manager ID or not. Give error and exit if not.
+    # Put a conditional statement here to check is it is a manager ID or not. Give error and exit if not.
     managerReport(IDnum)
+
 
 def managerReport(managerID):
     providerInfo = db.get_providers()
     x = 0
     print("\nList of all Providers to get paid this week:\n")
     while x < len(providerInfo):
-        #Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
-        print("\n\t",providerInfo[x][1])
+        # Currently is printing ALL the providers names from provider database. Should we randomly generate everytime
+        # to simulate a "week"? 
+        print("\n\t", providerInfo[x][1])
         print("\n\tTotal consults this Provider had: 0")
         print("\n\tTotal fees: $99,999.99")
         x += 1
-    
-    #Total number of providers, should we just add all providers in the database?
-    #Total number of consultations we can add all the services provided from member services database.
-    #Overall fees will be ALL services across all members added up
+
+    # Total number of providers, should we just add all providers in the database?
+    # Total number of consultations we can add all the services provided from member services database.
+    # Overall fees will be ALL services across all members added up
     print("\n\nTotal number of Providers who provided services this week: 000",
           "\nTotal Number of Consultations: 000",
           "\nOverall fees: $99,999.99")
 
-#Takes a member ID and sees if they are valid or suspended. Uses some verification because of user input.
+
+# Takes a member ID and sees if they are valid or suspended. Uses some verification because of user input.
 def querMemInfo():
     memID = input("Please enter the desired member ID: ")
     valID = loginChecker(memID)
@@ -211,7 +217,7 @@ def querMemInfo():
     if str(member) == "None":
         print("Member does not exist! Returning to menu.")
         return -1
-    #print(member[6])
+    # print(member[6])
     if int(member[6]) == 1:
         print("Member is active!")
         print("Member name: ", member[1])
@@ -222,32 +228,34 @@ def querMemInfo():
         print("Further details withheld due to inactivity.")
         return 2
 
-#Same as above, but for providers. Doesn't check for activity, just prints.
+
+# Same as above, but for providers. Doesn't check for activity, just prints.
 def querProvInfo():
     provID = input("Please enter the desired provider ID: ")
     valID = loginChecker(provID)
     if valID != 3:
         print("Invalid ID entry! Returning to menu.")
         return -1
-    provid = db.get_provider(provID)
-    if str(provid) == "None":
+    prov_id = db.get_provider(provID)
+    if str(prov_id) == "None":
         print("Provider does not exist! Returning to menu.")
         return -1
-    print("Provider name: ", provid[1])
-    print("Provider ZIP: ", provid[5])
+    print("Provider name: ", prov_id[1])
+    print("Provider ZIP: ", prov_id[5])
     return 1
 
-#Same as above again except for a service.
+
+# Same as above again except for a service.
 def querServInfo():
     servID = input("Please enter the desired service ID: ")
     valID = serviceChecker(servID)
     if valID != 3:
         print("Invalid ID entry! Returning to menu.")
         return -1
-    servid = db.get_service(servID)
-    if str(servid) == "None":
+    serv_id = db.get_service(servID)
+    if str(serv_id) == "None":
         print("Service does not exist! Returning to menu.")
         return -1
-    print("Service name: ", servid[1])
-    print("Service cost: ", servid[2])
+    print("Service name: ", serv_id[1])
+    print("Service cost: ", serv_id[2])
     return 1

@@ -1,22 +1,10 @@
 # CS 300 - Group (#4) Project: ChocAn - Fall 2021
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
-import numpy as np
-import os
-import sys
-import json
-import logging
-import functools
-from datetime import datetime, timedelta
-from playsound import playsound
-from interface.forms import Forms
-from security.auth import loginGrabber, is_logged_in, is_manager
-from database.database import Database as DB
-from comm.comm import testManager, testMember, testProvider
 from interface.Menus import mainMenu
+from security.auth import loginGrabber, is_logged_in, is_manager
 
-
-#class main():
+# class main():
 
 #    def __init__(self):
 
@@ -36,33 +24,29 @@ if __name__ == "__main__":
     # login successful, provider info saved in logged_in
 
     if is_logged_in(user):
-        print("User " + str(user[0]) + " is logged in.") #user ID
-        print("Welcome to ChocAn, " + user[1]) #user name
+        print("User " + str(user[0]) + " is logged in.")  # user ID
+        print("Welcome to ChocAn, " + user[1])  # username
 
     if is_manager(user):
         print("User is a manager.")
     else:
         print("User is not a manager.")
 
-
     mainMenu(user)
 
+    # DB.fixService()
+    # print("\nTesting service form below...\n")
+    # Forms.billingForm(user)
 
-    #DB.fixService()
-    #print("\nTesting service form below...\n")
-    #Forms.billingForm(user)
-
-    #Test member report function from comm.py to print member weekly report.
-    #while True:
+    # Test member report function from comm.py to print member weekly report.
+    # while True:
     #    testMember()
 
+    # Test provider report function from comm.py
+    # testProvider()
 
-    #Test provider report function from comm.py
-    #testProvider()
+    # Test summary report for manager function from comm.py
+    # testManager()
 
-    #Test summary report for manager function from comm.py
-    #testManager()
-
-
-#NAYA TESTING
-#Sam testing
+# NAYA TESTING
+# Sam testing

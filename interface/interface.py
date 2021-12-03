@@ -3,6 +3,7 @@
 
 import tkinter as gui
 
+
 def main_screen():
     global main_screen
     main_screen = gui.Tk()
@@ -11,6 +12,7 @@ def main_screen():
     main_screen.title("ChocAn - Provider Login")
 
     gui.Button(main_screen, text="Login", command=login).pack()
+
 
 def login():
     global lscreen, username, password, usertemp, passtemp
@@ -30,6 +32,7 @@ def login():
     gui.Entry(lscreen, textvariable=password, show="*").pack()
 
     gui.Button(lscreen, text="Login", command=userauth).pack()
+
 
 def userauth():
     global lscreen, usertemp, passtemp
