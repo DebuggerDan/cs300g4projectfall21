@@ -67,7 +67,8 @@ def isValidSelection(choice):
     choiceAmt = 7  # change to be the proper number of choices
     if not choice.isnumeric():
         return 1
-    elif sys.getsizeof(choice) > choiceAmt:
+    #elif sys.getsizeof(choice) > choiceAmt:
+    if int(choice) > choiceAmt:
         return 2
     else:
         return 3

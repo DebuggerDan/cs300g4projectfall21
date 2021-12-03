@@ -1,11 +1,21 @@
 # testfile seems like a great file for tests
 
 import unittest
+import contextlib
+import io
 
 from database.database import Database as DB
+from comm.comm import testManager, testMember, testProvider
+from interface.Menus import displayMenu
+from interface.forms import Forms
+from security.sec import isValidSelection
 
+# redirecting standard input to run functions with forced user input
+class redirect_stdin(contextlib._RedirectStream):
+    _stream = "stdin"
 
 class TestChocAn(unittest.TestCase):
+
 
     # User Interface Test
     # 	The goal of the User Interface Test is to test the interface as a provider. The functionality that the provider
@@ -56,7 +66,7 @@ class TestChocAn(unittest.TestCase):
     #       This test passes if the user interface displays the correct patient information for the user.
     #
     def test_member_lookup_valid(self):
-        valid_id = 93
+        valid_id = 400000001
         member = DB.get_member(valid_id)
         self.assertFalse(str(member) == "None", "Valid member not found")
 
@@ -78,7 +88,7 @@ class TestChocAn(unittest.TestCase):
     #           This test passes if the user interface displays the correct provider information for the user.
     #
     def test_provider_lookup_valid(self):
-        valid_id = 300000012
+        valid_id = 200000002
         provider = DB.get_provider(valid_id)
         self.assertNotEqual(str(provider), "None", "Valid provider not found")
 
@@ -100,7 +110,7 @@ class TestChocAn(unittest.TestCase):
     #           provided.
     #
     def test_service_lookup_exist(self):
-        valid_id = 148
+        valid_id = 100001
         service = DB.get_service(valid_id)
         self.assertNotEqual(str(service), "None", "Valid provider not found")
 
@@ -120,16 +130,18 @@ class TestChocAn(unittest.TestCase):
     #
     #
     def test_member_report(self):
-        fn_exists = 1
-        try:
-            run_member_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_member_report()
 
-        self.assertEqual(fn_exists, 1, "Member Report Not Implemented")
-        # will update test after somebody works on report generation
+        member_id = "400000004"
+        member_name = "Latifah Neal"
+
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(member_id)):
+            testMember()
+        output = f.getvalue()
+        #print(output)
+
+        self.assertRegex(output, member_name, "Member Report: Member Not Found")
 
     # 5.2.2 Provider Report Subtest
     # 	The Provider Report subtest will test the report generation abilities of the software by generating a provider
@@ -140,16 +152,17 @@ class TestChocAn(unittest.TestCase):
     #       The report file is formatted appropriately.
     #
     def test_provider_report(self):
-        fn_exists = 1
-        try:
-            run_provider_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_provider_report()
+        provider_id = "100000001"
+        provider_name = "Manager Bob"
 
-        self.assertEqual(fn_exists, 1, "Provider Report Not Implemented")
-        # will update test after somebody works on report generation
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(provider_id)):
+            testProvider()
+        output = f.getvalue()
+        #print(output)
+
+        self.assertRegex(output, provider_name, "Provider Report: Provider Not Found")
 
     # 5.2.3 Electronic Funds Transfer (EFT) Report Subtest The Electronic Funds Transfer Report subtest will test the
     # report generation abilities of the software by generating an EFT report. After issuing a request for the report
@@ -158,16 +171,18 @@ class TestChocAn(unittest.TestCase):
     # formatted appropriately.
     #
     def test_eft_report(self):
-        fn_exists = 1
-        try:
-            run_eft_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_eft_report()
+        manager_id = "100000001"
+        expected_output = "Total number of Providers who provided services this week"
 
-        self.assertEqual(fn_exists, 1, "EFT Report Not Implemented")
-        # will update test after somebody works on report generation
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(manager_id)):
+            testManager()
+        output = f.getvalue()
+        #print(output)
+
+
+        self.assertRegex(output, expected_output, "EFT report did not match expected output.")
 
     # 5.2.4 Summary Report Subtest The Summary Report subtest will test the report generation abilities of the
     # software by generating a summary report. After issuing a request for the report to be generated, the subtest
@@ -176,16 +191,19 @@ class TestChocAn(unittest.TestCase):
     #
     #
     def test_summary_report(self):
-        fn_exists = 1
-        try:
-            run_summary_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_summary_report()
+        manager_id = "100000001"
+        expected_output = "Total number of Providers who provided services this week"
 
-        self.assertEqual(fn_exists, 1, "Summary Report Not Implemented")
-        # will update test after somebody works on report generation
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f), redirect_stdin(io.StringIO(manager_id)):
+            testManager()
+        output = f.getvalue()
+        #print(output)
+
+
+
+        self.assertRegex(output, expected_output, "Summary report did not match expected output.")
 
     # Manager Interface Test The goal of the Manager Interface Test is to test the interface as a manager trying to
     # access specific information from the database that may be protected. This specific data may be sensitive,
@@ -202,32 +220,31 @@ class TestChocAn(unittest.TestCase):
     # succeed.
     #
     def test_manager_interface_valid(self):
-        valid_id = 100000001
+        valid_id = ("100000001")
+        expected_output = "6 - Generate Reports Menu"
 
-        fn_exists = 1
-        try:
-            run_member_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_member_report(valid_id)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            displayMenu(valid_id)
+        output = f.getvalue()
+        print(output)
 
-        self.assertEqual(fn_exists, 1, "Reports Not Implemented")
-        # requires report generation to test
+        self.assertRegex(output, expected_output, "Report generation unavailable for manager")
 
     def test_manager_interface_invalid(self):
-        invalid_id = 1
+        invalid_id = ("200000001")
+        expected_output = "5 - Interactive Mode Menu \(IAM\)7 - Log Out"
 
-        fn_exists = 1
-        try:
-            run_member_report
-        except NameError:
-            fn_exists = 0
-        else:
-            run_member_report(invalid_id)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            displayMenu(invalid_id)
+        output = f.getvalue()
+        output = output.replace("\r", "").replace("\n\t", "")
+        print(output)
 
-        self.assertEqual(fn_exists, 1, "Reports Not Implemented")
-        # requires report generation to test
+
+
+        self.assertRegex(output, expected_output, "Report generation available for non-manager")
 
     # Menu Integration Test The purpose of the Menu Integration Test is to test the menu interface with the
     # integration of the database and weekly report generation. This will make sure that every choice in the main
@@ -243,10 +260,13 @@ class TestChocAn(unittest.TestCase):
     #   been handled correctly.
     #
     def test_menu_selection_valid(self):
-        self.assertEqual(1, 0, "Need Info on Menu Selection Implementation")
+        select = isValidSelection("5")
+        self.assertEqual(3, select, "Valid menu selection not allowed.")
 
     def test_menu_selection_invalid(self):
-        self.assertEqual(1, 0, "Need Info on Menu Selection Implementation")
+        select = isValidSelection("100")
+        self.assertNotEqual(3, select, "Inalid menu selection allowed.")
+
 
     # 5.4.2 Form Manager Subtest The Form Manager subtest will test each form that is managed by the software. These
     # forms will connect with the database. This subtest will fill each form out with both valid and invalid data.
@@ -255,11 +275,21 @@ class TestChocAn(unittest.TestCase):
     # message appropriately.
     #
     def test_form_validation_valid(self):
-        self.assertEqual(1, 0, "Need Info on Form Validation")
+        input = "Unit Test\nStreet Address\nCity\nST\n30598\n"
+
+        with redirect_stdin(io.StringIO(input)):
+            result = Forms.addProviderForm()
+
+        self.assertNotEqual(result, 0, "Valid Form Rejected")
+
 
     def test_form_validation_invalid(self):
-        self.assertEqual(1, 0, "Need Info on Form Validation")
+        input = "UnitTest\nStreet Address\nCity\nST\n305989398\n"
 
+        with redirect_stdin(io.StringIO(input)):
+            result = Forms.addProviderForm()
+
+        self.assertEqual(result, 0, "Invalid Form Accepted")
 
 if __name__ == '__main__':
     unittest.main()
