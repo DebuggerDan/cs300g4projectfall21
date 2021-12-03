@@ -1,10 +1,9 @@
-# basic forms for user input
-# once validation is added, input will return 0 if invalid
+#basic forms for user input
+#once validation is added, input will return 0 if invalid
 
 from datetime import datetime
-
 from database.database import Database as DB
-from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker, isValidSelection
+from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker,  isPhonenum, isValidSelection
 
 
 class Forms:
@@ -45,6 +44,7 @@ class Forms:
         print("\nFull Service Form\n")
         print(Forms.billingForm())
 
+
     ################################################################################################
     #
     # Basic input elements which include validation
@@ -53,7 +53,7 @@ class Forms:
     #
     ################################################################################################
 
-    # add forms
+    #add forms
     @staticmethod
     def addMemberForm():
         name = input("Enter name: ")
@@ -61,10 +61,10 @@ class Forms:
         city = input("Enter City: ")
         state = input("Enter State: ")
         zip = input("Enter Zip: ")
-        # phone = input("Enter Phone: ")
-        # fax = input("Enter Fax: ")
-        # email = input("Enter Email: ")
-        # service_id = input("Enter Service ID: ")
+        #phone = input("Enter Phone: ")
+        #fax = input("Enter Fax: ")
+        #email = input("Enter Email: ")
+        #service_id = input("Enter Service ID: ")
         active = 1
 
         good = 1
@@ -74,20 +74,22 @@ class Forms:
         if not rangeChecker(zip, 10000, 99999) == 3:
             print("Invalid zip")
             good = 0
-        # if not isPhonenum(phone) == 3:
-        #    print("Invalid Phone")
-        #    good = 0
-        # if not isPhonenum(fax) == 3:
+        #if not isPhonenum(phone) == 3:
+            #print("Invalid Phone")
+            #good = 0
+        #if not isPhonenum(fax) == 3:
         #    print("Invalid Fax")
-        #    good = 0
-        # if not serviceChecker(service_id) == 3:
+         #   good = 0
+        #if not serviceChecker(service_id) == 3:
         #    print("Invalid service ID")
         #    good = 0
 
         if good == 0:
             return 0
-        # return name, street, city, state, zip, phone, fax, email, service_id
-        return name, street, city, state, zip, active
+        #return name, street, city, state, zip, phone, fax, email, service_id
+        #return name, street, city, state, zip, active
+        DB.add_member(name, street, city, state, zip, active)
+        return 1
 
     @staticmethod
     def addProviderForm():
@@ -107,7 +109,9 @@ class Forms:
 
         if good == 0:
             return 0
-        return name, street, city, state, zip
+        #return name, street, city, state, zip
+        DB.add_provider(name, street, city, state, zip)
+        return 1
 
     @staticmethod
     def addServiceForm():
@@ -124,38 +128,40 @@ class Forms:
 
         if good == 0:
             return 0
-        return name, fee
+        #return name, fee
+        DB.add_service(name, fee)
+        return 1
 
-    # id forms
+    #id forms
 
     @staticmethod
     def providerIDForm():
-        provider_id = input("Enter Provider ID: ")  # changed id to provider_id as id shadows a built-in function
+        id = input("Enter Provider ID: ")
 
-        if not loginChecker(provider_id) == 3:
+        if not loginChecker(id) == 3:
             print("Invalid ID")
             return 0
-        return provider_id
+        return id
 
     @staticmethod
     def memberIDForm():
-        member_id = input("Enter Member ID: ")  # changed id to member_id as it shadows a built-in function
+        id = input("Enter Member ID: ")
 
-        if not loginChecker(member_id) == 3:
+        if not loginChecker(id) == 3:
             print("Invalid ID")
             return 0
         return id
 
     @staticmethod
     def serviceIDForm():
-        service_id = input("Enter Service ID: ")  # changed id to service_id as it shadows a built-in function
+        id = input("Enter Service ID: ")
 
-        if not serviceChecker(service_id) == 3:
+        if not serviceChecker(id) == 3:
             print("Invalid ID")
             return 0
         return id
 
-    # name forms
+    #name forms
 
     @staticmethod
     def providerNameForm():
@@ -177,13 +183,13 @@ class Forms:
 
     @staticmethod
     def serviceNameForm():
-        service_id = input("Enter Service Name: ")  # replaced id with service_id as it shadows a built-in function
+        id = input("Enter Service Name: ")
 
-        # nameChecker requires that there be a space
-        # can't use here
-        return service_id
+        #nameChecker requires that there be a space
+        #can't use here
+        return id
 
-    # menu form
+    #menu form
 
     @staticmethod
     def menuSelectForm():
@@ -194,7 +200,8 @@ class Forms:
             return 0
         return num
 
-    # member service form
+
+    #member service form
 
     @staticmethod
     def dateForm():
@@ -215,14 +222,14 @@ class Forms:
 
         if good == 0:
             return 0
-        # date = mm + "-" + dd + "-" + yyyy
+        #date = mm + "-" + dd + "-" + yyyy
         date = yyyy + "-" + mm + "-" + dd
         return date
 
-    # (not "input" like the rest, but I had to put it somewhere)
+    #(not "input" like the rest, but I had to put it somewhere)
     @staticmethod
     def date():
-        # from datetime import datetime
+        #from datetime import datetime
         now = datetime.now()
         date = now.strftime("%Y-%m-%d %H:%M:%S")
         return date
@@ -230,15 +237,17 @@ class Forms:
     @staticmethod
     def commentForm():
         comments = input("Please enter your comments: ")
-        # technically should be a max of 100 characters
-        # would need a validation function for that
+        #technically should be a max of 100 characters
+        #would need a validation function for that
         return comments
 
     @staticmethod
     def verificationForm():
         agree = input("Is this information valid? y/n: ")
-        # no validation needed, just check for 'y' and consider anything else no
+        #no validation needed, just check for 'y' and consider anything else no
         return agree
+
+
 
     ################################################################################################
     #
@@ -247,7 +256,8 @@ class Forms:
     #
     ################################################################################################
 
-    # pass in the user object to access the ID of the logged in provider
+
+    #pass in the user object to access the ID of the logged in provider
     @staticmethod
     def billingForm(user):
 
@@ -279,7 +289,7 @@ class Forms:
             # Provider enters the 6-digit code for the chosen service.
             service_id = Forms.serviceIDForm()
 
-            # (make sure the id entered was actually valid)
+            #(make sure the id entered was actually valid)
             service = DB.get_service(service_id)
             if not service:
                 print("Error: Invalid service code. Please search again.")
@@ -291,12 +301,12 @@ class Forms:
 
         # Provider enter additional comments as needed.
         comments = 0
-        while comments == 0:
+        while (comments == 0):
             comments = Forms.commentForm()
 
-        # extra pieces
+        #extra pieces
         current_date = Forms.date()
-        # the provider is logged in so their id should be available somewhere
+        #the provider is logged in so their id should be available somewhere
         provider_id = user[0]
 
         # The following information is now stored about the member:
@@ -326,8 +336,147 @@ class Forms:
         print("\tFee to be paid: " + str(fee))
         verify = Forms.verificationForm()
 
-        if verify == "n":
+        if (verify == "n"):
             return 0
 
         DB.add_billing(member_id, provider_id, service_date, current_date, service_id, comments)
         return member_id, provider_id, service_date, current_date, service_id, comments
+
+    @staticmethod
+    def killMember():
+        memID = print("ID of member being deleted: ")
+        valID = loginChecker(memID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(memID)
+        if userData == "None":
+            print("Member already does not exist. Returning.")
+            return -1
+        print(userData)
+        choice = input("Remove member? y/n: ")
+        if choice == "y":
+            DB.delete_member(memID)
+            print("Member deleted!")
+            return 1
+        else:
+            return -1
+
+    @staticmethod
+    def killProvider():
+        provID = print("ID of provider being deleted: ")
+        valID = loginChecker(provID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(provID)
+        if userData == "None":
+            print("Provider already does not exist. Returning.")
+            return -1
+        print(userData)
+        choice = input("Remove provider? y/n: ")
+        if choice == "y":
+            DB.delete_provider(provID)
+            print("Member deleted!")
+            return 1
+        else:
+            return -1
+
+    @staticmethod
+    def killService():
+        servID = print("ID of service being deleted: ")
+        valID = serviceChecker(servID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        serviceData = DB.get_service(servID)
+        if serviceData == "None":
+            print("Service already does not exist. Returning.")
+            return -1
+        print(serviceData)
+        choice = input("Remove service? y/n: ")
+        if choice == "y":
+            DB.delete_service(servID)
+            print("Service deleted!")
+            return 1
+        else:
+            return -1
+
+    @staticmethod
+    def editMember():
+        memID = print("ID of member being edited: ")
+        valID = loginChecker(memID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(memID)
+        if userData == "None":
+            print("Member does not exist. Returning.")
+            return -1
+        print(userData)
+        name = input("Enter name: ")
+        street = input("Enter street: ")
+        city = input("Enter City: ")
+        state = input("Enter State: ")
+        zip = input("Enter Zip: ")
+        active = input("Enter Activity 0 / 1: ")
+        if not nameChecker(name) == 3:
+            print("Invalid name. Keeping old name.")
+            name = userData[1]
+        if not rangeChecker(zip, 10000, 99999) == 3:
+            print("Invalid zip. Keeping old zip.")
+            zip = userData[5]
+        if active != 1 or 0:
+            print("Invalid activity state. Keeping old state.")
+            active = userData[6]
+        DB.update_member(memID, name, street, city, state, zip, active)
+        return 1
+
+    @staticmethod
+    def editProvider():
+        provID = print("ID of provider being edited: ")
+        valID = loginChecker(provID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        userData = DB.get_member(provID)
+        if userData == "None":
+            print("Provider does not exist. Returning.")
+            return -1
+        print(userData)
+        name = input("Enter name: ")
+        street = input("Enter street: ")
+        city = input("Enter City: ")
+        state = input("Enter State: ")
+        zip = input("Enter Zip: ")
+        if not nameChecker(name) == 3:
+            print("Invalid name. Keeping old name.")
+            name = userData[1]
+        if not rangeChecker(zip, 10000, 99999) == 3:
+            print("Invalid zip. Keeping old zip.")
+            zip = userData[5]
+        DB.update_provider(provID, name, street, city, state, zip)
+        return 1
+
+    @staticmethod
+    def editService():
+        servID = print("ID of service being edited: ")
+        valID = serviceChecker(servID)
+        if valID != 3:
+            print("Invalid ID format. Returning.")
+            return -1
+        serviceData = DB.get_service(servID)
+        if serviceData == "None":
+            print("Service does not exist. Returning.")
+            return -1
+        print(serviceData)
+        name = input("Enter name: ")
+        fee = input("Enter fee: ")
+        if not nameChecker(name) == 3:
+            print("Invalid name. Keeping old name.")
+            name = serviceData[1]
+        if not rangeChecker(fee, 0, 999):
+            print("Invalid fee. Keeping old fee.")
+            fee = serviceData[2]
+        DB.update_service(servID, name, fee)
+        return 1
