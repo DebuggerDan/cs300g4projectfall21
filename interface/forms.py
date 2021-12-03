@@ -344,7 +344,7 @@ class Forms:
 
     @staticmethod
     def killMember():
-        memID = print("ID of member being deleted: ")
+        memID = input("ID of member being deleted: ")
         valID = loginChecker(memID)
         if valID != 3:
             print("Invalid ID format. Returning.")
@@ -364,7 +364,7 @@ class Forms:
 
     @staticmethod
     def killProvider():
-        provID = print("ID of provider being deleted: ")
+        provID = input("ID of provider being deleted: ")
         valID = loginChecker(provID)
         if valID != 3:
             print("Invalid ID format. Returning.")
@@ -384,7 +384,7 @@ class Forms:
 
     @staticmethod
     def killService():
-        servID = print("ID of service being deleted: ")
+        servID = input("ID of service being deleted: ")
         valID = serviceChecker(servID)
         if valID != 3:
             print("Invalid ID format. Returning.")
@@ -404,7 +404,7 @@ class Forms:
 
     @staticmethod
     def editMember():
-        memID = print("ID of member being edited: ")
+        memID = input("ID of member being edited: ")
         valID = loginChecker(memID)
         if valID != 3:
             print("Invalid ID format. Returning.")
@@ -434,7 +434,7 @@ class Forms:
 
     @staticmethod
     def editProvider():
-        provID = print("ID of provider being edited: ")
+        provID = input("ID of provider being edited: ")
         valID = loginChecker(provID)
         if valID != 3:
             print("Invalid ID format. Returning.")
@@ -460,7 +460,7 @@ class Forms:
 
     @staticmethod
     def editService():
-        servID = print("ID of service being edited: ")
+        servID = input("ID of service being edited: ")
         valID = serviceChecker(servID)
         if valID != 3:
             print("Invalid ID format. Returning.")
