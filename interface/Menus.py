@@ -1,9 +1,8 @@
 # CS 300 - Group (#4) Project: ChocAn [Section: Menu Displays and Functions] - Fall 2021
 # Christopher Juncker, Justin Greever, Samantha Zeigler, Tori Anderson, Naya Mairena, Ian Guy, Dan Jang
 
-from database.database import Database
 from security.auth import is_manager
-from comm.comm import testManager, testMember, testProvider, querProvInfo, querMemInfo, querServInfo
+from comm.comm import querProvInfo, querMemInfo, querServInfo
 from comm.comm import newProviderReport, newMemberReport, newEFTReport, \
     newSummaryReport, newMAPReport, providerDirectory
 from interface.forms import Forms
@@ -25,7 +24,7 @@ def displayMenu(user): #displays main menu items
 
 def mainMenu(user): #main menu loop function
     menu_code = 0 #menu input
-    while menu_code !=8: #while user does not want to log out
+    while menu_code != 8: #while user does not want to log out
         displayMenu(user) #displays menu items
         menu_code = input("Please enter the menu item number: ") #asks for user input
         if menu_code.isdigit():
@@ -85,15 +84,14 @@ def displayIAM():
     print("\t4 - Add Provider")
     print("\t5 - Delete Provider")
     print("\t6 - Modify Provider")
-    print("\t7 - Update Member Status")
-    print("\t8 - Add Service")
-    print("\t9 - Delete Service")
-    print("\t10 - Modify Service")
-    print("\t11- Exit IAM Menu")
+    print("\t7 - Add Service")
+    print("\t8 - Delete Service")
+    print("\t9 - Modify Service")
+    print("\t10- Exit IAM Menu")
                 
 def iamMenu(user):
     menu_code = 0
-    while (menu_code != 11):
+    while (menu_code != 10):
         displayIAM()
         menu_code = input("\nPlease enter the menu item number: ")
         if menu_code.isdigit():
@@ -101,7 +99,7 @@ def iamMenu(user):
         else:
             menu_code = 0
     #while menu_code != 8: #after input = impossible to change menu selection
-        if (menu_code > 11 or menu_code < 1):
+        if (menu_code > 10 or menu_code < 1):
             print("\n\nInvalid Menu Item: Please select a number from the provided menu.\n")
             menu_code = 0
         else:
@@ -130,18 +128,15 @@ def iamMenu(user):
                 #print("Modify provider function goes here")
                 Forms.editProvider()
             elif (menu_code == 7):
-                #Update member status (active/inactive)
-                print("Updating member status is actually out of scope.")
-            elif (menu_code == 8):
                 Forms.addServiceForm()
-            elif (menu_code == 9):
+            elif (menu_code == 8):
                 Forms.killService()
-            elif (menu_code == 10):
+            elif (menu_code == 9):
                 Forms.editService()
-            elif (menu_code == 11):
+            elif (menu_code == 10):
                 #print log out message from IAM menu and exits to main menu
                 print("Returning to main menu...")
-                mainMenu(user)
+                #mainMenu(user) #returning, not calling a new one :)
             else:
                 print("\nPlease enter a valid menu item.")
                 

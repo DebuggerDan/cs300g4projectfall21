@@ -3,9 +3,7 @@
 
 from interface.Menus import mainMenu
 from security.auth import loginGrabber, is_logged_in, is_manager
-# class main():
 
-#    def __init__(self):
 
 if __name__ == "__main__":
 

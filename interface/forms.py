@@ -3,46 +3,10 @@
 
 from datetime import datetime
 from database.database import Database as DB
-from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker,  isPhonenum, isValidSelection
+from security.sec import loginChecker, serviceChecker, nameChecker, rangeChecker, isValidSelection
 
 
 class Forms:
-
-    @staticmethod
-    def testForms():
-        # print("\nADD MEMBER FORM\n")
-        # print(Forms.addMemberForm())
-        # print("\nADD PROVIDER FORM\n")
-        # print(Forms.addProviderForm())
-        # print("\nADD SERVICE FORM\n")
-        # print(Forms.addServiceForm())
-        #
-        # print("\nMEMBER ID FORM\n")
-        # print(Forms.memberIDForm())
-        # print("\nPROVIDER ID FORM\n")
-        # print(Forms.providerIDForm())
-        # print("\nSERVICE ID FORM\n")
-        # print(Forms.serviceIDForm())
-        #
-        # print("\nMEMBER NAME FORM\n")
-        # print(Forms.memberNameForm())
-        # print("\nPROVIDER NAME FORM\n")
-        # print(Forms.providerNameForm())
-        # print("\nSERVICE NAME FORM\n")
-        # print(Forms.providerNameForm())
-        #
-        # print("\nMENU SELECTION FORM\n")
-        # print(Forms.menuSelectForm())
-        #
-        # print("\nDATE FORM\n")
-        # print(Forms.dateForm())
-        # print("\nDATE\n")
-        # print(Forms.date())
-        # print("\nMENU SELECTION FORM\n")
-        # print(Forms.commentForm())
-
-        print("\nFull Service Form\n")
-        print(Forms.billingForm())
 
 
     ################################################################################################
@@ -270,6 +234,7 @@ class Forms:
         service_date = 0
         while service_date == 0:
             service_date = Forms.dateForm()
+        service_id = 0
 
         verify = "n"
         while verify == "n":
