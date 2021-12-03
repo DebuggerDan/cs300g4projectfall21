@@ -83,7 +83,7 @@ def displayIAM():
     print("\t8 - Add Service")
     print("\t9 - Delete Service")
     print("\t10 - Modify Service")
-    print("\t 11- Exit IAM Menu")
+    print("\t11- Exit IAM Menu")
                 
 def iamMenu(user):
     menu_code = 0

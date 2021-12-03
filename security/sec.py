@@ -20,7 +20,7 @@ def loginChecker(username):
 
 
 def serviceChecker(service):
-    if not service.isnumeric():
+    if service.isalpha():
         return 1  # isnt a number
     #elif sys.getsizeof(str(service)) != 6:
     elif len(service) != 6:
