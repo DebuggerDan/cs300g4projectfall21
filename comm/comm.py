@@ -1,6 +1,9 @@
 #CS300 Report Dispaying 
 #Weekly Member Services Reports
 
+import os #for making directories and files
+from interface.forms import Forms #date function is in here
+
 """
 comm comments - all functions assume user is "logged in" already
 make sure the "logged in" person meets requirements
@@ -34,6 +37,227 @@ weekly summary function - prints report - manager and provider access
 
 from database.database import Database as db
 from security.sec import loginChecker, serviceChecker
+
+def newMemberReport():
+    # Each member who has consulted a ChocAn provider during that week
+    # receives a list of services provided to that member, sorted in order of service date.
+    # The report, which is also sent as an e-mail attachment, includes:
+    #   • Member name (25 characters).
+    #   • Member number (9 digits).
+    #   • Member street address (25 characters).
+    #   • Member city (14 characters).
+    #   • Member state (2 letters).
+    #   • Member zip code (5 digits).
+    #   • For each service provided, the following details are required:
+    #       o Date of service (MM-DD-YYYY).
+    #       o Provider name (25 characters).
+    #       o Service name (20 characters).
+    # make sure the main report folder exists
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    # create new subdirectories for the current report
+    report_path = path + "/member_report_" + Forms.date().replace(":", "_")  # no ":" in windows filenames
+    os.makedirs(report_path)
+
+    memberInfo = db.get_members()
+    x = 0
+    print("\nList of all Members who were provided services this week:\n")
+    total_fee = 0.00
+    total_con = 0
+    total_mem = 0
+    while x < len(memberInfo):
+        # Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
+        # solution: I will go through all the providers but skip them if they don't appear in the billing database
+        # print("\t" + providerInfo[x][1])
+
+        member_file = report_path + "/" + str(memberInfo[x][0]) + ".txt"
+
+        billing = db.get_member_billing(memberInfo[x][0])
+        if billing is None:
+            x += 1
+            continue
+        member_total_fee = 0.00  # Total fee of services provided.
+        member_total_con = 0  # Total consultations provided to the Member
+        total_mem += 1
+
+        info = "\nMember Name: " + memberInfo[x][1] + \
+               "\nMember ID Number: " + str(memberInfo[x][0]) + \
+               "\nMember Street Address: " + memberInfo[x][2] + \
+               "\nMember City: " + memberInfo[x][3] + \
+               "\nMember State: " + memberInfo[x][4] + \
+               "\nMember Zip Code: " + str(memberInfo[x][5]) + \
+               "\n\nList of services provided to this Member: \n"
+
+        print(info)  # print the info, same as before
+        with open(member_file, "a") as f:
+            f.write(info)
+
+        for bill in billing:
+            serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
+            providerInfo = db.get_provider(bill[2])  # Used for displaying provider name.
+
+            # skip if it is a bad entry (bad serviceid, bad providerid)
+            if serviceInfo is None or providerInfo is None:
+                continue
+
+            info = "\n\tDate of Service: " + bill[3] + \
+                   "\n\tDate & Time Data Received: " + bill[4] + \
+                   "\n\tProvider Name: " + providerInfo[1] + \
+                   "\n\tProvider ID: " + str(bill[2]) + \
+                   "\n\tService Name: " + serviceInfo[1] + \
+                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
+
+
+            print(info)
+            with open(member_file, "a") as f:
+                f.write(info)
+
+            fee = serviceInfo[2]
+            member_total_fee += fee
+            member_total_con += 1  # keep track of consultations provided.
+
+        # case: provider had bills but all bills were invalid
+        if member_total_con == 0:
+            x += 1
+            continue
+
+        info = "\nTotal consults this Member had: " + str(member_total_con) + \
+               "\nTotal fees: $" + "{:.2f}".format(member_total_fee)
+        print(info)
+        with open(member_file, "a") as f:
+            f.write(info)
+
+        total_fee += member_total_fee
+        total_con += member_total_con
+        x += 1
+
+    # Total number of providers, should we just add all providers in the database?
+    # Total number of consultations we can add all the services provided from member services database.
+    # Overall fees will be ALL services across all members added up
+    print("\nTotal number of Providers who provided services this week: ", total_mem,
+          "\nTotal Number of Consultations: ", total_con,
+          "\nOverall fees: $", "{:.2f}".format(total_fee))
+
+
+def newProviderReport():
+    # Each provider who has billed ChocAn during that week receives a report,
+    # sent as an e-mail attachment, containing the list of services he or she provided to
+    # ChocAn members. To simplify the task of verification, the report contains the same
+    # information as that entered on the provider’s form, in the order that the data were
+    # received by the computer. At the end of the report is a summary including the
+    # number of consultations with members and the total fee for that week. That is, the
+    # fields of the report include:
+    #   • Provider name (25 characters).
+    #   • Provider number (9 digits).
+    #   • Provider street address (25 characters).
+    #   • Provider city (14 characters).
+    #   • Provider state (2 letters).
+    #   • Provider zip code (5 digits).
+    #   • For each service provided, the following details are required:
+    #       o Date of service (MM-DD-YYYY).
+    #       o Date and time data were received by the computer (MM-DD-YYYY
+    #           HH:MM:SS).
+    #       o Member name (25 characters).
+    #       o Member number (9 digits).
+    #       o Service code (6 digits).
+    #       o Fee to be paid (up to $999.99).
+    #   • Total number of consultations with members (3 digits).
+    #   • Total fee for the week (up to $99,999.99).
+
+    # make sure the main report folder exists
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    # create new subdirectories for the current report
+    report_path = path + "/provider_report_" + Forms.date().replace(":", "_")  # no ":" in windows filenames
+    os.makedirs(report_path)
+
+    providerInfo = db.get_providers()
+    x = 0
+    print("\nList of all Providers to get paid this week:\n")
+    total_fee = 0.00
+    total_con = 0
+    total_prov = 0
+    while x < len(providerInfo):
+        # Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
+        # solution: I will go through all the providers but skip them if they don't appear in the billing database
+        # print("\t" + providerInfo[x][1])
+
+        provider_file = report_path + "/" + str(providerInfo[x][0]) + ".txt"
+
+        billing = db.get_provider_billing(providerInfo[x][0])
+        if billing is None:
+            x += 1
+            continue
+        provider_total_fee = 0.00  # Total fee of services provided.
+        provider_total_con = 0  # Total consultations provided by the Provider.
+        total_prov += 1
+
+        info = "\nProvider Name: " + providerInfo[x][1] + \
+               "\nProvider ID Number: " + str(providerInfo[x][0]) + \
+               "\nProvider Street Address: " + providerInfo[x][2] + \
+               "\nProvider City: " + providerInfo[x][3] + \
+               "\nProvider State: " + providerInfo[x][4] + \
+               "\nProvider Zip Code: " + str(providerInfo[x][5]) + \
+               "\n\nList of services provided by this Provider: \n"
+
+        print(info)  # print the info, same as before
+        with open(provider_file, "a") as f:
+            f.write(info)
+
+        for bill in billing:
+            serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
+            memberInfo = db.get_member(bill[1])  # Used for displaying member name.
+
+            # skip if it is a bad entry (bad serviceid, bad memberid)
+            if serviceInfo is None or memberInfo is None:
+                continue
+
+            info = "\n\tDate of Service: " + bill[3] + \
+                   "\n\tDate & Time Data Recieved: " + bill[4] + \
+                   "\n\tMember Name:" + memberInfo[1] + \
+                   "\n\tMember ID: " + str(bill[1]) + \
+                   "\n\tService Name: " + serviceInfo[1] + \
+                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
+
+            print(info)
+            with open(provider_file, "a") as f:
+                f.write(info)
+
+            fee = serviceInfo[2]
+            provider_total_fee += fee
+            provider_total_con += 1  # keep track of consultations provided.
+
+        # case: provider had bills but all bills were invalid
+        if provider_total_con == 0:
+            x += 1
+            continue
+
+        info = "\nTotal consults this Provider had: " + str(provider_total_con) + \
+               "\nTotal fees: $" + "{:.2f}".format(provider_total_fee)
+        print(info)
+        with open(provider_file, "a") as f:
+            f.write(info)
+
+        total_fee += provider_total_fee
+        total_con += provider_total_con
+        x += 1
+
+    # Total number of providers, should we just add all providers in the database?
+    # Total number of consultations we can add all the services provided from member services database.
+    # Overall fees will be ALL services across all members added up
+    print("\nTotal number of Providers who provided services this week: ", total_prov,
+          "\nTotal Number of Consultations: ", total_con,
+          "\nOverall fees: $", "{:.2f}".format(total_fee))
+
+def newManagerReport():
+    print("in progress")
+
 
 #Member Report helper function to take in a Member ID.
 def testMember():
@@ -179,6 +403,19 @@ def testManager():
 
 #STILL NEEDS WORK
 def managerReport(managerID):
+    #make sure the main report folder exists
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    #create new subdirectories for the current report
+    report_path = path + "/manager_report_" + Forms.date().replace(":", "_") #no ":" in windows filenames
+    os.makedirs(report_path)
+    provider_path = report_path + "/providers"
+    os.makedirs(provider_path)
+    member_path = report_path + "/members"
+    os.makedirs(member_path)
+
     providerInfo = db.get_providers()
     x = 0
     print("\nList of all Providers to get paid this week:\n")
@@ -190,6 +427,8 @@ def managerReport(managerID):
         # solution: I will go through all the providers but skip them if they don't appear in the billing database
         #print("\t" + providerInfo[x][1])
 
+        provider_file = provider_path + "/" + str(providerInfo[x][0]) + ".txt"
+
         billing = db.get_provider_billing(providerInfo[x][0])
         if billing is None:
             x += 1
@@ -198,13 +437,17 @@ def managerReport(managerID):
         provider_total_con = 0  # Total consultations provided by the Provider.
         total_prov += 1
 
-        print("\nProvider Name: ", providerInfo[x][1],
-        "\nProvider ID Number: ", providerInfo[x][0],
-        "\nProvider Street Address: ", providerInfo[x][2],
-        "\nProvider City: ", providerInfo[x][3],
-        "\nProvider State: ", providerInfo[x][4],
-        "\nProvider Zip Code: ", providerInfo[x][5],
-        "\n\nList of services provided by this Provider: \n")
+        info = "\nProvider Name: " + providerInfo[x][1] +\
+            "\nProvider ID Number: " + str(providerInfo[x][0]) +\
+            "\nProvider Street Address: " + providerInfo[x][2] +\
+            "\nProvider City: " + providerInfo[x][3] +\
+            "\nProvider State: " + providerInfo[x][4] +\
+            "\nProvider Zip Code: " + str(providerInfo[x][5]) +\
+            "\n\nList of services provided by this Provider: \n"
+
+        print(info) #print the info, same as before
+        with open(provider_file, "a") as f:
+            f.write(info)
 
         for bill in billing:
             serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
@@ -214,13 +457,22 @@ def managerReport(managerID):
             if serviceInfo is None or memberInfo is None:
                 continue
 
-            print("\n\tDate of Service: ", bill[3],
-            "\n\tDate & Time Data Recieved: ", bill[4],
-            "\n\tMember Name:", memberInfo[1],
-            "\n\tMember ID: ", bill[1],
-            "\n\tService Name: ", serviceInfo[1],
-            "\n\tService ID:", bill[5],
-            "\n\tFee to be paid: $", "{:.2f}".format(serviceInfo[2]))
+            member_file = member_path + "/" + str(bill[1]) + ".txt"
+
+            info = "\n\tDate of Service: " + bill[3] +\
+                    "\n\tDate & Time Data Recieved: " + bill[4] +\
+                    "\n\tMember Name:" + memberInfo[1] +\
+                    "\n\tMember ID: " + str(bill[1]) +\
+                    "\n\tService Name: " + serviceInfo[1] +\
+                    "\n\tService ID:" + str(bill[5]) +\
+                    "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
+
+            print(info)
+            with open(provider_file, "a") as f:
+                f.write(info)
+            with open(member_file, "a") as f:
+                f.write(info)
+
             fee = serviceInfo[2]
             provider_total_fee += fee
             provider_total_con += 1  # keep track of consultations provided.
@@ -229,8 +481,13 @@ def managerReport(managerID):
         if provider_total_con == 0:
             x += 1
             continue
-        print("\nTotal consults this Provider had: ", provider_total_con)
-        print("Total fees: $", "{:.2f}".format(provider_total_fee))
+
+        info = "\nTotal consults this Provider had: " + str(provider_total_con) +\
+                "\nTotal fees: $" + "{:.2f}".format(provider_total_fee)
+        print(info)
+        with open(provider_file, "a") as f:
+            f.write(info)
+
         total_fee += provider_total_fee
         total_con += provider_total_con
         x += 1

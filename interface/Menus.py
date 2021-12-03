@@ -4,6 +4,7 @@
 from database.database import Database
 from security.auth import is_manager
 from comm.comm import testManager, testMember, testProvider, querProvInfo, querMemInfo, querServInfo
+from comm.comm import newProviderReport, newMemberReport, newManagerReport
 from interface.forms import Forms
 
 
@@ -166,13 +167,13 @@ def reportMenu(user):
                 menu_code = 0
             elif (menu_code == 1):
                 #Print member summary report by member id
-                testMember()
+                newMemberReport()
             elif (menu_code == 2):
                 #Print provider summary report by provider id
-                testProvider()
+                newProviderReport()
             elif (menu_code == 3):
                 #Print manager accounts payable report
-                testManager()
+                newManagerReport()
             elif (menu_code != 4):
                 print("\nPlease enter a valid menu item.\n")
 
