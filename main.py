@@ -31,21 +31,21 @@ if __name__ == "__main__":
 
     # initiate login sequence
     user = -2
-    while user == -2:
+    while user == -2 and user !=-1:
         user = loginGrabber()
     # login successful, provider info saved in logged_in
+    if user != -1:
+        if is_logged_in(user):
+            print("User " + str(user[0]) + " is logged in.") #user ID
+            print("Welcome to ChocAn, " + user[1]) #user name
 
-    if is_logged_in(user):
-        print("User " + str(user[0]) + " is logged in.") #user ID
-        print("Welcome to ChocAn, " + user[1]) #user name
-
-    if is_manager(user):
-        print("User is a manager.")
-    else:
-        print("User is not a manager.")
+        if is_manager(user):
+            print("User is a manager.")
+        else:
+            print("User is not a manager.")
 
 
-    mainMenu(user)
+        mainMenu(user)
 
 
     #DB.fixService()
