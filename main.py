@@ -3,8 +3,6 @@
 
 from interface.Menus import mainMenu
 from security.auth import loginGrabber, is_logged_in, is_manager
-from database.database import Database
-
 # class main():
 
 #    def __init__(self):
