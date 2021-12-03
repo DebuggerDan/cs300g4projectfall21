@@ -40,6 +40,9 @@ def loginGrabber():
         #    print("Provider detected!")
 
         return loginSuccess
+    elif username == -1:
+        print("Program End.")
+        reutrn -1
     else:
         print("ID not found. Please try again!")
         return -2
