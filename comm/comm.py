@@ -255,8 +255,189 @@ def newProviderReport():
           "\nTotal Number of Consultations: ", total_con,
           "\nOverall fees: $", "{:.2f}".format(total_fee))
 
-def newManagerReport():
-    print("in progress")
+def newEFTReport():
+    # A record consisting of electronic funds transfer (EFT) data is then written to
+    # disk; banking computers will later ensure that each provider’s bank account is
+    # credited with the appropriate amount.
+
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    # create new subdirectories for the current report
+    report_path = path + "/EFT_report_" + Forms.date().replace(":", "_")  # no ":" in windows filenames
+    os.makedirs(report_path)
+    EFT_file = report_path + "/EFT_report.txt"
+
+    providerInfo = db.get_providers()
+    x = 0
+    total_fee = 0.00
+    total_con = 0
+    total_prov = 0
+    while x < len(providerInfo):
+        # Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
+        # solution: I will go through all the providers but skip them if they don't appear in the billing database
+        # print("\t" + providerInfo[x][1])
+
+        billing = db.get_provider_billing(providerInfo[x][0])
+        if billing is None:
+            x += 1
+            continue
+        provider_total_fee = 0.00  # Total fee of services provided.
+        provider_total_con = 0  # Total consultations provided by the Provider.
+        total_prov += 1
+
+        info = "\nProvider Name: " + providerInfo[x][1] + \
+               "\nProvider ID Number: " + str(providerInfo[x][0])
+
+        print(info)  # print the info, same as before
+        with open(EFT_file, "a") as f:
+            f.write(info)
+
+        for bill in billing:
+            serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
+            memberInfo = db.get_member(bill[1])  # Used for displaying member name.
+
+            # skip if it is a bad entry (bad serviceid, bad memberid)
+            if serviceInfo is None or memberInfo is None:
+                continue
+
+            fee = serviceInfo[2]
+            provider_total_fee += fee
+            provider_total_con += 1  # keep track of consultations provided.
+
+        # case: provider had bills but all bills were invalid
+        if provider_total_con == 0:
+            info = "\n\tProvider had bills, but they were invalid." + \
+                   "\n\tTotal fees: $ 0.00\n"
+            print(info)
+            with open(EFT_file, "a") as f:
+                f.write(info)
+            x += 1
+            continue
+
+        info = "\n\tTotal consults this Provider had: " + str(provider_total_con) + \
+               "\n\tTotal fees: $" + "{:.2f}".format(provider_total_fee) + "\n"
+        print(info)
+        with open(EFT_file, "a") as f:
+            f.write(info)
+
+        total_fee += provider_total_fee
+        total_con += provider_total_con
+        x += 1
+
+    # Total number of providers, should we just add all providers in the database?
+    # Total number of consultations we can add all the services provided from member services database.
+    # Overall fees will be ALL services across all members added up
+    print("\nTotal number of Providers who provided services this week: ", total_prov,
+          "\nTotal Number of Consultations: ", total_con,
+          "\nOverall fees: $", "{:.2f}".format(total_fee))
+
+
+
+def newSummaryReport():
+    path = 'reports'
+    exist = os.path.exists(path)
+    if not exist:
+        os.makedirs(path)
+    # create new subdirectories for the current report
+    report_path = path + "/summary_report_" + Forms.date().replace(":", "_")  # no ":" in windows filenames
+    os.makedirs(report_path)
+    summary_file = report_path + "/summary_report.txt"
+
+    providerInfo = db.get_providers()
+    x = 0
+    print("\nList of all Providers to get paid this week:\n")
+    total_fee = 0.00
+    total_con = 0
+    total_prov = 0
+    while x < len(providerInfo):
+        # Currently is printing ALL of providers names from provider database. Should we randomly generate everytime to simulate a "week"?
+        # solution: I will go through all the providers but skip them if they don't appear in the billing database
+        # print("\t" + providerInfo[x][1])
+
+        billing = db.get_provider_billing(providerInfo[x][0])
+        if billing is None:
+            x += 1
+            continue
+        provider_total_fee = 0.00  # Total fee of services provided.
+        provider_total_con = 0  # Total consultations provided by the Provider.
+        total_prov += 1
+
+        info = "\nProvider Name: " + providerInfo[x][1] + \
+               "\nProvider ID Number: " + str(providerInfo[x][0]) + \
+               "\nProvider Street Address: " + providerInfo[x][2] + \
+               "\nProvider City: " + providerInfo[x][3] + \
+               "\nProvider State: " + providerInfo[x][4] + \
+               "\nProvider Zip Code: " + str(providerInfo[x][5]) + \
+               "\n\nList of services provided by this Provider: \n"
+
+        print(info)  # print the info, same as before
+        with open(summary_file, "a") as f:
+            f.write(info)
+
+        for bill in billing:
+            serviceInfo = db.get_service(bill[5])  # Used for displaying service name and fee.
+            memberInfo = db.get_member(bill[1])  # Used for displaying member name.
+
+            # skip if it is a bad entry (bad serviceid, bad memberid)
+            if serviceInfo is None or memberInfo is None:
+                continue
+
+            info = "\n\tDate of Service: " + bill[3] + \
+                   "\n\tDate & Time Data Recieved: " + bill[4] + \
+                   "\n\tMember Name:" + memberInfo[1] + \
+                   "\n\tMember ID: " + str(bill[1]) + \
+                   "\n\tService Name: " + serviceInfo[1] + \
+                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
+
+            print(info)
+            with open(summary_file, "a") as f:
+                f.write(info)
+
+            fee = serviceInfo[2]
+            provider_total_fee += fee
+            provider_total_con += 1  # keep track of consultations provided.
+
+        # case: provider had bills but all bills were invalid
+        if provider_total_con == 0:
+            x += 1
+            continue
+
+        info = "\n\nTotal consults this Provider had: " + str(provider_total_con) + \
+               "\nTotal fees: $" + "{:.2f}".format(provider_total_fee) + "\n\n"
+        print(info)
+        with open(summary_file, "a") as f:
+            f.write(info)
+
+        total_fee += provider_total_fee
+        total_con += provider_total_con
+        x += 1
+
+    # Total number of providers, should we just add all providers in the database?
+    # Total number of consultations we can add all the services provided from member services database.
+    # Overall fees will be ALL services across all members added up
+    info = "\nTotal number of Providers who provided services this week: " + str(total_prov) +\
+           "\nTotal Number of Consultations: " + str(total_con) +\
+           "\nOverall fees: $" + "{:.2f}".format(total_fee)
+
+    print(info)
+    with open(summary_file, "a") as f:
+        f.write(info)
+
+def newMAPReport():
+    print("\nRunning Main Accounting Procedure...")
+    newMemberReport()
+    newProviderReport()
+    newEFTReport()
+    newSummaryReport()
+
+
+
+########################################################
+# old reports below
+########################################################
 
 
 #Member Report helper function to take in a Member ID.
