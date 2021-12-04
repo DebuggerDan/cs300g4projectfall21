@@ -1,0 +1,40 @@
+
+Service Name: Petting Zoo
+	Service ID: 100005
+	Service Fee: 20
+
+Service Name: Petting Zoo
+	Service ID: 100010
+	Service Fee: 10.01
+
+Service Name: Physical Therapy
+	Service ID: 100004
+	Service Fee: 49.99
+
+Service Name: Physical Therapy
+	Service ID: 100009
+	Service Fee: 29.99
+
+Service Name: Praise
+	Service ID: 100001
+	Service Fee: 100
+
+Service Name: Praise
+	Service ID: 100006
+	Service Fee: 90.9
+
+Service Name: Psilocybin
+	Service ID: 100003
+	Service Fee: 123.45
+
+Service Name: Psilocybin
+	Service ID: 100008
+	Service Fee: 54.32
+
+Service Name: Punishment
+	Service ID: 100002
+	Service Fee: 100.5
+
+Service Name: Punishment
+	Service ID: 100007
+	Service Fee: 3.5
