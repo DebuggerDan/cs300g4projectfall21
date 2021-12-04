@@ -7,7 +7,7 @@ from security.auth import loginGrabber, is_logged_in, is_manager
 
 if __name__ == "__main__":
 
-    print("\tWelcome to ChocAn!\n")
+    print("\n\tWelcome to ChocAn!\n")
 
     # for assistance logging in try the following ids
     # 100000001 (manager)
@@ -40,9 +40,6 @@ if __name__ == "__main__":
 
     # Test provider report function from comm.py
     # testProvider()
-
-    # Test summary report for manager function from comm.py
-    # testManager()
 
 # NAYA TESTING
 # Sam testing

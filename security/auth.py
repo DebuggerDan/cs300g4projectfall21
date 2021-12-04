@@ -28,15 +28,6 @@ def loginGrabber():
     if str(loginSuccess) != "None":
         print("Login success... Sending data...\n")
 
-        # moved: can't do this until after we know a provider was found
-        # tempID = str(userData.Provider_ID)
-        # tempID = str(loginSuccess[0])
-        # if tempID[0] == 1:
-        # if tempID[0] == "1":
-        #    print("Manager detected!")
-        # else:
-        #    print("Provider detected!")
-
         return loginSuccess
     else:
         print("ID not found. Please try again!")
@@ -45,10 +36,6 @@ def loginGrabber():
 
 # expand below function to run through checking what type (provider / patient / etc) the ID matches
 def loginDatabaseControl(username, charCheck):
-    # does some database stuff, calling get provider / get provider by name depending on charCheck's value
-    # if charCheck == 1:
-    #    userData = get_provider_by_name(username)
-    #    return userData
     if charCheck == 3:
         # userData = get_provider(username)
         userData = Database.get_provider(username)
