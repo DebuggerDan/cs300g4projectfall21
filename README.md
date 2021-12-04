@@ -1,4 +1,5 @@
 # cs300g4projectfall21
+
 https://chocoholics.xyz/
 https://chocoholics.xyz/
 https://chocoholics.xyz/
@@ -6,26 +7,26 @@ https://chocoholics.xyz/
 :)
 
 
->**[database.py](https://github.com/DebuggerDan/cs300g4projectfall21/blob/main/database/database.py)**
+> **[database.py](https://github.com/DebuggerDan/cs300g4projectfall21/blob/main/database/database.py)**
 >* currently being worked on by jgreever (Justin Greever).
->* Feel free to make and commit changes. 
+>* Feel free to make and commit changes.
 >* Update the README.md with a quick snippet of what you changed/added/deleted from the files you are working on.
 
->language: most likely Python 3
+> language: most likely Python 3
 >
 >database: most likely flat sql
 
 # CS 300 - Group #4 Project - Fall 2021
 
->## Name: ChocAn - Chocoholics Anonymous
+> ## Name: ChocAn - Chocoholics Anonymous
 >
 >## Purpose: Healthcare Services Suite
 
-## Program Design: 
+## Program Design:
 
->### *A. Main Interface(s)*
+> ### *A. Main Interface(s)*
 
->### *B. Database(s)*
+> ### *B. Database(s)*
 
 	1. Internal
 	2. Healthcare Records
@@ -38,19 +39,19 @@ https://chocoholics.xyz/
 		II. Security & Authentication
 		III. Ethical Records
 
->### *C. Billing*
+> ### *C. Billing*
 
 	1. Monthly Fee Cycle
 	2. Intertwined with Card Verification, Section a.)
 	3. Cron stuff
 
->### *D. Authentication & Security*
+> ### *D. Authentication & Security*
 
 	1. Card Verification
 	2. Group Verification
 	3. Synchronity
 
->### *E. Communications*
+> ### *E. Communications*
 
 	1. [Pseudo] Emailing System
 		I. Scheduling
@@ -59,8 +60,8 @@ https://chocoholics.xyz/
 		I. Fees
 		II. Stuff
 		III. Promotionals
-	
->### *F. Card Verification*
+
+> ### *F. Card Verification*
 
 	a. Check validity
 		I. Member active status

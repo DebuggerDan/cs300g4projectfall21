@@ -1,0 +1,40 @@
+
+Provider Name: DO Larry
+Provider ID Number: 200000007
+Provider Street Address: P.O. Box 312, 3277 Semper Road
+Provider City: Gary
+Provider State: Arkansas
+Provider Zip Code: 74071
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 10:53:26
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+Total consults this Provider had: 4
+Total fees: $247.45

@@ -1,0 +1,40 @@
+
+Member Name: 2
+Member ID Number: 400000012
+Member Street Address: KK
+Member City: LL
+Member State: MM
+Member Zip Code: NN
+
+List of services provided to this Member: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: AA
+	Provider ID: 200000011
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: 1
+	Provider ID: 200000016
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: AA
+	Provider ID: 200000013
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: DO Larry
+	Provider ID: 200000009
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+Total consults this Member had: 4
+Total fees: $183.98

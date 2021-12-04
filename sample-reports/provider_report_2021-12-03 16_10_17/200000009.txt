@@ -1,0 +1,54 @@
+
+Provider Name: DO Larry
+Provider ID Number: 200000009
+Provider Street Address: P.O. Box 679, 3013 Ante Av.
+Provider City: Birmingham
+Provider State: Virginia
+Provider Zip Code: 97583
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+Total consults this Provider had: 6
+Total fees: $371.84

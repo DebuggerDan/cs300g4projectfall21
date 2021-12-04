@@ -20,9 +20,10 @@ def loginChecker(username):
 
 
 def serviceChecker(service):
-    if not service.isnumeric():
+    if service.isalpha():
         return 1  # isnt a number
-    elif sys.getsizeof(str(service)) != 6:
+    #elif sys.getsizeof(str(service)) != 6:
+    elif len(service) != 6:
         return 2  # number is wrong size
     else:
         return 3  # correct
@@ -64,10 +65,13 @@ def isPhonenum(numb):
 
 
 def isValidSelection(choice):
-    choiceAmt = 7  # change to be the proper number of choices
+    choiceAmt = 8  # change to be the proper number of choices
     if not choice.isnumeric():
         return 1
-    elif sys.getsizeof(choice) > choiceAmt:
+
+    #elif sys.getsizeof(choice) > choiceAmt:
+    elif int(choice) > 8:
+
         return 2
     else:
         return 3

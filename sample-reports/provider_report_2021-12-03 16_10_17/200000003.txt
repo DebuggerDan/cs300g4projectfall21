@@ -1,0 +1,33 @@
+
+Provider Name: DO Larry
+Provider ID Number: 200000003
+Provider Street Address: Ap #329-6001 Hendrerit. Street
+Provider City: Gary
+Provider State: Hawaii
+Provider Zip Code: 24438
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 10:53:26
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+Total consults this Provider had: 3
+Total fees: $169.99

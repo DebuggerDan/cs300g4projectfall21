@@ -1,0 +1,19 @@
+
+Provider Name: 2
+Provider ID Number: 200000015
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+Total consults this Provider had: 1
+Total fees: $54.32

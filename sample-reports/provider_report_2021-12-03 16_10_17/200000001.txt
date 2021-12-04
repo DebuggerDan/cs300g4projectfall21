@@ -1,0 +1,26 @@
+
+Provider Name: Dr. Sam
+Provider ID Number: 200000001
+Provider Street Address: 194-9352 Mollis Road
+Provider City: New Orleans
+Provider State: Washington
+Provider Zip Code: 61757
+
+List of services provided by this Provider: 
+
+	Date of Service: 13.12.2021
+	Date & Time Data Recieved: 02.12.2021 10:32:04:000
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+Total consults this Provider had: 2
+Total fees: $33.49

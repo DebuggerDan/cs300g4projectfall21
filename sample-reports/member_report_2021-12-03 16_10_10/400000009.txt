@@ -1,0 +1,40 @@
+
+Member Name: Laura Thompson
+Member ID Number: 400000009
+Member Street Address: Ap #837-1904 Mollis. Rd.
+Member City: Birmingham
+Member State: Colorado
+Member Zip Code: 21134
+
+List of services provided to this Member: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: AA
+	Provider ID: 200000013
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: PCP Betty
+	Provider ID: 200000002
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: LVM George
+	Provider ID: 200000005
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: Dr. Lu
+	Provider ID: 200000006
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+Total consults this Member had: 4
+Total fees: $255.23

@@ -1,0 +1,40 @@
+
+Provider Name: A
+Provider ID Number: 200000010
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+Total consults this Provider had: 4
+Total fees: $253.96

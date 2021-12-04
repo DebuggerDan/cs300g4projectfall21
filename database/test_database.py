@@ -1,23 +1,30 @@
 from unittest import TestCase
+
 from database import Database
 
 
 class TestDatabase(TestCase):
-    # Removing the database creation test so we can populate with data
-    #def test_createdb(self):
-    #    Database.createdb()
+    # Removing the database creation test so that we can populate with data
+    # def test_createdb(self):
+    #     Database.createdb()
+
+    def test_add_billing(self):
+        Database.add_billing("A", "B", "C", "D", "E", "F")
+
+    def test_get_billing(self):
+        Database.get_provider_billing("200000001")
 
     def test_add_provider(self):
-        Database.add_provider("A", "B", "C", "D", "E", "F", "G", "H", "I")
-        Database.add_provider("AA", "BB", "CC", "DD", "EE", "FF", "GG", "HH", "II")
+        Database.add_provider("1", "B", "C", "D", "E")
+        Database.add_provider("2", "BB", "CC", "DD", "EE")
 
     def test_add_member(self):
-        Database.add_member("J", "K", "L", "M", "N", "O", "P", "Q", "R")
-        Database.add_member("JJ", "KK", "LL", "MM", "NN", "OO", "PP", "QQ", "RR")
+        Database.add_member("1", "K", "L", "M", "N", 0)
+        Database.add_member("2", "KK", "LL", "MM", "NN", 1)
 
     def test_add_service(self):
-        Database.add_service("S", "T")
-        Database.add_service("SS", "TT")
+        Database.add_service("1", "T")
+        Database.add_service("2", "TT")
 
     def test_get_provider(self):
         Database.get_provider("1")
@@ -56,10 +63,10 @@ class TestDatabase(TestCase):
         Database.delete_service("1")
 
     def test_update_member(self):
-        Database.update_member("2", "JJJ", "KKK", "LLL", "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR")
+        Database.update_member("2", "JJJ", "KKK", "LLL", "MMM", "NNN", 0)
 
     def test_update_provider(self):
-        Database.update_provider("2", "AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III")
+        Database.update_provider("2", "AAA", "BBB", "CCC", "DDD", "EEE")
 
     def test_update_service(self):
         Database.update_service("2", "SSS", "TTT")
