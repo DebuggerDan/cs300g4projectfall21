@@ -63,7 +63,7 @@ def newMemberReport():
 
     memberInfo = db.get_members()
     x = 0
-    print("\nList of all Members who were provided services this week:\n")
+    print("\nList of all Members who were provided Services this week:\n")
     total_fee = 0.00
     total_con = 0
     total_mem = 0
@@ -88,7 +88,7 @@ def newMemberReport():
                "\nMember City: " + memberInfo[x][3] + \
                "\nMember State: " + memberInfo[x][4] + \
                "\nMember Zip Code: " + str(memberInfo[x][5]) + \
-               "\n\nList of services provided to this Member: \n"
+               "\n\nList of Services provided to this Member: \n"
 
         print(info)  # print the info, same as before
         with open(member_file, "a") as f:
@@ -103,11 +103,11 @@ def newMemberReport():
                 continue
 
             info = "\n\tDate of Service: " + bill[3] + \
-                   "\n\tDate & Time Data Received: " + bill[4] + \
+                   "\n\tDate & Time of Data Received: " + bill[4] + \
                    "\n\tProvider Name: " + providerInfo[1] + \
                    "\n\tProvider ID: " + str(bill[2]) + \
                    "\n\tService Name: " + serviceInfo[1] + \
-                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tService ID: " + str(bill[5]) + \
                    "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
 
 
@@ -125,7 +125,7 @@ def newMemberReport():
             continue
 
         info = "\nTotal consults this Member had: " + str(member_total_con) + \
-               "\nTotal fees: $" + "{:.2f}".format(member_total_fee)
+               "\nTotal Fees: $" + "{:.2f}".format(member_total_fee)
         print(info)
         with open(member_file, "a") as f:
             f.write(info)
@@ -137,9 +137,9 @@ def newMemberReport():
     # Total number of providers, should we just add all providers in the database?
     # Total number of consultations we can add all the services provided from member services database.
     # Overall fees will be ALL services across all members added up
-    print("\nTotal number of Providers who provided services this week: ", total_mem,
+    print("\nTotal Number of Providers who provided Services this week: ", total_mem,
           "\nTotal Number of Consultations: ", total_con,
-          "\nOverall fees: $", "{:.2f}".format(total_fee))
+          "\nOverall Fees: $", "{:.2f}".format(total_fee))
 
 
 def newProviderReport():
@@ -219,10 +219,10 @@ def newProviderReport():
 
             info = "\n\tDate of Service: " + bill[3] + \
                    "\n\tDate & Time Data Recieved: " + bill[4] + \
-                   "\n\tMember Name:" + memberInfo[1] + \
+                   "\n\tMember Name: " + memberInfo[1] + \
                    "\n\tMember ID: " + str(bill[1]) + \
                    "\n\tService Name: " + serviceInfo[1] + \
-                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tService ID: " + str(bill[5]) + \
                    "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
 
             print(info)
@@ -329,9 +329,9 @@ def newEFTReport():
     # Total number of providers, should we just add all providers in the database?
     # Total number of consultations we can add all the services provided from member services database.
     # Overall fees will be ALL services across all members added up
-    print("\nTotal number of Providers who provided services this week: ", total_prov,
+    print("\nTotal Number of Providers who provided Services this week: ", total_prov,
           "\nTotal Number of Consultations: ", total_con,
-          "\nOverall fees: $", "{:.2f}".format(total_fee))
+          "\nOverall Fees: $", "{:.2f}".format(total_fee))
 
 
 
@@ -370,7 +370,7 @@ def newSummaryReport():
                "\nProvider City: " + providerInfo[x][3] + \
                "\nProvider State: " + providerInfo[x][4] + \
                "\nProvider Zip Code: " + str(providerInfo[x][5]) + \
-               "\n\nList of services provided by this Provider: \n"
+               "\n\nList of Services provided by this Provider: \n"
 
         print(info)  # print the info, same as before
         with open(summary_file, "a") as f:
@@ -385,11 +385,11 @@ def newSummaryReport():
                 continue
 
             info = "\n\tDate of Service: " + bill[3] + \
-                   "\n\tDate & Time Data Recieved: " + bill[4] + \
-                   "\n\tMember Name:" + memberInfo[1] + \
+                   "\n\tDate & Time of Data Received: " + bill[4] + \
+                   "\n\tMember Name: " + memberInfo[1] + \
                    "\n\tMember ID: " + str(bill[1]) + \
                    "\n\tService Name: " + serviceInfo[1] + \
-                   "\n\tService ID:" + str(bill[5]) + \
+                   "\n\tService ID: " + str(bill[5]) + \
                    "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
 
             print(info)
@@ -406,7 +406,7 @@ def newSummaryReport():
             continue
 
         info = "\n\nTotal consults this Provider had: " + str(provider_total_con) + \
-               "\nTotal fees: $" + "{:.2f}".format(provider_total_fee) + "\n\n"
+               "\nTotal Fees: $" + "{:.2f}".format(provider_total_fee) + "\n\n"
         print(info)
         with open(summary_file, "a") as f:
             f.write(info)
@@ -418,16 +418,16 @@ def newSummaryReport():
     # Total number of providers, should we just add all providers in the database?
     # Total number of consultations we can add all the services provided from member services database.
     # Overall fees will be ALL services across all members added up
-    info = "\nTotal number of Providers who provided services this week: " + str(total_prov) +\
+    info = "\nTotal Number of Providers who provided Services this week: " + str(total_prov) +\
            "\nTotal Number of Consultations: " + str(total_con) +\
-           "\nOverall fees: $" + "{:.2f}".format(total_fee)
+           "\nOverall Fees: $" + "{:.2f}".format(total_fee)
 
     print(info)
     with open(summary_file, "a") as f:
         f.write(info)
 
 def newMAPReport():
-    print("\nRunning Main Accounting Procedure...")
+    print("\nRunning the Main Accounting Procedure...")
     newMemberReport()
     newProviderReport()
     newEFTReport()
@@ -438,7 +438,7 @@ def providerDirectory():
     # At any time, a provider can request the software product for a Provider Directory, an alphabetically
     # ordered list of service names and corresponding service codes and fees. The Provider Directory is sent
     # to the provider as an e-mail attachment.
-    print("\nGenerating Provider Directory...")
+    print("\nGenerating the Provider Directory...")
 
     path = 'reports'
     exist = os.path.exists(path)
@@ -458,7 +458,7 @@ def providerDirectory():
             f.write(info)
         x += 1
 
-    print("Provider Directory Email Sent! (File created in reports folder)")
+    print("Provider Directory Email Sent! (File created in the reports folder)")
 
 
 
@@ -470,13 +470,13 @@ def providerDirectory():
 #Member Report helper function to take in a Member ID.
 def testMember():
     good = 0    #flag for proper ID number.
-    print("\nThis report will display the information of a specific Member and a list of the services they utilized for the entire week.\n")
+    print("\nThis report will display the information of a specific Member and a list of the Services they utilized for the entire week.\n")
     #while loop to allow proper input of a Member's ID.
     while good != 3:   
         IDnum = input("To search for a Member, please enter the Member's 9-digit ID: ")
         good = loginChecker(IDnum)  #update flag with loginChecker function.
         if(good != 3):
-            print("Error: ID Invalid.\n\n")
+            print("Error: Member ID Invalid.\n\n")
         else:
             memberReport(IDnum)
 
@@ -499,7 +499,7 @@ def memberReport(memberID):
         "\nMember City: ", memberInfo[3],
         "\nMember State: ", memberInfo[4],
         "\nMember Zip Code: ", memberInfo[5],
-        "\n\nList of weekly services utilized by this member: \n")
+        "\n\nList of weekly services utilized by this Member: \n")
     
         #loop through all the services this specific member utilized for the week in billing table.
         for bill in billing:
@@ -536,12 +536,12 @@ def memberReport(memberID):
 #Helper function for provider report. Same process as Member report helper function.
 def testProvider():
     good = 0
-    print("\nThis report will display the information of a specific Provider and a list of the services they provided for Members for the entire week.\n")
+    print("\nThis report will display the information of a specific Provider and a list of the Services they provided for Members for the entire week.\n")
     while good != 3:   
         IDnum = input("To search for a Provider, please enter the Provider's 9-digit ID: ")
         good = loginChecker(IDnum)
         if(good != 3):
-            print("Error: ID Invalid.\n\n")
+            print("Error: Provider ID Invalid.\n\n")
         else:
             providerReport(IDnum)
 
@@ -575,19 +575,19 @@ def providerReport(providerID):
                 continue
             
             print("\n\tDate of Service: ", bill[3],
-            "\n\tDate & Time Data Recieved: ", bill[4],
-            "\n\tMember Name:", memberInfo[1],
+            "\n\tDate & Time of Data Received: ", bill[4],
+            "\n\tMember Name: ", memberInfo[1],
             "\n\tMember ID: ", bill[1],
             "\n\tService Name: ", serviceInfo[1],
-            "\n\tService ID:", bill[5],
+            "\n\tService ID: ", bill[5],
             "\n\tFee to be paid: $", "{:.2f}".format(serviceInfo[2]))
 
             fee = serviceInfo[2]
             total_fee += fee
             total_con += 1  #keep track of consultations provided.
 
-        print("\nTotal number of consultations: ", total_con)
-        print("\nTotal service fees for the week: $", "{:.2f}".format(total_fee))
+        print("\nTotal Number of consultations: ", total_con)
+        print("\nTotal Service Fees for the week: $", "{:.2f}".format(total_fee))
         print()
 
 
@@ -598,14 +598,14 @@ def providerReport(providerID):
 def testManager():
     good = 0
     print("\nThis report will display a summary of specific information for Managers.")
-    print("The manager will utilize this report for accounts payable for Providers.")
-    print("The report will also display a total number of providers who provided services, total consultations, and overall fee total from services.\n\n")
+    print("The Manager will utilize this report for Accounts Payable for Providers.")
+    print("The report will also display a total number of Providers who provided services, total consultations, and overall fee total from services.\n\n")
     
     while good != 3:   
-        IDnum = input("To access this weeks Summary Report, please enter your 9-digit Manager ID: ")
+        IDnum = input("To access the current-week Summary Report, please enter your 9-digit Manager ID: ")
         good = loginChecker(IDnum)
         if(good != 3):
-            print("Error: ID Invalid.\n\n")
+            print("Error: Manager ID Invalid.\n\n")
         else:
             managerReport(IDnum)
 
@@ -651,7 +651,7 @@ def managerReport(managerID):
             "\nProvider City: " + providerInfo[x][3] +\
             "\nProvider State: " + providerInfo[x][4] +\
             "\nProvider Zip Code: " + str(providerInfo[x][5]) +\
-            "\n\nList of services provided by this Provider: \n"
+            "\n\nList of Services provided by this Provider: \n"
 
         print(info) #print the info, same as before
         with open(provider_file, "a") as f:
@@ -668,11 +668,11 @@ def managerReport(managerID):
             member_file = member_path + "/" + str(bill[1]) + ".txt"
 
             info = "\n\tDate of Service: " + bill[3] +\
-                    "\n\tDate & Time Data Recieved: " + bill[4] +\
-                    "\n\tMember Name:" + memberInfo[1] +\
+                    "\n\tDate & Time of Data Received: " + bill[4] +\
+                    "\n\tMember Name: " + memberInfo[1] +\
                     "\n\tMember ID: " + str(bill[1]) +\
                     "\n\tService Name: " + serviceInfo[1] +\
-                    "\n\tService ID:" + str(bill[5]) +\
+                    "\n\tService ID: " + str(bill[5]) +\
                     "\n\tFee to be paid: $" + "{:.2f}".format(serviceInfo[2])
 
             print(info)
@@ -691,7 +691,7 @@ def managerReport(managerID):
             continue
 
         info = "\nTotal consults this Provider had: " + str(provider_total_con) +\
-                "\nTotal fees: $" + "{:.2f}".format(provider_total_fee)
+                "\nTotal Fees: $" + "{:.2f}".format(provider_total_fee)
         print(info)
         with open(provider_file, "a") as f:
             f.write(info)
@@ -703,18 +703,18 @@ def managerReport(managerID):
     #Total number of providers, should we just add all providers in the database?
     #Total number of consultations we can add all the services provided from member services database.
     #Overall fees will be ALL services across all members added up
-    print("\nTotal number of Providers who provided services this week: ", total_prov,
+    print("\nTotal Number of Providers who provided services this week: ", total_prov,
           "\nTotal Number of Consultations: ", total_con,
-          "\nOverall fees: $", "{:.2f}".format(total_fee))
+          "\nOverall Fees: $", "{:.2f}".format(total_fee))
 
 
 
 #Takes a member ID and sees if they are valid or suspended. Uses some verification because of user input.
 def querMemInfo():
-    memID = input("Please enter the desired member ID: ")
+    memID = input("Please enter the desired Member ID: ")
     valID = loginChecker(memID)
     if valID != 3:
-        print("Invalid ID entry! Returning to menu.")
+        print("Invalid Member ID entry! Returning to menu.")
         return -1
     member = db.get_member(memID)
     if str(member) == "None":
@@ -723,7 +723,7 @@ def querMemInfo():
     #print(member[6])
     if int(member[6]) == 1:
         print("Member is active!")
-        print("Member name: ", member[1])
+        print("Member Name: ", member[1])
         print("ZIP: ", member[5])
         return 1
     else:
@@ -733,30 +733,30 @@ def querMemInfo():
 
 #Same as above, but for providers. Doesn't check for activity, just prints.
 def querProvInfo():
-    provID = input("Please enter the desired provider ID: ")
+    provID = input("Please enter the desired Provider ID: ")
     valID = loginChecker(provID)
     if valID != 3:
-        print("Invalid ID entry! Returning to menu.")
+        print("Invalid Provider ID entry! Returning to menu.")
         return -1
     provid = db.get_provider(provID)
     if str(provid) == "None":
         print("Provider does not exist! Returning to menu.")
         return -1
-    print("Provider name: ", provid[1])
+    print("Provider Name: ", provid[1])
     print("Provider ZIP: ", provid[5])
     return 1
 
 #Same as above again except for a service.
 def querServInfo():
-    servID = input("Please enter the desired service ID: ")
+    servID = input("Please enter the desired Service ID: ")
     valID = serviceChecker(servID)
     if valID != 3:
-        print("Invalid ID entry! Returning to menu.")
+        print("Invalid Service ID entry! Returning to menu.")
         return -1
     servid = db.get_service(servID)
     if str(servid) == "None":
         print("Service does not exist! Returning to menu.")
         return -1
-    print("Service name: ", servid[1])
+    print("Service Name: ", servid[1])
     print("Service cost: ", servid[2])
     return 1
