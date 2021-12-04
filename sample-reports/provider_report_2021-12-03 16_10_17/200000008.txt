@@ -1,0 +1,33 @@
+
+Provider Name: ANP Debrah
+Provider ID Number: 200000008
+Provider Street Address: 517-8891 Proin St.
+Provider City: Salt Lake City
+Provider State: Alaska
+Provider Zip Code: 22249
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+Total consults this Provider had: 3
+Total fees: $191.81

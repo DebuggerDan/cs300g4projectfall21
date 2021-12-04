@@ -1,0 +1,40 @@
+
+Member Name: Burke Mejia
+Member ID Number: 400000008
+Member Street Address: Ap #872-2970 Sed Rd.
+Member City: West Jordan
+Member State: Georgia
+Member Zip Code: 85157
+
+List of services provided to this Member: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: DO Larry
+	Provider ID: 200000009
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: DO Larry
+	Provider ID: 200000003
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: 1
+	Provider ID: 200000016
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: Dr. Sam
+	Provider ID: 200000001
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+Total consults this Member had: 4
+Total fees: $280.48

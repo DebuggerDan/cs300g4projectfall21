@@ -1,0 +1,40 @@
+
+Member Name: Hakeem Mccarthy
+Member ID Number: 400000006
+Member Street Address: 316-225 Enim. Rd.
+Member City: Dallas
+Member State: Colorado
+Member Zip Code: 30359
+
+List of services provided to this Member: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: A
+	Provider ID: 200000012
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: Dr. Lu
+	Provider ID: 200000006
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: DO Larry
+	Provider ID: 200000007
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: Dr. Lu
+	Provider ID: 200000006
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+Total consults this Member had: 4
+Total fees: $257.44

@@ -1,0 +1,615 @@
+
+Provider Name: Manager Bob
+Provider ID Number: 100000001
+Provider Street Address: 69 W Caramel St
+Provider City: Appleton
+Provider State: WI
+Provider Zip Code: 90210
+
+List of services provided by this Provider: 
+
+Provider Name: Dr. Sam
+Provider ID Number: 200000001
+Provider Street Address: 194-9352 Mollis Road
+Provider City: New Orleans
+Provider State: Washington
+Provider Zip Code: 61757
+
+List of services provided by this Provider: 
+
+	Date of Service: 13.12.2021
+	Date & Time Data Recieved: 02.12.2021 10:32:04:000
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+
+Total consults this Provider had: 2
+Total fees: $33.49
+
+
+Provider Name: PCP Betty
+Provider ID Number: 200000002
+Provider Street Address: 536-3331 Est, Road
+Provider City: Kapolei
+Provider State: Connecticut
+Provider Zip Code: 94435
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+
+Total consults this Provider had: 2
+Total fees: $40.00
+
+
+Provider Name: DO Larry
+Provider ID Number: 200000003
+Provider Street Address: Ap #329-6001 Hendrerit. Street
+Provider City: Gary
+Provider State: Hawaii
+Provider Zip Code: 24438
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 10:53:26
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+
+Total consults this Provider had: 3
+Total fees: $169.99
+
+
+Provider Name: LPN Georgia
+Provider ID Number: 200000004
+Provider Street Address: Ap #616-8885 Luctus Road
+Provider City: Biloxi
+Provider State: Nebraska
+Provider Zip Code: 76178
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+
+Total consults this Provider had: 1
+Total fees: $90.90
+
+
+Provider Name: LVM George
+Provider ID Number: 200000005
+Provider Street Address: P.O. Box 204, 2212 Nisl. Road
+Provider City: Indianapolis
+Provider State: Utah
+Provider Zip Code: 77337
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+
+Total consults this Provider had: 6
+Total fees: $299.60
+
+
+Provider Name: Dr. Lu
+Provider ID Number: 200000006
+Provider Street Address: Ap #454-6506 Duis Rd.
+Provider City: Gaithersburg
+Provider State: Illinois
+Provider Zip Code: 66782
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+
+Total consults this Provider had: 4
+Total fees: $298.66
+
+
+Provider Name: DO Larry
+Provider ID Number: 200000007
+Provider Street Address: P.O. Box 312, 3277 Semper Road
+Provider City: Gary
+Provider State: Arkansas
+Provider Zip Code: 74071
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 10:53:26
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+
+Total consults this Provider had: 4
+Total fees: $247.45
+
+
+Provider Name: ANP Debrah
+Provider ID Number: 200000008
+Provider Street Address: 517-8891 Proin St.
+Provider City: Salt Lake City
+Provider State: Alaska
+Provider Zip Code: 22249
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+
+Total consults this Provider had: 3
+Total fees: $191.81
+
+
+Provider Name: DO Larry
+Provider ID Number: 200000009
+Provider Street Address: P.O. Box 679, 3013 Ante Av.
+Provider City: Birmingham
+Provider State: Virginia
+Provider Zip Code: 97583
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+
+Total consults this Provider had: 6
+Total fees: $371.84
+
+
+Provider Name: A
+Provider ID Number: 200000010
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Latifah Neal
+	Member ID: 400000004
+	Service Name: Petting Zoo
+	Service ID:100005
+	Fee to be paid: $20.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+
+Total consults this Provider had: 4
+Total fees: $253.96
+
+
+Provider Name: AA
+Provider ID Number: 200000011
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+
+Total consults this Provider had: 2
+Total fees: $150.49
+
+
+Provider Name: A
+Provider ID Number: 200000012
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 10:53:26
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Jameson Roberson
+	Member ID: 400000003
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+
+Total consults this Provider had: 3
+Total fees: $221.39
+
+
+Provider Name: AA
+Provider ID Number: 200000013
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+
+Total consults this Provider had: 3
+Total fees: $133.49
+
+
+Provider Name: 1
+Provider ID Number: 200000014
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+
+Total consults this Provider had: 1
+Total fees: $90.90
+
+
+Provider Name: 2
+Provider ID Number: 200000015
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+
+Total consults this Provider had: 1
+Total fees: $54.32
+
+
+Provider Name: 1
+Provider ID Number: 200000016
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+
+Total consults this Provider had: 5
+Total fees: $514.85
+
+
+Provider Name: 2
+Provider ID Number: 200000017
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+
+Total consults this Provider had: 2
+Total fees: $100.91
+
+
+Total number of Providers who provided services this week: 18
+Total Number of Consultations: 52
+Overall fees: $3264.05

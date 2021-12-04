@@ -1,0 +1,33 @@
+
+Provider Name: AA
+Provider ID Number: 200000013
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+Total consults this Provider had: 3
+Total fees: $133.49

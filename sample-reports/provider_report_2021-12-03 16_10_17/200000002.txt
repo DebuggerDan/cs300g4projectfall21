@@ -1,0 +1,26 @@
+
+Provider Name: PCP Betty
+Provider ID Number: 200000002
+Provider Street Address: 536-3331 Est, Road
+Provider City: Kapolei
+Provider State: Connecticut
+Provider Zip Code: 94435
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Blythe Mcfadden
+	Member ID: 400000002
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+Total consults this Provider had: 2
+Total fees: $40.00

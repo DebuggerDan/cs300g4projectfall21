@@ -1,0 +1,40 @@
+
+Provider Name: Dr. Lu
+Provider ID Number: 200000006
+Provider Street Address: Ap #454-6506 Duis Rd.
+Provider City: Gaithersburg
+Provider State: Illinois
+Provider Zip Code: 66782
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Lesley Valdez
+	Member ID: 400000001
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Hakeem Mccarthy
+	Member ID: 400000006
+	Service Name: Physical Therapy
+	Service ID:100009
+	Fee to be paid: $29.99
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Laura Thompson
+	Member ID: 400000009
+	Service Name: Psilocybin
+	Service ID:100008
+	Fee to be paid: $54.32
+Total consults this Provider had: 4
+Total fees: $298.66

@@ -1,0 +1,47 @@
+
+Member Name: Lesley Valdez
+Member ID Number: 400000001
+Member Street Address: Ap #155-8960 Donec Av.
+Member City: Frankfort
+Member State: Iowa
+Member Zip Code: 35899
+
+List of services provided to this Member: 
+
+	Date of Service: 13.12.2021
+	Date & Time Data Received: 02.12.2021 10:32:04:000
+	Provider Name: Dr. Sam
+	Provider ID: 200000001
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: A
+	Provider ID: 200000010
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: LVM George
+	Provider ID: 200000005
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: DO Larry
+	Provider ID: 200000009
+	Service Name: Punishment
+	Service ID:100007
+	Fee to be paid: $3.50
+	Date of Service: 2021-12-02
+	Date & Time Data Received: 2021-12-02 11:02:44
+	Provider Name: Dr. Lu
+	Provider ID: 200000006
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+Total consults this Member had: 5
+Total fees: $201.90

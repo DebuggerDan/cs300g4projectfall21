@@ -1,0 +1,47 @@
+
+Provider Name: 1
+Provider ID Number: 200000016
+Provider Street Address: B
+Provider City: C
+Provider State: D
+Provider Zip Code: E
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Burke Mejia
+	Member ID: 400000008
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Anika Deleon
+	Member ID: 400000010
+	Service Name: Praise
+	Service ID:100001
+	Fee to be paid: $100.00
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:1
+	Member ID: 400000011
+	Service Name: Psilocybin
+	Service ID:100003
+	Fee to be paid: $123.45
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+Total consults this Provider had: 5
+Total fees: $514.85

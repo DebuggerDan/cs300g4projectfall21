@@ -1,0 +1,26 @@
+
+Provider Name: 2
+Provider ID Number: 200000017
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:McKenzie Fry
+	Member ID: 400000005
+	Service Name: Praise
+	Service ID:100006
+	Fee to be paid: $90.90
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Petting Zoo
+	Service ID:100010
+	Fee to be paid: $10.01
+Total consults this Provider had: 2
+Total fees: $100.91

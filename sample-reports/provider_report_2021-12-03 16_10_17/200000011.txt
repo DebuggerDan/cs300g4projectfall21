@@ -1,0 +1,26 @@
+
+Provider Name: AA
+Provider ID Number: 200000011
+Provider Street Address: BB
+Provider City: CC
+Provider State: DD
+Provider Zip Code: EE
+
+List of services provided by this Provider: 
+
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:Brenden Beck
+	Member ID: 400000007
+	Service Name: Punishment
+	Service ID:100002
+	Fee to be paid: $100.50
+	Date of Service: 2021-12-02
+	Date & Time Data Recieved: 2021-12-02 11:02:44
+	Member Name:2
+	Member ID: 400000012
+	Service Name: Physical Therapy
+	Service ID:100004
+	Fee to be paid: $49.99
+Total consults this Provider had: 2
+Total fees: $150.49
