@@ -20,13 +20,13 @@ if __name__ == "__main__":
     # login successful, provider info saved in logged_in
 
     if is_logged_in(user):
-        print("User " + str(user[0]) + " is logged in.")  # user ID
+        print("The current User, '" + str(user[0]) + "' is logged in.")  # user ID
         print("Welcome to ChocAn, " + user[1])  # username
 
     if is_manager(user):
-        print("User is a manager.")
+        print("User is a Manager.")
     else:
-        print("User is not a manager.")
+        print("User is not a Manager.")
 
     mainMenu(user)
 
