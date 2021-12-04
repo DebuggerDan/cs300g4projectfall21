@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # login successful, provider info saved in logged_in
 
     if is_logged_in(user):
-        print("The current User, '" + str(user[0]) + "' is logged in.")  # user ID
+        print("The current User ID: '" + str(user[0]) + "' is logged in.")  # user ID
         print("Welcome to ChocAn, " + user[1])  # username
 
     if is_manager(user):
